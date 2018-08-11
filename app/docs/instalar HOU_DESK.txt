@@ -1,11 +1,11 @@
 Houston S. fernandes -houstonfernandes@gmail.com
-30/03/2018 - INSTALACAO SISTEMA COMERCIAL HSF
+11/08/2018 - INSTALACAO SISTEMA HOU DESK
 
 1 - clonar repositorio
-	$ git clone ~/repositorios/comercial
+	$ git clone ~/repositorios/hou_desk
 
 2 - selecionar dir
-	$ cd comercial/
+	$ cd hou_desk/
 
 3 - instalar dependencias
 	$composer install
@@ -14,9 +14,9 @@ Houston S. fernandes -houstonfernandes@gmail.com
 	$ mysql -u root -p
 
 	$mysql>
-		CREATE DATABASE comercial_teste DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+		CREATE DATABASE hou-desk DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 	# criar usuario a atribuir permissoes
-	mysql> CREATE USER 'comercial_user'@'localhost' IDENTIFIED BY 'comercial'; GRANT ALL PRIVILEGES ON comercial_teste.* TO 'comercial_user'@'localhost' WITH GRANT OPTION; 
+		CREATE USER 'hou_desk_user'@'localhost' IDENTIFIED BY 'hou-desk'; GRANT ALL PRIVILEGES ON hou-desk.* TO 'hou_desk_user'@'localhost' WITH GRANT OPTION; 
 
 5 - criar .env
 	$ cp .env.example .env
