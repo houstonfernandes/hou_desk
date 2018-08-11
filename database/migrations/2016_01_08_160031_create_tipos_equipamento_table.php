@@ -17,7 +17,7 @@ class CreateTiposEquipamentoTable extends Migration
             $table->increments('id');
             $table->string('nome',80);
             $table->text('descricao')->nullable();
-            $table->boolean('ativo')->default(1);
+            $table->boolean('ativo')->default(true);
  //           $table->timestamps();
         });
     }

@@ -24,18 +24,13 @@ class RolesTableSeeder extends Seeder
             ]
         );
         factory(App\Role::class)->create([
-                'name' => "vendedor",
-                'label' => 'Vendedor'
-            ]
-        );
-        factory(App\Role::class)->create([
-                'name' => "usuário",
+                'name' => "usuario",
                 'label' => 'Usuário'
             ]
         );
         factory(App\Role::class)->create([
-            'name' => "comprador",
-            'label' => 'Comprador'
+            'name' => "tecnico",
+            'label' => 'Técnico'
         ]
             );
         

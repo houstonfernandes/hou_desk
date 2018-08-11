@@ -14,6 +14,8 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $local = App\Local::orderByRaw("RAND()")->first();//busca existente
+    
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
@@ -25,6 +27,8 @@ $factory->define(App\User::class, function (Faker $faker) {
         'cidade'=> $faker->city,
         //'uf' => $faker->countryISOAlpha3,
         'cep' => $faker->numerify('#####-###'),
+        
+        'local_id' =>$local->id
         
     ];
 });

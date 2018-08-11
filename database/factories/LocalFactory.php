@@ -13,20 +13,18 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Cliente::class, function (Faker $faker) {
+$factory->define(App\Local::class, function (Faker $faker) {
     return [
         'nome' => $faker->name,
         'nome_fantasia' => $faker->domainName,
-        'cpf' =>$faker->randomNumber(9). '-'. $faker->randomNumber(2),
+        'cnpj' =>$faker->randomNumber(9). '-'. $faker->randomNumber(2),
         'endereco' =>$faker->address,
         'numero' =>$faker->numberBetween(0,9999),
         'bairro' =>$faker->streetAddress,
         'cidade' => $faker->city,
-//        'cep' =>$faker->countryCode,
         'obs' =>$faker->realText(),        
         'email' => $faker->email,
-        'cep' => $faker->numerify('#####-###'),
-        
+        'cep' => $faker->numerify('#####-###'),        
     ];
 });
   

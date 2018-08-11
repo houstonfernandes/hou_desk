@@ -9,19 +9,26 @@ class Equipamento extends Model
     protected $table = 'equipamentos';
     protected $fillable = [
         'nome', 'marca', 'descricao', 'num_patrimonio', 'num_etiqueta', 'data_aquisicao',  
-        'custo', 'origem', 'situacao', 'categoria_id' 
+        'custo', 'origem', 'situacao', 'tipo_equipamento_id', 'setor_id' 
     ];
     
     protected $attributes = [//valores default
     ];
 
     /**
-     * busca a categoria do produto
+     * busca a setor
      */
-    public function categoria(){
-        return $this->belongsTo('App\Categoria');
+    public function setor(){
+        return $this->belongsTo('App\Setor');
     }
 
+    /**
+     * busca o tipo
+     */
+    public function tipoEquipamento(){
+        return $this->belongsTo('App\TipoEquipamento');
+    }
+    
     /**
      * busca as imagens do equipamento
      */
@@ -48,13 +55,13 @@ class Equipamento extends Model
     }
     
     /**
-     * busca produtos por categorias
+     * busca equipamentos por tipo
      * @param $query
-     * @param $id - id da category
-     * @return mixed - collection de produtos
+     * @param $id - id do tipo
+     * @return mixed - collection de equipamentos
      */
-    public function scopeOfCategoria($query, $id){
-        return $query->where('category_id', '=', $id);
+    public function scopeOfTipoEquipamento($query, $id){
+        return $query->where('tipo_equipamento_id', '=', $id);
     }
 
     /**
@@ -66,8 +73,8 @@ class Equipamento extends Model
         $img = $this->images()->first();
         if(count($img))
             return [
-                $img->id . '.' . $img->extension,
-                $img->id . '_thumbnail.' . $img->extension
+                $img->id . '.' . $img->extensao,
+                $img->id . '_thumbnail.' . $img->extensao
             ];
         return null;
     }    

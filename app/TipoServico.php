@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoServico extends Model
 {
+    protected $table = 'tipos_servico';
     public $timestamps = false;
     protected $fillable = ['nome'];
     /**
