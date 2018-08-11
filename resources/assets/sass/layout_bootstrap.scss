@@ -1,0 +1,103 @@
+//CUSTOM BOOTSTRAP
+//todas colors para customizar do bootstrap
+
+$gray-base :#000;
+$gray-darker :lighten($gray-base, 13.5%);
+$gray-dark :lighten($gray-base, 20%);
+$gray :lighten($gray-base, 33.5%);
+$gray-light :lighten($gray-base, 46.7%);
+$gray-lighter:lighten($gray-base, 93.5%);
+
+$brand-primary :$turquoise;
+$brand-success :$emerald;
+$brand-info :$peter_river;
+$brand-warning :$sun_flower;
+$brand-danger :$pomegranate;
+
+//table
+$table-bg-accent :lighten($green_sea, 59%); //striped
+$table-border-color :lighten($green_sea, 23%);
+//$table-bg-hover:;//hover
+.table{
+  > thead > tr > th {
+    color:$white;
+    background-color: $green_sea;
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.3));
+  }
+}
+//form
+
+$input-border-focus : lighten($green_sea,17%);//Border color for inputs on focus
+
+//navbar
+
+$navbar-default-color : $white; //lighten($orange, 30%);
+$navbar-default-bg: $green_sea; //$cinza;
+$navbar-default-border : darken($navbar-default-bg, 35%);
+$navbar-default-link-color : $white; //$orange;
+$navbar-default-link-hover-color :$white; 
+$navbar-default-link-hover-bg :$turquoise;//transparent;
+$navbar-default-link-active-color : $white;
+$navbar-default-link-active-bg : lighten($navbar-default-bg, 5%);
+$navbar-default-link-disabled-color : #ccc;
+$navbar-default-link-disabled-bg : transparent;
+$navbar-default-brand-color: lighten($orange, 30%);
+$navbar-default-brand-hover-color: darken($navbar-default-brand-color, 10%);
+$navbar-default-brand-hover-bg : transparent;
+$navbar-default-toggle-hover-bg : $navbar-default-link-active-bg;//#ddd;
+$navbar-default-toggle-icon-bar-bg : #888;
+$navbar-default-toggle-border-color :$navbar-default-border;//#ddd;
+
+
+//panel
+$panel-bg :lighten($navbar-default-bg, 60%);
+$panel-footer-bg :lighten($navbar-default-bg, 25%);;
+$panel-default-text : $navbar-default-color;
+$panel-primary-text :$navbar-default-color;;
+
+$panel-default-heading-bg :lighten($brand-primary, 5%);
+$panel-default-border :darken($brand-primary, 10%);
+$panel-primary-heading-bg :$navbar-default-bg;
+$panel-primary-border :$navbar-default-bg;
+
+$list-group-heading-color :lighten($navbar-default-bg, 50%);;
+
+//dropdown
+$dropdown-bg :$white;
+
+//@dropdown-border rgba(0,0,0,.15)
+//@dropdown-fallback-border #ccc
+
+@dropdown-link-color @gray-dark //Dropdown link text color.
+//$dropdown-link-hover-color :$orange;//darken(@gray-dark, 5%) Hover color for dropdown links.
+$dropdown-link-hover-bg :$navbar-default-link-hover-bg; //$orange;//#f5f5f5Hover background for dropdown links.
+//@dropdown-link-active-color 
+//@component-active-color
+
+//@dropdown-link-active-bg 
+//@component-active-bg
+//Active dropdown menu item background color.
+
+//@dropdown-header-color 
+//@gray-light
+//Text color for headers within dropdown menus.
+
+//buttons
+$btn-default-color: $navbar-default-link-color;
+$btn-default-bg: darken($green_sea, 5%);
+$btn-default-border: $navbar-default-border;
+$btn-primary-color: $navbar-default-link-color;
+$btn-primary-bg: darken($green_sea, 12%);
+$btn-primary-border: $navbar-default-border;
+
+
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+/*
+.container{
+    /background-color: #fff;
+}*/
+.alert{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+

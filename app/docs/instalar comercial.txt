@@ -1,0 +1,36 @@
+Houston S. fernandes -houstonfernandes@gmail.com
+30/03/2018 - INSTALACAO SISTEMA COMERCIAL HSF
+
+1 - clonar repositorio
+	$ git clone ~/repositorios/comercial
+
+2 - selecionar dir
+	$ cd comercial/
+
+3 - instalar dependencias
+	$composer install
+
+4 - criar banco
+	$ mysql -u root -p
+
+	$mysql>
+		CREATE DATABASE comercial_teste DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+	# criar usuario a atribuir permissoes
+	mysql> CREATE USER 'comercial_user'@'localhost' IDENTIFIED BY 'comercial'; GRANT ALL PRIVILEGES ON comercial_teste.* TO 'comercial_user'@'localhost' WITH GRANT OPTION; 
+
+5 - criar .env
+	$ cp .env.example .env
+
+6 - gerar app key
+	$ php artisan key:generate
+
+7 -editar configuracoes do banco em .env
+
+8 - criar tabelas do banco e popular
+	$ php artisan migrate
+	$php artisan db:seed
+
+9 - testar
+	$ php artisan serve
+
+

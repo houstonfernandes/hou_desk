@@ -1,0 +1,30 @@
+@import 'paleta';
+@import 'layout_bootstrap';
+
+.navbar-brand img {
+    padding-top: -20px;
+    margin-top: -5px;
+    height: 30px;
+}
+.navbar-form{
+  background-color: $gray-lighter;
+}
+
+h2.title{
+  color: $black;
+  text-align: center;
+  text-shadow: $navbar-default-bg 2px 2px 6px;
+  font-style: italic;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.error {
+    color: $pomegranate;
+}
+
+.numero{
+	text-align: right;
+	margin-right: 2px;
+}
+
