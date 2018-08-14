@@ -24,8 +24,12 @@ mix.webpackConfig({
 mix.extract([
     'jquery', 'bootstrap-sass'
 ]);
+mix.js('resources/assets/js/admin/locais_create.js', 'public/js/admin');
+
 
 mix.js('resources/assets/js/admin/modal_excluir.js', 'public/js/admin');//excluir default
+/*
+
 mix.js('resources/assets/js/admin/product_images_create.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/clientes_create.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/clientes_edit.js', 'public/js/admin');
@@ -39,7 +43,11 @@ mix.js('resources/assets/js/admin/pedido_create.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/modal_pedido_excluir_item.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/modal_pedido_pesquisar_produto.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/modal_pedido_pagamento.js', 'public/js/admin');
+
+*/
+
 mix.js('resources/assets/js/admin/roles_permissions.js', 'public/js/admin');
+/*
 mix.js('resources/assets/js/admin/compra_create.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/compra_create_init.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/modal_compra_pesquisar_produto.js', 'public/js/admin');
@@ -48,7 +56,7 @@ mix.js('resources/assets/js/admin/modal_compra_excluir_item.js', 'public/js/admi
 mix.js('resources/assets/js/admin/modal_compra_editar_item.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/compra_edit.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/compra_edit_init.js', 'public/js/admin');
-
+*/
 //arquivos em js por ultimo para vendor e manifest nao ficarem na pasta admin
 mix.js('resources/assets/js/app.js', 'public/js')	
    .sass('resources/assets/sass/app.scss', 'public/css');

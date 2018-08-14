@@ -35,7 +35,7 @@ class User extends Authenticatable
     public function pedidos(){
         return $this->hasMany('App\Pedido');
     }
-        
+
     /*
      * Papeis do user
      */
@@ -43,7 +43,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Role');
     }
-    
+   
     public function hasPermission($permission)
     {
         if($this->is_admin)

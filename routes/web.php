@@ -94,16 +94,16 @@ Route::prefix('admin/clientes')
         Route::delete('/{id}', ['as' => 'delete', 'uses' => 'ClientesController@delete']);
     });
 
-Route::prefix('admin/fornecedores')
-    ->name('admin.fornecedores.')
+Route::prefix('admin/locais')
+    ->name('admin.locais.')
     ->middleware('auth')
     ->group(function(){
-        Route::get('/', ['as' => 'index', 'uses' => 'FornecedoresController@index']);
-        Route::post('/', ['as' => 'store', 'uses' => 'FornecedoresController@store']);
-        Route::get('create', ['as' => 'create', 'uses' => 'FornecedoresController@create']);
-        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'FornecedoresController@edit']);
-        Route::put('/{id}', ['as' => 'update', 'uses' => 'FornecedoresController@update']);
-        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'FornecedoresController@delete']);
+        Route::get('/', ['as' => 'index', 'uses' => 'LocaisController@index']);
+        Route::post('/', ['as' => 'store', 'uses' => 'LocaisController@store']);
+        Route::get('create', ['as' => 'create', 'uses' => 'LocaisController@create']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'LocaisController@edit']);
+        Route::put('/{id}', ['as' => 'update', 'uses' => 'LocaisController@update']);
+        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'LocaisController@delete']);
     });
     
 Route::prefix('admin/pedidos')

@@ -15,11 +15,19 @@ class Local extends Model
     ];
     
     /**
-     * busca setor
+     * busca setores
      */
-    public function setor()
+    public function setores()
     {
-        return $this->belongsTo(Setor::class);
+        return $this->hasMany(Setor::class);
+    }
+    
+    /**
+     * busca usuarios
+     */
+    public function usuarios()
+    {
+        return $this->hasMany(User::class);
     }
     
 }

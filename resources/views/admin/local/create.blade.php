@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h2 class='title'>Novo Fornecedor</h2>
+    <h2 class='title'>Novo Local</h2>
     
     
     <form method="post" action="{{route('admin.fornecedores.store')}}" name='form' >
@@ -13,16 +13,11 @@
         <input type="text" class="form-control" id="nome" name="nome" value="{{old('nome')}}" placeholder="nome do fornecedor" maxlength="100" required>
       </div>
       
-  		<div class="form-inline">
-    		<input class="form-check-input" type="radio" name="tipo_fornecedor" id="tipo_fornecedor_fisica" value="0" {{old('tipo_fornecedor',0)==0 ?'checked':''}}>
-      		<label class="form-check-label" for="tipo_fornecedor_fisica">Pessoa Física</label>
-      		<input class="form-check-input" type="radio" name="tipo_fornecedor" id="tipo_fornecedor_juridica" value="1" {{old('tipo_fornecedor')==1 ?'checked':''}} >
-      		<label class="form-check-label" for="tipo_fornecedor_juridica">Pessoa jurídica</label>  		
-	</div>	
-
 	<div class="form-inline">
-		<label for="cpf"> CPF/CNPJ</label>
-    	<input type="text" class="form-control" id="cpf" name="cpf" value="{{old('cpf')}}" maxlength="18">
+		<label for="cnpj"> CNPJ</label>
+    	<input type="text" class="form-control" id="cnpj" name="cnpj" value="{{old('cnpj')}}" maxlength="18">
+		<label for="inep"> INEP</label>
+    	<input type="text" class="form-control" id="inep" name="inep" value="{{old('inep')}}" maxlength="18">
 		<label for="nome_fantasia">Nome Fantasia</label>
         <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" value="{{old('nome_fantasia')}}" placeholder="nome fantasia - pessoa juridica"  maxlength="100">
 	</div>
@@ -55,6 +50,11 @@
         <input type="text" class="form-control" id="ponto_ref" name="ponto_ref" value="{{old('ponto_ref')}}">
 	</div>
 	
+	<div class="form-group">
+		<label for="cep">CEP</label>
+        <input type="text" class="form-control" id="cep" name="cep" value="{{old('cep')}}">
+	</div>
+	
     <div class ='form-inline'>
         <label for="tel">Telefone</label>
         <input type="tel" class="form-control" id="tel" name="tel" value="{{ old('tel') }}" maxlength="14">
@@ -84,5 +84,5 @@
     <script src="{{asset('js/jquery_validation.js')}}"></script>
     <script src="{{asset('js/jquery_mask_plugin.js')}}"></script>
     <script src="{{asset('js/jquery_numeric.js')}}"></script>
-    <script src="{{asset('js/admin/fornecedores_create.js')}}"></script>
+    <script src="{{asset('js/admin/locais_create.js')}}"></script>
 @endpush
