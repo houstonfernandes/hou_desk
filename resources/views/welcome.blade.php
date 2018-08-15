@@ -88,7 +88,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-	                <img src="{{asset('imagens/hsf_systems_comercial2.png')}}" class='img-responsive' title="{{config('app.name', 'HSF Systems')}}">                    
+	                <img src="{{asset('imagens/hsf_systems_helpdesk.png')}}" class='img-responsive' title="{{config('app.name', 'HSF Systems')}}">                    
                 </div>
 
                 <div class="links">

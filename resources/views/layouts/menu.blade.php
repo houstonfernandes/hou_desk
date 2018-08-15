@@ -14,7 +14,7 @@
     	</button>
     	<a class="navbar-brand" href="{{route('/')}}">
         <!--{{config("app.name")}}-->
-            <img src="{{asset('imagens/hsf_systems.png')}}" alt="">
+            <img src="{{asset('imagens/hsf_systems_helpdesk_menu.png')}}" alt="">
         </a>
        </div>
 
@@ -30,7 +30,8 @@
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
-    <!--                    <li>
+    <!--
+                        <li>
                             <a href="#" >opção</a>
                         </li>
                         -->
@@ -48,9 +49,18 @@
 	                           <li><a href="{{ route('admin.users.index') }}" title="Cadastro de Usuários">Cadastro de Usuários</a></li>
 	                           @can('user_role')
 	                           @endcan
+                        <li class="dropdown-submenu">
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ACL</a>
+                            <ul class="dropdown-menu">
 	                           @can('role_create')
-	                           <li><a href="{{ route('admin.roles.index') }}" title="Cadastro de Papéis">Cadastro de Papéis</a></li>
 	                           @endcan
+	                           <li><a href="{{ route('admin.roles.index') }}" title="Cadastro de Papéis">Cadastro de Papéis</a></li>
+	                           
+                            </ul>
+                        </li>
+
+
 	                           
                             </ul>
                         </li>

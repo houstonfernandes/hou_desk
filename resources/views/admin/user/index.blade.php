@@ -43,7 +43,7 @@
                     	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.users.delete', $user->id) }}" data-name = "{{$user->name}}" data-msg=" Excluir usuário?" data-msg_alert="Atencão só será excluído se não tiver realizado operação no sistema." title='Excluir'>
-                    	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </button>
                     <a href = "{{route('admin.users.roles', $user->id) }}" class="btn btn-primary" title='Papéis'>
                     	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>

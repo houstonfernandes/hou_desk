@@ -50,7 +50,7 @@
                         	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                        	</a>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.setores.delete', [$setor->id, $local->id]) }}" data-name = "{{$setor->nome}}" data-msg=" Excluir setor?" data-msg_alert="Atencão só será excluído se não possuir equipamento." title='Excluir'>                        	
-                        	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </button>
                     </td>
                 </tr>

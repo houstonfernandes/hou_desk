@@ -35,7 +35,7 @@
                         	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.locais.delete', $local->id) }}" data-name = "{{$local->nome}}" data-msg=" Excluir local?" data-msg_alert="Atencão só será excluído se não possuir usuário." title='Excluir'>
-                        	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </button>
                         <a href = "{{route('admin.setores.index', $local->id) }}" class="btn btn-primary" title="Setores">
                         	<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>

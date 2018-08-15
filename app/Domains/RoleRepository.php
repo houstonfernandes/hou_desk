@@ -71,7 +71,7 @@ class RoleRepository extends BaseRepository
                 return ['msg' => $msg, 'style' =>'success'];
             }
             else {
-                throw new NaoPodeExcluirException('Papel ' . $name .' não pode ser excluída, pois possui usuários.');
+                throw new NaoPodeExcluirException('Papel ' . $name .' não pode ser excluído, pois possui usuários.');
             }
         }
         catch (NaoPodeExcluirException $e){
