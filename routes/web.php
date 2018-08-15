@@ -106,14 +106,16 @@ Route::prefix('admin/locais')
         Route::delete('/{id}', ['as' => 'delete', 'uses' => 'LocaisController@delete']);
     });
     
-Route::prefix('admin/pedidos')
+Route::prefix('admin/setores')
     ->middleware('auth')
-    ->name('admin.pedidos.')
+    ->name('admin.setores.')
     ->group(function(){
-        Route::get('/', ['as' => 'index', 'uses' => 'PedidosController@index']);
-        Route::post('/', ['as' => 'store', 'uses' => 'PedidosController@store']);
-        Route::get('create_mercado', ['as' => 'create_mercado', 'uses' => 'PedidosController@createMercado']);//->name('create');
-        Route::get('consultar/{id}', ['as' => 'consultar', 'uses' => 'PedidosController@consultar']);
+        Route::get('{id}/', ['as' => 'index', 'uses' => 'SetoresController@index']);//setores do local
+        Route::post('/', ['as' => 'store', 'uses' => 'SetoresController@store']);
+        Route::get('create', ['as' => 'create', 'uses' => 'SetoresController@create']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'SetoresController@edit']);
+        Route::put('/{id}', ['as' => 'update', 'uses' => 'SetoresController@update']);
+        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'SetoresController@delete']);
     });
     
 Route::prefix('admin/compras')

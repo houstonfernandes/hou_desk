@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 
-class LocalRequest extends FormRequest
+class SetorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -40,13 +40,8 @@ class LocalRequest extends FormRequest
             case 'POST':
                 {
                     return [
-                        'cnpj'      =>    ['min:14', 'max:18', 'required',
-                            Rule::unique('locais')
-                                ->where(function ($query) {
-                                    $query->where('cnpj', $this->cnpj);
-                                })
-                        ],
-                        'nome'      =>    ['min:3', 'max:80', 'required']
+                        'nome'      =>    ['min:3', 'max:80', 'required'],
+                        'local_id'      =>    ['required']
                             
                     ];
                 }
@@ -54,7 +49,8 @@ class LocalRequest extends FormRequest
             case 'PATCH':
                 {
                     return [
-                        'nome'      =>    ['min:3','max:80', 'required']
+                        'nome'      =>    ['min:3','max:80', 'required'],
+                        'local_id'      =>    ['required']
                    ];
                 }
             default:break;

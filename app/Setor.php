@@ -17,4 +17,12 @@ class Setor extends Model
     {
         return $this->belongsTo(Local::class);
     }
+    
+    /**
+     * busca equipamentos
+     */
+    public function equipamentos()
+    {
+        return $this->hasMany(Equipamento::class);
+    }
 }

@@ -3,26 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\FornecedorRequest;
-use App\Domains\LocalRepository;
+use App\Domains\SetorRepository;
 use App\Http\Requests\LocalRequest;
+use App\Local;
 
-class LocaisController extends Controller
+class SetoresController extends Controller
 {
     private $repository;
-    public function __construct(LocalRepository $repository){
+    public function __construct(SetorRepository $repository){
         $this->repository= $repository;
     }
-    public function index()    
+    public function index($id)    
     {
-        $locais = $this->repository->listaPaginada();
-        return view('admin.locais.index', compact('locais'));
+        $local = Local::find($id);
+        $setores = $this->repository->listaPaginadaLocal($id);        
+        return view('admin.setores.index', compact('local', 'setores'));
     }
     
     public function create()
     {
         $ufBrasil = ufBrasil();
-        return view('admin.locais.create', compact('ufBrasil'));
+        return view('admin.local.create', compact('ufBrasil'));
     }
     
     public function store(LocalRequest $request)
@@ -35,7 +36,7 @@ class LocaisController extends Controller
     public function edit($id){
         $ufBrasil = ufBrasil();
         $local = $this->repository->findByID($id);
-        return view('admin.locais.edit', compact('local', 'ufBrasil'));
+        return view('admin.local.edit', compact('local', 'ufBrasil'));
     }
     
     public function update($id, LocalRequest $request)
