@@ -21,7 +21,7 @@ $table-border-color :lighten($brand-primary, 23%);
 .table{
   > thead > tr > th {
     color:$white;
-    background-color: $pumpkin;
+    background-color: $yeganlan;
     background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.3));
   }
 }
@@ -32,11 +32,11 @@ $input-border-focus : lighten($alizarin,17%);//Border color for inputs on focus
 //navbar
 
 $navbar-default-color : $white; //lighten($orange, 30%);
-$navbar-default-bg: $midnight_blue; //$cinza;
-$navbar-default-border : darken($navbar-default-bg, 35%);
+$navbar-default-bg: $dark_saphire; //$cinza;
+$navbar-default-border : darken($orange, 35%);
 $navbar-default-link-color : $white;
 $navbar-default-link-hover-color :$white; 
-$navbar-default-link-hover-bg :$peter_river;//transparent;
+$navbar-default-link-hover-bg :$asbestos;//transparent;
 $navbar-default-link-active-color : $white;
 $navbar-default-link-active-bg : lighten($navbar-default-bg, 5%);
 $navbar-default-link-disabled-color : #ccc;
@@ -84,10 +84,10 @@ $dropdown-link-hover-bg :$navbar-default-link-hover-bg; //#f5f5f5Hover backgroun
 
 //buttons
 $btn-default-color: $navbar-default-link-color;
-$btn-default-bg: darken($navbar-default-bg, 5%);
+$btn-default-bg: lighten($blue_nights, 1%);
 $btn-default-border: $navbar-default-border;
 $btn-primary-color: $navbar-default-link-color;
-$btn-primary-bg: darken($navbar-default-bg, 12%);
+$btn-primary-bg: lighten($eletro_magnetic, 1%);
 $btn-primary-border: $navbar-default-border;
 
 

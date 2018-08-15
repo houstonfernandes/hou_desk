@@ -14,11 +14,15 @@
         {{ csrf_field() }}
         
         <div class ='form-group'>
-            <label for="local">Local</label>
-            <input type="text" class="form-control" id="local" value="{{ $user->local->nome}}" maxlength="80" readonly>
+        	<label for="local">Local</label>
+            <select id=='local_id' name='local_id' class="form-control" required>
+            	<option value=''>Selecione uma opção</option>
+            	@foreach($locais as $local)
+            	<option value="{{$local->id}}" {{ $local->id == $user->local->id? "selected":"" }}>{{$local->nome}}</option>
+            	@endforeach
+            </select>
         </div>
         
-
         <div class ='form-group'>
             <label for="name">Nome</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>

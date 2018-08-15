@@ -69,9 +69,9 @@
     <body>
         <div class="nav navbar-nav navbar-left"
             <ul class="dropdown-menu">
-                 <li><a href="{{ route('admin.categories.index') }}" title="Cadastro de Categorias">Cadastro de Categorias</a></li>   
-                <li><a href="{{ route('admin.products.index') }}" title="Cadastro de Produtos">Cadastro de Produtos</a></li>  
-                <li><a href="{{ route('admin.clientes.index') }}" title="Cadastro de Clientes">Cadastro de Clientes</a></li>  
+                 <li><a href="{{ route('admin.users.index') }}" title="Cadastro de Usuários">Cadastro de Usuários</a></li>   
+                <li><a href="#" title="Cadastro de equipamentos">Cadastro de equipamentos</a></li>  
+                <li><a href="#" title="Solicitação de serviço">Solicitação de serviço</a></li>  
             </ul>
         </div>    
         <div class="flex-center position-ref full-height">
@@ -81,7 +81,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        {{--<a href="{{ route('register') }}">Register</a>--}}
                     @endauth
                 </div>
             @endif

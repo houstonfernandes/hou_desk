@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Local;
 use App\Role;
 use App\Domains\UserRepository;
 use Illuminate\Http\Request;
@@ -27,7 +27,8 @@ class UsersController extends Controller
     
     public function create()
     {
-        return view('admin.user.create');
+        $locais = Local::all();
+        return view('admin.user.create', compact('locais'));
     }
     
     public function store(Requests\UserRequest $request)
@@ -39,8 +40,9 @@ class UsersController extends Controller
 
     public function edit($id)
     {
+        $locais = Local::all();
         $user = $this->repository->findByID($id);
-        return view('admin.user.edit', compact('user'));
+        return view('admin.user.edit', compact('user', 'locais'));
     }    
     
     public function update( $id, Requests\UserRequest $request)

@@ -9,6 +9,18 @@
 <div>
     <form action="{{route('admin.users.store')}}" method="post" name="form">
         {{ csrf_field() }}
+        
+        <div class ='form-group'>
+        	<label for="local">Local</label>
+            <select id=='local_id' name='local_id' class="form-control" required>
+            	<option value=''>Selecione uma opção</option>
+            	@foreach($locais as $local)
+            	<option value="{{$local->id}}" {{ $local->id == old('local_id')? "selected":"" }}>{{$local->nome}}</option>
+            	@endforeach
+            </select>
+        </div>
+        
+        
         <div class ='form-group'>
             <label for="name">Nome</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Nome" value="{{ old('name') }}" required>
@@ -59,6 +71,7 @@
             <label for="cidade">Cidade</label>
             <input type="text" class="form-control" id="cidade" name="cidade" value="{{ old('cidade') }}" maxlength="80">
             <label for="UF">UF</label>
+            
             <select name="uf"  class="form-control">
                 <option value="">
                     Selecione
