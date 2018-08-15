@@ -1,11 +1,9 @@
-webpackJsonp([6],{
+webpackJsonp([8],{
 
 /***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(22);
-__webpack_require__(23);
-module.exports = __webpack_require__(24);
+module.exports = __webpack_require__(22);
 
 
 /***/ }),
@@ -34,20 +32,6 @@ window.excluir = function (url) {
     $('form[name=form-modal-excluir]').prop('action', url).submit();
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 23:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 

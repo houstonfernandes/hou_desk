@@ -8,7 +8,8 @@ Houston S. fernandes -houstonfernandes@gmail.com
 	$ cd hou_desk/
 
 3 - instalar dependencias
-	$composer install
+	$composer install 
+	//** se estiver desenvolvendo instalar dependencias de npm: $npm install
 
 4 - criar banco
 	$ mysql -u root -p

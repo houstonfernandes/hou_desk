@@ -5,12 +5,12 @@
     <h2 class='title'>Novo Local</h2>
     
     
-    <form method="post" action="{{route('admin.fornecedores.store')}}" name='form' >
+    <form method="post" action="{{route('admin.locais.store')}}" name='form' >
     {{ csrf_field() }}
     
       <div class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" name="nome" value="{{old('nome')}}" placeholder="nome do fornecedor" maxlength="100" required>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{old('nome')}}" placeholder="nome do local" maxlength="100" required>
       </div>
       
 	<div class="form-inline">
@@ -36,6 +36,8 @@
         <input type="text" class="form-control" id="bairro" name="bairro" value="{{old('bairro')}}" maxlength="80">
 		<label for="cidade">Cidade</label>
         <input type="text" class="form-control" id="cidade" name="cidade" value="{{old('cidade')}}" maxlength="80">
+        <input type="hidden" name="uf" value="RJ">
+        {{--
         <label for="UF">UF</label>
         <select id=='uf' name='uf' class="form-control">
         	<option value=''>Selecione uma opção</option>
@@ -43,6 +45,7 @@
         	<option value="{{$id}}">{{$value}}</option>
         	@endforeach
         </select>
+        --}}
 	</div>
 
 	<div class="form-group">
@@ -74,7 +77,7 @@
 
     <div class="form-group">
   		<button type="submit" class="btn btn-primary">Confirmar</button>
-  		<a class="btn btn-primary" href="{{route('admin.fornecedores.index')}}">Cancelar</a>
+  		<a class="btn btn-primary" href="{{route('admin.locais.index')}}">Cancelar</a>
 	</div>  		
 	</form>
     

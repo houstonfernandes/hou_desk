@@ -29,7 +29,7 @@ class LocaisController extends Controller
     {
         $saida = $this->repository->store($request);
         flash($saida['msg'], $saida['style']);
-        return redirect()->route('admin.local.index');
+        return redirect()->route('admin.locais.index');
     }
     
     public function edit($id){
@@ -38,18 +38,18 @@ class LocaisController extends Controller
         return view('admin.local.edit', compact('local', 'ufBrasil'));
     }
     
-    public function update($id, FornecedorRequest $request)
+    public function update($id, LocalRequest $request)
     {
         $saida = $this->repository->update($id, $request);
         flash($saida['msg'], $saida['style']);        
-        return redirect()->route('admin.fornecedores.index');
+        return redirect()->route('admin.locais.index');
     }
     
     public function delete( $id)
     {
         $saida = $this->repository->delete($id);
         flash($saida['msg'], $saida['style']);        
-        return redirect()->route('admin.fornecedores.index');
+        return redirect()->route('admin.locais.index');
     } 
     /**
      * procura fornecedor por diversos campos

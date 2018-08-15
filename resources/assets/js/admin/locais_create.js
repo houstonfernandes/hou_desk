@@ -6,14 +6,14 @@ $("form[name=form]").validate({
         cnpj:{required:true, verificaCPF:true}
     }
 });
+// -------------MASCARA EM CAMPOS
 $("#cnpj").mask("##.###.###-####/##").focus();
+//	$("#cpf").mask("###.###.###-##").focus();//inicia mask cpf
+$("#cep").mask("#####-###");
 //$('#cpf').mask('###.#####-####');//pessoa fisica inicial
 //$('#nome_fantasia').prop("disabled", true);
 
 
-// -------------MASCARA EM CAMPOS
-//	$("#cpf").mask("###.###.###-##").focus();//inicia mask cpf
-	$("#cep").mask("#####-###");
 /*	
 $('#tipo_fornecedor_juridica').click(//quando ativar cnpj
     function(){

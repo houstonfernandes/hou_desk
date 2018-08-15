@@ -25,6 +25,7 @@ mix.extract([
     'jquery', 'bootstrap-sass'
 ]);
 mix.js('resources/assets/js/admin/locais_create.js', 'public/js/admin');
+mix.js('resources/assets/js/admin/locais_edit.js', 'public/js/admin');
 
 
 mix.js('resources/assets/js/admin/modal_excluir.js', 'public/js/admin');//excluir default

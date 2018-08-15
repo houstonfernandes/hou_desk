@@ -35,6 +35,14 @@ class User extends Authenticatable
     public function pedidos(){
         return $this->hasMany('App\Pedido');
     }
+    
+    /**
+     * busca o local do user
+     */
+    public function local()
+    {
+        return $this->belongsTo('App\Local');
+    }
 
     /*
      * Papeis do user

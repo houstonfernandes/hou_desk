@@ -1,14 +1,14 @@
-webpackJsonp([18],{
+webpackJsonp([7],{
 
-/***/ 48:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(24);
 
 
 /***/ }),
 
-/***/ 49:
+/***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/**
@@ -26,4 +26,4 @@ $('[name^=permissions]').on('click', function () {
 
 /***/ })
 
-},[48]);
+},[23]);

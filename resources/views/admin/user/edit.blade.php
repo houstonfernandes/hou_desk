@@ -12,6 +12,12 @@
         <input type="hidden" name="id" value="{{$user->id}}">
         <input type="hidden" name="_method" value="put">
         {{ csrf_field() }}
+        
+        <div class ='form-group'>
+            <label for="local">Local</label>
+            <input type="text" class="form-control" id="local" value="{{ $user->local->nome}}" maxlength="80" readonly>
+        </div>
+        
 
         <div class ='form-group'>
             <label for="name">Nome</label>
