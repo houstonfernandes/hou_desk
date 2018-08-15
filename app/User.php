@@ -29,11 +29,21 @@ class User extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
     
     /**
-     * lista pedidos do user
+     * lista solicitacoes do user
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pedidos(){
-        return $this->hasMany('App\Pedido');
+    public function servicosSolicitados(){
+        //@todo ver key 
+        return $this->hasMany('App\Servico','solicitante_id','id');
+    }
+    
+    /**
+     * lista execucoes do user
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function servicosExecutados(){
+        //@todo ver key
+        return $this->hasMany('App\Servico','executor_id','id');
     }
     
     /**

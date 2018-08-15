@@ -129,12 +129,12 @@ class UserRepository extends BaseRepository
     
     private function podeExcluir(User $user)
     {
-        $qtdPedidos = count($user->pedidos);   //verificar pedidos
-        $qtdCompras = count($user->compras);   //verificar compras
-        if($qtdPedidos > 0 || $qtdCompras > 0) 
-            return false;
-        
-        return ($qtdPedidos == 0)? true:false;        
+        //@todo ver key
+        //$qtdSolicitados = count($user->servicosSolicitados);   //verificar servicos
+        //$qtdExecutados = count($user->servicosExecutados);   
+        if($qtdSolicitados > 0 || $qtdExecutados > 0) 
+            return false;        
+        return true;        
     }
     
     public function rolesUpdate( $id, Request $request)
