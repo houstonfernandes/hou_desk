@@ -4,7 +4,10 @@
 @section('content')
     <h2 class="title">Usuários</h2>
 
-    <a href="{{route('admin.users.create')}}" class="btn btn-primary">Novo</a>
+    <a href="{{route('admin.users.create')}}" class="btn btn-primary">
+    	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    	Novo
+    </a>
 
     <table class="table table-striped table-responsive">
         <thead>
@@ -36,18 +39,16 @@
 
                 </td>
                 <td>
-                    <a href = "{{route('admin.users.edit', $user->id) }}" class="btn btn-primary">Editar</a>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.users.delete', $user->id) }}" data-name = "{{$user->name}}" data-msg=" Excluir usuário?" data-msg_alert="Atencão só será excluído se não tiver realizado operação no sistema.">Excluir</button>
-                    <a href = "{{route('admin.users.roles', $user->id) }}" class="btn btn-primary">Papéis</a>
+                    <a href = "{{route('admin.users.edit', $user->id) }}" class="btn btn-primary" title='Editar'>
+                    	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.users.delete', $user->id) }}" data-name = "{{$user->name}}" data-msg=" Excluir usuário?" data-msg_alert="Atencão só será excluído se não tiver realizado operação no sistema." title='Excluir'>
+                    	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                    <a href = "{{route('admin.users.roles', $user->id) }}" class="btn btn-primary" title='Papéis'>
+                    	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </a>
                 </td>
-<!--                <td>{{$user->endereco}}</td>
-                <td>{{$user->numero}}</td>
-                <td>{{$user->complemento}}</td>
-                <td>{{$user->bairro}}</td>
-                <td>{{$user->cidade}}</td>
-                <td>{{$user->uf}}</td>
-                <td>{{$user->cep}}</td>-->
-            </tr>
         @endforeach
         </tbody>
     </table>

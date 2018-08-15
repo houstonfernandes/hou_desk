@@ -10,6 +10,7 @@
     "/js/vendor.js": "/js/vendor.js",
     "/js/admin/users_edit.js": "/js/admin/users_edit.js",
     "/js/admin/users_create.js": "/js/admin/users_create.js",
+    "/js/admin/setores_create.js": "/js/admin/setores_create.js",
     "/js/admin/roles_permissions.js": "/js/admin/roles_permissions.js",
     "/js/admin/modal_excluir.js": "/js/admin/modal_excluir.js",
     "/js/admin/locais_edit.js": "/js/admin/locais_edit.js",

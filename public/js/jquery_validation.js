@@ -1,26 +1,26 @@
 webpackJsonp([2],{
 
-/***/ 42:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(43);
+module.exports = __webpack_require__(45);
 
 
 /***/ }),
 
-/***/ 43:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Created by houston on 13/09/17.
  */
 window.jquery_validation = __webpack_require__(7);
-__webpack_require__(44);
-__webpack_require__(45); //jquery-validation
+__webpack_require__(46);
+__webpack_require__(47); //jquery-validation
 
 /***/ }),
 
-/***/ 44:
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -1187,7 +1187,7 @@ return $;
 
 /***/ }),
 
-/***/ 45:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($, jQuery) {// configuração e métodos para validator
@@ -2936,4 +2936,4 @@ return $;
 
 /***/ })
 
-},[42]);
+},[44]);

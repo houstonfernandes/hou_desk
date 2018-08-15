@@ -29,6 +29,8 @@ mix.js('resources/assets/js/admin/locais_edit.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/users_create.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/users_edit.js', 'public/js/admin');
 
+mix.js('resources/assets/js/admin/setores_create.js', 'public/js/admin');
+
 mix.js('resources/assets/js/admin/modal_excluir.js', 'public/js/admin');//excluir default
 /*
 

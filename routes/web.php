@@ -112,10 +112,10 @@ Route::prefix('admin/setores')
     ->group(function(){
         Route::get('{id}/', ['as' => 'index', 'uses' => 'SetoresController@index']);//setores do local
         Route::post('/', ['as' => 'store', 'uses' => 'SetoresController@store']);
-        Route::get('create', ['as' => 'create', 'uses' => 'SetoresController@create']);
+        Route::get('{id}/create', ['as' => 'create', 'uses' => 'SetoresController@create']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'SetoresController@edit']);
         Route::put('/{id}', ['as' => 'update', 'uses' => 'SetoresController@update']);
-        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'SetoresController@delete']);
+        Route::delete('/{id}/{local_id}', ['as' => 'delete', 'uses' => 'SetoresController@delete']);
     });
     
 Route::prefix('admin/compras')

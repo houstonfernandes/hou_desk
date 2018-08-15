@@ -8,7 +8,7 @@ class Setor extends Model
 {
     public $timestamps = false;
     protected $table = 'setores';
-    protected $fillable = ['nome', 'descricao','ativo'];
+    protected $fillable = ['nome', 'descricao','ativo','local_id'];
 
     /**
      * busca local
