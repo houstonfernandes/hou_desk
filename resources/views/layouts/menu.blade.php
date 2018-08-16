@@ -39,13 +39,9 @@
 
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros</a>
                             <ul class="dropdown-menu">
-                           {{--
-                               <li><a href="{{ route('admin.categories.index') }}" title="Cadastro de Categorias">Cadastro de Categorias</a></li>   
-                               <li><a href="{{ route('admin.products.index') }}" title="Cadastro de Produtos">Cadastro de Produtos</a></li>  
-                               <li><a href="{{ route('admin.clientes.index') }}" title="Cadastro de Clientes">Cadastro de Clientes</a></li>
-                           --}}  
+                            
 	                           <li><a href="{{ route('admin.locais.index') }}" title="Cadastro de Locais">Cadastro de Locais</a></li>
-								
+	                           <li><a href="{{ route('admin.equipamentos.index') }}" title="Cadastro de Equipamentos">Cadastro de Equipamentos</a></li>								
 	                           <li><a href="{{ route('admin.users.index') }}" title="Cadastro de Usuários">Cadastro de Usuários</a></li>
 	                           @can('user_role')
 	                           @endcan

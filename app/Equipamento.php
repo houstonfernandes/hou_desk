@@ -37,10 +37,17 @@ class Equipamento extends Model
     }
 
     /**
-     * busca as tags do equipamento n:m
+     * busca os servicos do equipamento
      */
-    public function tags(){
-        return $this->belongsToMany('App\Tag');
+    public function servicos(){
+        return $this->hasMany('App\Servico');
+    }
+    
+    /**
+     * busca os componentes do equipamento n:m
+     */
+    public function componentes(){
+        return $this->belongsToMany('App\ComponenteEquipamento');
     }
 
     /**
