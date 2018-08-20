@@ -23,7 +23,7 @@ class EquipamentoRepository extends BaseRepository
     private $_nome = 'Equipamento';
     
     /**
-     * lista paginada para index
+     * lista paginada para index - equipamentos por local
      */
     public function listaPaginadaLocal($id)
     {

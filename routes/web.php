@@ -122,14 +122,10 @@ Route::prefix('admin/equipamentos')
     ->middleware('auth')
     ->name('admin.equipamentos.')
     ->group(function(){
-        Route::get('{id?}/', ['as' => 'index', 'uses' => 'EquipamentosController@index']);//equipamentos do local
-        Route::get('/user', function(){
-            $user = Auth::User();
-            $id = $user->id;
-            return redirect()->route('admin.equipamentos.index',$id);//equipamentos do user logado
-        })->name('indexUser');
+        Route::get('{id}/', ['as' => 'index', 'uses' => 'EquipamentosController@index']);//equipamentos do local       
+//        Route::get('{id?}/', ['as' => 'index', 'uses' => 'EquipamentosController@index']);//equipamentos do local se nao informar lista todos
+        Route::get('{id}/create', ['as' => 'create', 'uses' => 'EquipamentosController@create']);
         Route::post('/', ['as' => 'store', 'uses' => 'SetoresController@store']);
-        Route::get('{id}/create', ['as' => 'create', 'uses' => 'SetoresController@create']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'SetoresController@edit']);
         Route::put('/{id}', ['as' => 'update', 'uses' => 'SetoresController@update']);
         Route::delete('/{id}/{local_id}', ['as' => 'delete', 'uses' => 'SetoresController@delete']);

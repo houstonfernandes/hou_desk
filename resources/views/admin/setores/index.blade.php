@@ -40,17 +40,17 @@
                     <td>{{$setor->nome}}</td>
                     <td>{{$setor->descricao}}</td>
                     <td>@if ($setor->ativo)
-                    		<span class="glyphicon glyphicon-thumbs-up alert-success" aria-hidden="true" title='sim'></span>
+                    		<span class="glyphicon glyphicon-thumbs-up text-success" aria-hidden="true" title='sim'></span>
                     	@else
-                    		<span class="glyphicon glyphicon-thumbs-down alert-danger" aria-hidden="true" title='não'></span>
+                    		<span class="glyphicon glyphicon-thumbs-down text-danger" aria-hidden="true" title='não'></span>
                     	@endif
                     </td>
                     <td>
                         <a href = "{{route('admin.setores.edit', $setor->id) }}" class="btn btn-primary" title='Editar'>
-                        	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        	<span class="glyphicon glyphicon-edit text-success" aria-hidden="true"></span>
                        	</a>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.setores.delete', [$setor->id, $local->id]) }}" data-name = "{{$setor->nome}}" data-msg=" Excluir setor?" data-msg_alert="Atencão só será excluído se não possuir equipamento." title='Excluir'>                        	
-                        	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        	<span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
                         </button>
                     </td>
                 </tr>

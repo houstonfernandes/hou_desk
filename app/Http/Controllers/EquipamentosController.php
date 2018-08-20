@@ -17,19 +17,11 @@ class EquipamentosController extends Controller
         $this->repository= $repository;
     }
     
-    public function index($id=null)    
+    public function index($id)    
     {
-        if($id){
-            $user = User::find($id);
-            $local = $user->local;//local do usuario logado
-            $equipamentos = $this->repository->listaPaginadaLocal($local->id);
-            //dd($equipamentos);
-        }
-        else{
-            $local = null;
-            $equipamentos = $this->repository->listaPaginada($id);//lista todos
-        }
-        
+        $user = User::find($id);
+        $local = Local::find($id);
+        $equipamentos = $this->repository->listaPaginadaLocal($id);        
         return view('admin.equipamentos.index', compact('local', 'equipamentos'));
     }
     
