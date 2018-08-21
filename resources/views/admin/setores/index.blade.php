@@ -7,7 +7,7 @@
     	
     	<div>
     		<a class="btn btn-primary" href="{{route('admin.setores.create',$local->id)}}">
-    			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>	
+    			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
     			Novo
     		</a>
     		<a href = "{{route('admin.locais.index') }}" class="btn btn-primary" title='voltar para locais'>

@@ -41,7 +41,7 @@
                             <ul class="dropdown-menu">
                             
 	                           <li><a href="{{ route('admin.locais.index') }}" title="Cadastro de Locais">Cadastro de Locais</a></li>
-{{--	                           <li><a href="{{ route('admin.equipamentos.index') }}" title="Cadastro de Equipamentos">Cadastro de Equipamentos</a></li>--}}								
+	                           <li><a href="{{ route('admin.tipos_equipamento.index') }}" title="Cadastro de Tipos de equipamentos">Cadastro de Tipos Equip.</a></li>								
 	                           <li><a href="{{ route('admin.users.index') }}" title="Cadastro de Usuários">Cadastro de Usuários</a></li>
 	                           @can('user_role')
 	                           @endcan

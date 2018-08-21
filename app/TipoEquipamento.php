@@ -15,12 +15,20 @@ class TipoEquipamento extends Model
      */
     public function equipamentos()
     {
-        return $this->belongsToMany('App\Equipamento');
+        return $this->hasMany('App\Equipamento');
     }
-
-    public function scopeOfTipoEquipamento($query, $id){
-        return $query->where('id', '=', $id);
+    
+    /**
+     * busca os componentes do tipo
+     */
+    public function componentes()
+    {
+        return $this->hasMany('App\Componente');
     }
-
+    
+    public function scopeAtivo($query){
+        return $query->where('ativo', '=', 1);
+    }
+    
 
 }

@@ -9,6 +9,7 @@ use App\Domains\EquipamentoRepository;
 use App\Http\Requests\SetorRequest;
 use App\Local;
 use App\User;
+use App\TipoEquipamento;
 
 class EquipamentosController extends Controller
 {
@@ -27,8 +28,9 @@ class EquipamentosController extends Controller
     
     public function create($id)
     {
-        $local = Local::find($id);        
-        return view('admin.setores.create', compact('local'));
+        $local = Local::find($id);
+        $tiposEquipamentos = TipoEquipamento::ativo()->get();
+        return view('admin.equipamentos.create', compact('local', 'tiposEquipamentos'));
     }
     
     public function store(SetorRequest $request)

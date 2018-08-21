@@ -6,7 +6,7 @@
     	
 		<div>			
     		<a class="btn btn-primary" href="{{route('admin.locais.create')}}">
-    			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>	
+    			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
     			Novo
     		</a>
     	</div>  

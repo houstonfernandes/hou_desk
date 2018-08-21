@@ -4,7 +4,7 @@
     <h2 class="title">Papéis</h2>
 
     <a href="{{route('admin.roles.create')}}" class="btn btn-primary">
-    	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     	Novo
     </a>
 

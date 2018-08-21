@@ -10,6 +10,7 @@ class TipoEquipamentoTableSeeder extends Seeder
 //        DB::table('categories')->truncate();
         factory('App\TipoEquipamento')->create([
             'nome' => "Computador",
+            'ativo' => 1
         ]);        
         factory('App\TipoEquipamento')->create([
             'nome' => "Celular",

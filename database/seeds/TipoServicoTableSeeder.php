@@ -17,10 +17,10 @@ class TipoServicoTableSeeder extends Seeder
         factory('App\TipoServico')->create([
             'nome' => "Visita técnica",
         ]);
-        factory('App\TipoEquipamento')->create([
+        factory('App\TipoServico')->create([
             'nome' => "Instalaçao",
         ]);
-        factory('App\TipoEquipamento')->create([
+        factory('App\TipoServico')->create([
             'nome' => "Instalaçao de software",
         ]);
         factory('App\TipoServico')->create([

@@ -93,6 +93,19 @@ Route::prefix('admin/clientes')
         Route::put('/{id}', ['as' => 'update', 'uses' => 'ClientesController@update']);
         Route::delete('/{id}', ['as' => 'delete', 'uses' => 'ClientesController@delete']);
     });
+    
+Route::prefix('admin/tipos_equipamento')
+        ->name('admin.tipos_equipamento.')
+        ->middleware('auth')
+        ->group(function(){
+            Route::get('/', ['as' => 'index', 'uses' => 'TipoEquipamentoController@index']);
+            Route::post('/', ['as' => 'store', 'uses' => 'TipoEquipamentoController@store']);
+            Route::get('create', ['as' => 'create', 'uses' => 'TipoEquipamentoController@create']);
+            Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'TipoEquipamentoController@edit']);
+            Route::put('/{id}', ['as' => 'update', 'uses' => 'TipoEquipamentoController@update']);
+            Route::delete('/{id}', ['as' => 'delete', 'uses' => 'TipoEquipamentoController@delete']);
+        });
+            
 
 Route::prefix('admin/locais')
     ->name('admin.locais.')
