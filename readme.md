@@ -2,12 +2,12 @@
 
   >utilizando Laravel - casos de uso e mer e instalacão em: app/docs
   >> ## instalacao:
-    1. $ composer install
-    2. copiar o .env-example p .env e configurar o banco
-    3. criar o banco de dados
-    4. $ php artisan migrate
-    5. dar permissão de escrita em public e storage
-    6. teste:  $php artisan serve
+  >>  1. $ composer install
+  >>  2. copiar o .env-example p .env e configurar o banco
+  >>  3. criar o banco de dados
+  >>  4. $ php artisan migrate
+  >>  5. dar permissão de escrita em public e storage
+  >>  6. teste:  $php artisan serve
   
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
