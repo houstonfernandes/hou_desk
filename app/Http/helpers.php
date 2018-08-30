@@ -55,9 +55,11 @@ function dataGravar($dmy)
 
 function dataExibir($ymd)
 {
-    $data = explode('-', $ymd);
+    $data = date_create($ymd);
+    return date_format($data,"d/m/Y");
+/*    $data = explode('-', $ymd);
     $data = array_reverse($data);
-    return implode('/', $data);
+    return implode('/', $data);*/
 }
 
 /**

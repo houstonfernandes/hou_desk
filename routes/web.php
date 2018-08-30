@@ -47,52 +47,6 @@ Route::prefix('admin/users')
         Route::get('{id}/roles', ['as' => 'roles', 'uses' => 'UsersController@roles']);
         Route::put('{id}/roles', ['as' => 'roles', 'uses' => 'UsersController@rolesUpdate']);
     });
-        
-Route::prefix('admin/categories')
-    ->name('admin.categories.')
-    ->middleware('auth')
-    ->group(function(){
-        Route::get('/', ['as' => 'index', 'uses' => 'CategoriesController@index']);
-        Route::post('/', ['as' => 'store', 'uses' => 'CategoriesController@store']);
-        Route::get('create', ['as' => 'create', 'uses' => 'CategoriesController@create']);//->name('create');
-        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'CategoriesController@edit']);
-        Route::put('/{id}', ['as' => 'update', 'uses' => 'CategoriesController@update']);
-        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'CategoriesController@delete']);        
-    });
-        
-Route::prefix('admin/products')
-    ->name('admin.products.')
-    ->middleware('auth')
-    ->group(function(){
-        Route::get('/', ['as' => 'index', 'uses' => 'ProductsController@index']);
-        Route::post('/', ['as' => 'store', 'uses' => 'ProductsController@store']);
-        Route::get('create', ['as' => 'create', 'uses' => 'ProductsController@create']);//->name('create');
-        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'ProductsController@edit']);
-        Route::put('/{id}', ['as' => 'update', 'uses' => 'ProductsController@update']);
-        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'ProductsController@delete']);        
-    });
-        
-Route::prefix('admin/product_images')
-    ->name('admin.product_images.')
-    ->middleware('auth')
-    ->group(function(){
-        Route::get('/{id}', ['as' => 'index', 'uses' => 'ProductsController@images']);
-        Route::get('{id}/create', ['as' => 'create', 'uses' => 'ProductsController@createImage']);//->name('create');
-        Route::post('/{id}', ['as' => 'store', 'uses' => 'ProductsController@storeImage']);
-        Route::delete('/{id}/{product_id}', ['as' => 'delete', 'uses' => 'ProductsController@deleteImage']);
-    });
-            
-Route::prefix('admin/clientes')
-    ->name('admin.clientes.')
-    ->middleware('auth')
-    ->group(function(){
-        Route::get('/', ['as' => 'index', 'uses' => 'ClientesController@index']);
-        Route::post('/', ['as' => 'store', 'uses' => 'ClientesController@store']);
-        Route::get('create', ['as' => 'create', 'uses' => 'ClientesController@create']);
-        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'ClientesController@edit']);
-        Route::put('/{id}', ['as' => 'update', 'uses' => 'ClientesController@update']);
-        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'ClientesController@delete']);
-    });
     
 Route::prefix('admin/tipos_equipamento')
         ->name('admin.tipos_equipamento.')
@@ -138,25 +92,12 @@ Route::prefix('admin/equipamentos')
         Route::get('{id}/', ['as' => 'index', 'uses' => 'EquipamentosController@index']);//equipamentos do local       
 //        Route::get('{id?}/', ['as' => 'index', 'uses' => 'EquipamentosController@index']);//equipamentos do local se nao informar lista todos
         Route::get('{id}/create', ['as' => 'create', 'uses' => 'EquipamentosController@create']);
-        Route::post('/', ['as' => 'store', 'uses' => 'SetoresController@store']);
-        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'SetoresController@edit']);
-        Route::put('/{id}', ['as' => 'update', 'uses' => 'SetoresController@update']);
-        Route::delete('/{id}/{local_id}', ['as' => 'delete', 'uses' => 'SetoresController@delete']);
+        Route::post('/', ['as' => 'store', 'uses' => 'EquipamentosController@store']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'EquipamentosController@edit']);
+        Route::put('/{id}', ['as' => 'update', 'uses' => 'EquipamentosController@update']);
+        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'EquipamentosController@delete']);
     });
-            
-Route::prefix('admin/compras')
-    ->middleware('auth')
-    ->name('admin.compras.')
-    ->group(function(){
-        Route::get('/', ['as' => 'index', 'uses' => 'ComprasController@index']);
-        Route::post('/', ['as' => 'store', 'uses' => 'ComprasController@store']);
-        Route::put('/{id}', ['as' => 'store', 'uses' => 'ComprasController@update']);
-        Route::get('create', ['as' => 'create', 'uses' => 'ComprasController@create']);//->name('create');
-        Route::get('consultar/{id}', ['as' => 'consultar', 'uses' => 'ComprasController@consultar']);
-        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'ComprasController@edit']);//->name('create');
-        Route::get('edit_vue/{id}', ['as' => 'edit_vue', 'uses' => 'ComprasController@edit_vue']);//->name('create');
-    });
-            
+
 Route::prefix('admin/roles')
     ->name('admin.roles.')
     ->middleware('auth')

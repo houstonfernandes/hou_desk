@@ -24,8 +24,6 @@
 		<div>
             <ul class="list-group">
             	<li class="list-group-item active">Local: {{$local->nome}}</li>
-            	<li class="list-group-item">CNPJ: {{$local->cnpj}}</li>
-            	<li class="list-group-item">INEP: {{$local->inep}}</li>            	
             	<li class="list-group-item">email: {{$local->email}}</li>
             	<li class="list-group-item">Tel: {{$local->tel}}</li>
             	<li class="list-group-item">Cel: {{$local->cel}}</li>
@@ -40,7 +38,8 @@
         	<thead>
             	<tr>        	
             		<th>Nome</th>
-            		<th>Descricao</th>
+            		<th>Tipo</th>
+            		<th>Setor</th>
             		<th>Num. pat.</th>
             		<th>Situação</th>
             		<th>Funções</th>
@@ -50,7 +49,8 @@
             @forelse($equipamentos as $equipamento)
                 <tr>
                     <td>{{$equipamento->nome}}</td>
-                    <td>{{$equipamento->descricao}}</td>
+                    <td>{{$equipamento->tipoEquipamento->nome}}</td>
+                    <td>{{$equipamento->setor->nome}}</td>
                     <td>{{$equipamento->num_patrimonio}}</td>
                     <td>@if($equipamento->situacao == 0)
                     		<span class="glyphicon glyphicon-thumbs-down text-danger" aria-hidden="true" title='inativo'></span>
@@ -63,10 +63,10 @@
                     	@endif
                     </td>
                     <td>
-                        <a href = "{{route('admin.setores.edit', $equipamento->id) }}" class="btn btn-primary" title='Editar'>
+                        <a href = "{{route('admin.equipamentos.edit', $equipamento->id) }}" class="btn btn-primary" title='Editar'>
                         	<span class="glyphicon glyphicon-edit text-success" aria-hidden="true"></span>
                        	</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="#" data-name = "{{$equipamento->nome}}" data-msg=" Excluir setor?" data-msg_alert="Atencão só será excluído se não possuir serviço" title='Excluir'>                        	
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.equipamentos.delete', $equipamento->id)}}" data-name = "{{$equipamento->nome}}" data-msg=" Excluir equipamento?" data-msg_alert="Atencão só será excluído se não possuir serviço" title='Excluir'>                        	
                         	<span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
                         </button>
                     </td>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Domains\EquipamentoRepository;
 
-use App\Http\Requests\SetorRequest;
+use App\Http\Requests\EquipamentoRequest;
 use App\Local;
 use App\User;
 use App\TipoEquipamento;
@@ -20,7 +20,6 @@ class EquipamentosController extends Controller
     
     public function index($id)    
     {
-        $user = User::find($id);
         $local = Local::find($id);
         $equipamentos = $this->repository->listaPaginadaLocal($id);        
         return view('admin.equipamentos.index', compact('local', 'equipamentos'));
@@ -33,31 +32,34 @@ class EquipamentosController extends Controller
         return view('admin.equipamentos.create', compact('local', 'tiposEquipamentos'));
     }
     
-    public function store(SetorRequest $request)
+    public function store(EquipamentoRequest $request)
     {
         $saida = $this->repository->store($request);
         flash($saida['msg'], $saida['style']);
-        return redirect()->route('admin.setores.index', $request->local_id);
+        return redirect()->route('admin.equipamentos.index', $request->local_id);
     }
     
-    public function edit($id){        
-        $setor = $this->repository->findByID($id);
-        $local = $setor->local;
-        return view('admin.setores.edit', compact('setor', 'local'));
+    public function edit($id){
+        $tiposEquipamentos = TipoEquipamento::ativo()->get();
+        $equipamento = $this->repository->findByID($id);        
+        $local = $equipamento->setor->local;
+        return view('admin.equipamentos.edit', compact('equipamento', 'tiposEquipamentos', 'local'));
     }
     
-    public function update($id, SetorRequest $request)
+    public function update($id, EquipamentoRequest $request)
     {
         $saida = $this->repository->update($id, $request);
         flash($saida['msg'], $saida['style']);        
-        return redirect()->route('admin.setores.index', $request->local_id);
+        return redirect()->route('admin.equipamentos.index', $request->local_id);
     }
     
-    public function delete($id, $local_id)
+    public function delete($id)
     {
+        $equipamento = $this->repository->findByID($id);
+        $local = $equipamento->setor->local;        
         $saida = $this->repository->delete($id);
         flash($saida['msg'], $saida['style']);        
-        return redirect()->route('admin.setores.index', $local_id);
+        return redirect()->route('admin.equipamentos.index', $local->id);
     } 
     /**
      * procura fornecedor por diversos campos

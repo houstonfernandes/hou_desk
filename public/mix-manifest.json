@@ -4,7 +4,7 @@
     "/js/jquery_validation.js": "/js/jquery_validation.js",
     "/js/jquery_numeric.js": "/js/jquery_numeric.js",
     "/js/jquery_mask_plugin.js": "/js/jquery_mask_plugin.js",
-    "/js/admin/locais_create.js": "/js/admin/locais_create.js",
+    "/js/admin/equipamentos_create.js": "/js/admin/equipamentos_create.js",
     "/css/app.css": "/css/app.css",
     "/css/layout.css": "/css/layout.css",
     "/js/vendor.js": "/js/vendor.js",
@@ -14,6 +14,7 @@
     "/js/admin/roles_permissions.js": "/js/admin/roles_permissions.js",
     "/js/admin/modal_excluir.js": "/js/admin/modal_excluir.js",
     "/js/admin/locais_edit.js": "/js/admin/locais_edit.js",
+    "/js/admin/locais_create.js": "/js/admin/locais_create.js",
     "/js/manifest.js": "/js/manifest.js",
     "/css/jquery-ui.min.css": "/css/jquery-ui.min.css",
     "/css/bootstrap_dropdown_sub.css": "/css/bootstrap_dropdown_sub.css"

@@ -8,8 +8,8 @@
 
     <title>{{ config('app.name', 'HSF') }}</title>
     <!-- icones -->
-    <link rel="icon" href="{{asset('imagens/hsf_systems.png')}}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{{asset('imagens/hsf_systems_comercial2.png')}}" type="image/x-icon" />
+    <link rel="icon" href="{{asset('imagens/hsf_systems_helpdesk.png')}}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{asset('imagens/hsf_systems_helpdesk.png')}}" type="image/x-icon" />
     <!-- css  -->
     <link rel='stylesheet' media='all' href="{{asset('css/bootstrap_dropdown_sub.css')}}" type='text/css' />
     <link rel='stylesheet' media='all' href="{{asset('css/layout.css')}}" type='text/css' />

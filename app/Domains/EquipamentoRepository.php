@@ -45,7 +45,9 @@ class EquipamentoRepository extends BaseRepository
     public function store(FormRequest $request)
     {
         try{
-            $input = $request->all();
+            $request['data_aquisicao'] = dataGravar($request->data_aquisicao);//'2018-08-20';// \Carbon\Carbon::createFromFormat('d/m/Y', $request->data_aquisicao)->timestamp;//\Carbon\Carbon::parse($request->data_aquisicao)->timestamp;
+            //dd($request->data_aquisicao);            
+            $input = $request->all();            
             $obj = $this->model->create($request->all());
             $msg = $this->_nome . ' cadastrado com sucesso. - ' . $obj->nome. ': '. $obj->id;
             return ['msg' => $msg, 'style' =>'success'];
@@ -59,6 +61,7 @@ class EquipamentoRepository extends BaseRepository
     public function update($id, FormRequest $request)
     {
         try{
+            $request['data_aquisicao'] = dataGravar($request->data_aquisicao);            
             $input = $request->all();
             $obj = $this->findByID($id);
             $obj->update($input);

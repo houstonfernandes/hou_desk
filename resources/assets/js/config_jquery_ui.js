@@ -14,10 +14,11 @@ $(function(){
 		//$('div.ui-datepicker').css({ 'font-size': '200.5%' });//redimensionar datepicker
 		$('a.button').button().css('color','#fff');	//links de botões
 
-    $( ".datePicker" )
+    $( ".datepicker" )
         .datepicker({
             changeMonth: true,
             changeYear: true,
             dateFormat: "dd/mm/yy"
-        });
+        });    
+    
 });

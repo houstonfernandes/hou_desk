@@ -24,6 +24,8 @@ mix.webpackConfig({
 mix.extract([
     'jquery', 'bootstrap-sass'
 ]);
+
+mix.js('resources/assets/js/admin/equipamentos_create.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/locais_create.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/locais_edit.js', 'public/js/admin');
 mix.js('resources/assets/js/admin/users_create.js', 'public/js/admin');
