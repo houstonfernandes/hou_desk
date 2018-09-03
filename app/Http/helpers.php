@@ -48,6 +48,9 @@ function isAdmin(\App\User $user)
  */
 function dataGravar($dmy)
 {
+    if(!$dmy){
+        return null;
+    }
     $data = explode('/', $dmy);
     $data = array_reverse($data);
     return implode('-', $data);
@@ -55,6 +58,9 @@ function dataGravar($dmy)
 
 function dataExibir($ymd)
 {
+    if(!$ymd){
+        return null;
+    }
     $data = date_create($ymd);
     return date_format($data,"d/m/Y");
 /*    $data = explode('-', $ymd);

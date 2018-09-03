@@ -6,7 +6,6 @@ use App\Equipamento;
 use App\Support\Repositories\BaseRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\Exceptions\NotFoundException;
@@ -44,11 +43,12 @@ class EquipamentoRepository extends BaseRepository
      */
     public function store(FormRequest $request)
     {
-        try{
-            $request['data_aquisicao'] = dataGravar($request->data_aquisicao);//'2018-08-20';// \Carbon\Carbon::createFromFormat('d/m/Y', $request->data_aquisicao)->timestamp;//\Carbon\Carbon::parse($request->data_aquisicao)->timestamp;
-            //dd($request->data_aquisicao);            
-            $input = $request->all();            
-            $obj = $this->model->create($request->all());
+        try{    
+            $input = $request->all();
+            $input['data_aquisicao'] = dataGravar($request->data_aquisicao);
+            //dd($this->data_aquisicao);
+            
+            $obj = $this->model->create($input);
             $msg = $this->_nome . ' cadastrado com sucesso. - ' . $obj->nome. ': '. $obj->id;
             return ['msg' => $msg, 'style' =>'success'];
         }
@@ -61,8 +61,8 @@ class EquipamentoRepository extends BaseRepository
     public function update($id, FormRequest $request)
     {
         try{
-            $request['data_aquisicao'] = dataGravar($request->data_aquisicao);            
             $input = $request->all();
+            $input['data_aquisicao'] = dataGravar($request->data_aquisicao);            
             $obj = $this->findByID($id);
             $obj->update($input);
             $msg = $this->_nome .' atualizado com sucesso. - ' . $obj->nome;

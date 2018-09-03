@@ -22,6 +22,8 @@ module.exports = __webpack_require__(18);
 			tipo_equipamento_id: { required: true }
 		}
 	});
+
+	$('#data_aquisicao').datepicker('option', 'minDate', new Date(1990, 1 - 1, 1)).datepicker('option', 'maxDate', new Date());
 	/*	.submit(function(e){
  		console.log('parou');
  		e.preventDefault();

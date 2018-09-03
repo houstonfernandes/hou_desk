@@ -8,7 +8,6 @@ use App\Domains\EquipamentoRepository;
 
 use App\Http\Requests\EquipamentoRequest;
 use App\Local;
-use App\User;
 use App\TipoEquipamento;
 
 class EquipamentosController extends Controller
@@ -41,7 +40,7 @@ class EquipamentosController extends Controller
     
     public function edit($id){
         $tiposEquipamentos = TipoEquipamento::ativo()->get();
-        $equipamento = $this->repository->findByID($id);        
+        $equipamento = $this->repository->findByID($id);
         $local = $equipamento->setor->local;
         return view('admin.equipamentos.edit', compact('equipamento', 'tiposEquipamentos', 'local'));
     }
