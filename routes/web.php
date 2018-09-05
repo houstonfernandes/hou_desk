@@ -33,6 +33,12 @@ Route::group(['prefix' => 'users', 'middleware'=>'auth', 'as' => 'users.'], func
     Route::put('/{id}', ['as' => 'update_own', 'uses' => 'UsersController@updateOwn']);//usar attr hidden name=_method value=PUT
 });
 
+Route::group(['prefix' => 'servicos', 'middleware'=>'auth', 'as' => 'servicos.'], function () {
+    Route::get('/', ['as' => 'index', 'uses' => 'ServicosController@index']);
+    //Route::get('/{id}', ['as' => 'update_own', 'uses' => 'UsersController@updateOwn']);//usar attr hidden name=_method value=PUT
+});
+        
+
 // **** ADMIN
 Route::prefix('admin/users')
     ->name('admin.users.')
