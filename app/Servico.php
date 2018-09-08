@@ -25,9 +25,9 @@ class Servico extends Model
     }
     
     /**
-     * obtem o executor
+     * obtem o técnico
      * */
-    public function executor()
+    public function tecnico()
     {
         return $this->belongsTo(User::class, 'executor_id', 'id');        
     }

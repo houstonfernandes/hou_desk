@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Domains\EquipamentoRepository;
-
 use App\Http\Requests\EquipamentoRequest;
 use App\Local;
 use App\TipoEquipamento;
+use App\Domains\ServicoRepository;
 
 class ServicosController extends Controller
 {
     private $repository;
-    public function __construct(EquipamentoRepository $repository){
+    public function __construct(ServicoRepository $repository){
         $this->repository= $repository;
     }
     
@@ -22,6 +21,7 @@ class ServicosController extends Controller
         $local_id = \Auth::user()->local_id;
         $local = Local::find($local_id);
         $servicos = $this->repository->listaPaginadaLocal($local_id);        
+        //dd($servicos->count());        
         return view('servicos.index', compact('local', 'servicos'));
     }
     

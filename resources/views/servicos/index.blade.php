@@ -4,11 +4,10 @@
 	
     <div class="row">
     	<h2 class='title'>Serviços</h2>
-    	
     	<div>
     		<a class="btn btn-primary" href="{{route('admin.equipamentos.create',$local->id)}}">
     			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
-    			Novo
+    			Nova solicitação
     		</a>
     		<a class="btn btn-primary" href="{{route('admin.tipos_equipamento.index')}}">
     			<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>	
@@ -36,15 +35,11 @@
         @endif
     	<table class='table table-striped'>
         	<thead>
-        'solicitante_id', 'executor_id', 'equipamento_id', 'tipo_servico_id', 'descricao','solucao',
-        'situacao', 'data_solucao'
-        	
-        	
             	<tr>        	
             		<th>Descrição</th>
             		<th>Tipo</th>
-            		<th>Setor</th>
-            		<th>Num. pat.</th>
+            		<th>Solicitante</th>
+            		<th>Técnico</th>
             		<th>Situação</th>
             		<th>Funções</th>
             	</tr>
@@ -52,18 +47,22 @@
             <tbody>
             @forelse($servicos as $servico)
                 <tr>
-                    <td>{{$equipamento->nome}}</td>
-                    <td>{{$equipamento->tipoEquipamento->nome}}</td>
-                    <td>{{$equipamento->setor->nome}}</td>
-                    <td>{{$equipamento->num_patrimonio}}</td>
-                    <td>@if($equipamento->situacao == 0)
-                    		<span class="glyphicon glyphicon-thumbs-down text-danger" aria-hidden="true" title='inativo'></span>
-                    	@elseif($equipamento->situacao == 1)
-                    		<span class="glyphicon glyphicon-thumbs-up text-success" aria-hidden="true" title='ativo'></span>
-                    	@elseif($equipamento->situacao == 2)
-                    		<span class="glyphicon glyphicon-warning-sign text-success" aria-hidden="true" title='ativo, já foi p/ manutenção'></span>
-                    	@elseif($equipamento->situacao == 3)
-                    		<span class="glyphicon glyphicon-warning-sign text-warning" aria-hidden="true" title='ativo'></span>                    		
+                    <td>{{$servico->descricao}}</td>
+                    <td>{{$servico->tipoServico->nome}}</td>
+                    <td>{{$servico->solicitante->nome}}</td>
+                    <td>{{$servico->tecnico->nome}}</td>
+                    <td>@if($servico->situacao == 0)
+                    		<span class="glyphicon glyphicon-thumbs-down text-danger" aria-hidden="true" title='Solicitação iniciada'></span>
+                    	@elseif($servico->situacao == 1)
+                    		<span class="glyphicon glyphicon-thumbs-up text-success" aria-hidden="true" title='Tecnico notificado'></span>
+                    	@elseif($servico->situacao == 2)
+                    		<span class="glyphicon glyphicon-warning-sign text-success" aria-hidden="true" title='Técnico ciente'></span>
+                    	@elseif($servico->situacao == 3)
+                    		<span class="glyphicon glyphicon-warning-sign text-warning" aria-hidden="true" title='A executar'></span>                    		
+                    	@elseif($servico->situacao == 4)
+                    		<span class="glyphicon glyphicon-warning-sign text-warning" aria-hidden="true" title='Em execução'></span>
+                    	@elseif($servico->situacao == 5)
+                    		<span class="glyphicon glyphicon-warning-sign text-warning" aria-hidden="true" title='Finalizado'></span>
                     	@endif
                     </td>
                     <td>
@@ -77,15 +76,15 @@
                 </tr>
 			@empty
 				<tr>
-					<td colspan='4' class='alert-warning'>Nenhum registro encontrado.</td>
+					<td colspan='6' class='alert-warning'>Nenhum registro encontrado.</td>
 				</tr>                
             @endforelse
-        	</tbody>        	
+        	</tbody>
     	</table>
     </div>
         
     <div id="pages">
-    {!! $equipamentos->render() !!}
+    {!! $servicos->render() !!}
 	</div>
 
     @include('partial.modal_excluir')
