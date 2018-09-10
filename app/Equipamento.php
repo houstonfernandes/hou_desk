@@ -70,7 +70,7 @@ class Equipamento extends Model
     public function scopeOfTipoEquipamento($query, $id){
         return $query->where('tipo_equipamento_id', '=', $id);
     }
-
+    
     /**
      * retorna o nome da primeira imagem
      * @return string nome do arquivo

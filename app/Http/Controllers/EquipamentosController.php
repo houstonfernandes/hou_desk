@@ -17,6 +17,18 @@ class EquipamentosController extends Controller
         $this->repository= $repository;
     }
     
+    public function listarLocal($id)
+    {
+        $saida = $this->repository->listarLocal($id);
+        return response()->json($saida, $saida['statusCode']);
+    }
+    
+    public function listarSetor($id)
+    {
+        $saida = $this->repository->listarSetor($id);
+        return response()->json($saida, $saida['statusCode']);
+    }
+    
     public function index($id)    
     {
         $local = Local::find($id);

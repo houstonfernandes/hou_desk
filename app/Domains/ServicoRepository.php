@@ -6,6 +6,7 @@ use App\Servico;
 use App\Support\Repositories\BaseRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Exceptions\NotFoundException;
@@ -37,7 +38,7 @@ class ServicoRepository extends BaseRepository
     }
         
     /**
-     * armazena local
+     * armazena serviço
      * @param FormRequest $request
      * @return array 'sucesso', 'id','erro'
      */
@@ -45,11 +46,9 @@ class ServicoRepository extends BaseRepository
     {
         try{    
             $input = $request->all();
-            $input['data_aquisicao'] = dataGravar($request->data_aquisicao);
-            //dd($this->data_aquisicao);
-            
+            $input['solicitante_id'] = Auth::user()->id;
             $obj = $this->model->create($input);
-            $msg = $this->_nome . ' cadastrado com sucesso. - ' . $obj->nome. ': '. $obj->id;
+            $msg = 'Solicitação de serviço criada com sucesso. ' . $obj->id;
             return ['msg' => $msg, 'style' =>'success'];
         }
         catch(\Exception $e){

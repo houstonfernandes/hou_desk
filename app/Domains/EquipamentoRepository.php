@@ -142,4 +142,93 @@ class EquipamentoRepository extends BaseRepository
         }
         return $saida;            
     }
+    
+    
+    /**
+     * lista equipamentos por local
+     * @param int local_id
+     * @return array json
+     */
+    public function listarLocal($localId)
+    {
+        $saida = [];
+        try{
+            $query = $this->newQuery();
+            $query->select('equipamentos.*','locais.nome AS local_nome', 'locais.id AS local_id', 'setores.id AS setor_id');
+            $query->join('setores', 'equipamentos.setor_id', '=', 'setores.id');
+            $query->join('locais', 'setores.local_id', '=', 'locais.id');
+            $query->where('local_id', $localId)
+            ->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
+            $result = $query->get();
+            $qtd = $result->count();
+            if($qtd == 0){
+                throw new NotFoundException('Nenhum equipamento encontrado.');
+            }
+            
+            $saida = [
+                'msg' => $qtd . ' equipamentos.',
+                'equipamentos' => $result,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
+    }
+    
+    
+    /**
+     * lista equipamentos por setor
+     * @param int setor id
+     * @return array json
+     */
+    public function listarSetor($id)
+    {
+        $saida = [];
+        try{
+            $query = $this->newQuery();
+            $query->select('equipamentos.*');
+            $query->where('setor_id', $id)
+                ->where('situacao', '>', 0)//somente ativos
+                ->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
+            $result = $query->get();
+            $qtd = $result->count();
+            if($qtd == 0){
+                throw new NotFoundException('Nenhum equipamento encontrado.');
+            }            
+            $saida = [
+                'msg' => $qtd . ' equipamentos.',
+                'equipamentos' => $result,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
+    }
+    
 }

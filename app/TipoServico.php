@@ -10,13 +10,13 @@ class TipoServico extends Model
     public $timestamps = false;
     protected $fillable = ['nome'];
     /**
-     * busca os produtos da tag
+     * busca serviços desse tipo
      */
     public function servicos()
     {
         return $this->belongsToMany('App\Servico');
     }
-
+    
     public function scopeOfTipoServico($query, $id){
         return $query->where('id', '=', $id);
     }

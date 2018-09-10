@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 23:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(24);
+module.exports = __webpack_require__(26);
 
 
 /***/ }),
 
-/***/ 24:
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
@@ -25,4 +25,4 @@ $("form[name=form]").validate({
 
 /***/ })
 
-},[23]);
+},[25]);

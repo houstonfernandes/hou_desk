@@ -5,7 +5,7 @@
     <div class="row">
     	<h2 class='title'>Serviços</h2>
     	<div>
-    		<a class="btn btn-primary" href="{{route('admin.equipamentos.create',$local->id)}}">
+    		<a class="btn btn-primary" href="{{route('servicos.create')}}">
     			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
     			Nova solicitação
     		</a>
@@ -49,12 +49,15 @@
                 <tr>
                     <td>{{$servico->descricao}}</td>
                     <td>{{$servico->tipoServico->nome}}</td>
-                    <td>{{$servico->solicitante->nome}}</td>
-                    <td>{{$servico->tecnico->nome}}</td>
+                    <td>{{$servico->solicitante->name}}</td>
+                    <td>@if($servico->tecnico)
+                    		{{$servico->tecnico->name}}
+                    	@endif
+                    </td>
                     <td>@if($servico->situacao == 0)
-                    		<span class="glyphicon glyphicon-thumbs-down text-danger" aria-hidden="true" title='Solicitação iniciada'></span>
+                    		<span class="glyphicon glyphicon-time text-warning" aria-hidden="true" title='Solicitação iniciada'></span>
                     	@elseif($servico->situacao == 1)
-                    		<span class="glyphicon glyphicon-thumbs-up text-success" aria-hidden="true" title='Tecnico notificado'></span>
+                    		<span class="glyphicon glyphicon-time text-success" aria-hidden="true" title='Tecnico notificado'></span>
                     	@elseif($servico->situacao == 2)
                     		<span class="glyphicon glyphicon-warning-sign text-success" aria-hidden="true" title='Técnico ciente'></span>
                     	@elseif($servico->situacao == 3)
@@ -66,12 +69,9 @@
                     	@endif
                     </td>
                     <td>
-                        <a href = "{{route('admin.equipamentos.edit', $equipamento->id) }}" class="btn btn-primary" title='Editar'>
+                        <a href = "{{route('admin.equipamentos.edit', $servico->id) }}" class="btn btn-primary" title='Editar'>
                         	<span class="glyphicon glyphicon-edit text-success" aria-hidden="true"></span>
                        	</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-excluir" data-url="{{route('admin.equipamentos.delete', $equipamento->id)}}" data-name = "{{$equipamento->nome}}" data-msg=" Excluir equipamento?" data-msg_alert="Atencão só será excluído se não possuir serviço" title='Excluir'>                        	
-                        	<span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
-                        </button>
                     </td>
                 </tr>
 			@empty
