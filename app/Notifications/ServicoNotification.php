@@ -10,15 +10,17 @@ use Illuminate\Notifications\Messages\MailMessage;
 class ServicoNotification extends Notification
 {
     use Queueable;
+    
+    private $servico;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($servico)
     {
-        //
+        $this->servico = $servico;
     }
 
     /**
@@ -40,14 +42,20 @@ class ServicoNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $msg = '<p>Foi solicitado um servico do tipo <strong>' . $this->servico->tipoServico->nome . '</strong>, solicitado por <strong>' .$this->servico->solicitante->name . '</strong></p>' .
+            '<p>Descrição: ' . $this->servico->descricao . '</p>' .
+            '<p>Data: '. date_format($this->servico->created_at, 'd/m/Y hh:mm');        
+        
         return (new MailMessage)
             ->subject('Solicitação de serviço')
-        ->from(config('app.email'),config('app.name'))
-        ->greeting('Olá!')
-        ->line('O sistema '  . config('app.name') . ' Registrou um novo serviço.')
-        ->action('Acessar', route('servicos.index'))
-        ->line('Obrigado.')
-        ->markdown('notification.servico.novo');
+            //->from(config('app.email'),config('app.name'))
+            ->from(config('mail.from.address'),config('app.name'))
+            
+//        ->greeting('Olá!')
+
+//        ->line('O sistema '  . config('app.name') . ' Registrou um novo serviço.')
+            ->action('Acessar', route('servicos.index'))
+            ->markdown('notification.servico.novo', compact('msg'));
     }
 
     /**

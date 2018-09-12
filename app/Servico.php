@@ -39,4 +39,13 @@ class Servico extends Model
     {
         return $this->belongsTo('App\TipoServico');
     }
+    
+    
+    /**
+     * obtem o equipamento
+     * */
+    public function equipamento()
+    {
+        return $this->belongsTo(Equipamento::class);
+    }
 }

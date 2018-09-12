@@ -1,10 +1,36 @@
 @component('mail::message')
 # Solicitação de serviço
 
-Foi criada uma solicitação de serviço pelo hou desk.
+<p>
+	Foi solicitado um servico do tipo <strong> {{$servico->tipoServico->nome}} </strong>, solicitado por <strong> {{$servico->solicitante->name}}</strong>
+</p>.
+<p>
+	<strong>Descrição:</strong> {{$servico->descricao }}
+</p>
+<p>
+	<strong>Equipamento:</strong> {{$servico->equipamento->nome}} 
+    @if($servico->equipamento->descricao)
+    	 - {{$servico->equipamento->descricao}}
+    @endif 
+</p>
+<p>
+	<strong>Local:</strong> {{$servico->equipamento->setor->local->nome}} - <strong>Setor: </strong> {{$servico->equipamento->setor->nome}}
+</p>
+<p>
+	<strong>Data:</strong> {{date_format($servico->created_at, 'd/m/Y H:m')}}
+</p>
+<p>
+	<strong>Email:</strong> {{$servico->equipamento->setor->local->email}}
+	@if($servico->equipamento->setor->local->tel) 
+		<br><strong>Tel: </strong> {{$servico->equipamento->setor->local->tel}} <br>
+	@endif
+	@if($servico->equipamento->setor->local->cel)
+		<br> <strong>Cel: </strong> {{$servico->equipamento->setor->local->cel}}
+	@endif
+</p>
 
-@component('mail::button', ['url' => 'http://192.168.0.20:8001/servicos'])
-	Acessar
+@component('mail::button', ['url' => 'http://3b040298abee.sn.mynetname.net:8001/servicos/' ])
+	Acessar serviços
 @endcomponent
 
 Obrigado,<br>

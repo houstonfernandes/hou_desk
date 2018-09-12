@@ -6,19 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Servico;
 
 class ServicoMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $servico;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Servico $servico)
     {
-        //
+        $this->servico = $servico;
     }
 
     /**
@@ -28,6 +30,7 @@ class ServicoMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.servico.mail');
+        $servico = $this->servico;
+        return $this->markdown('mail.servico.mail', compact('servico'));
     }
 }
