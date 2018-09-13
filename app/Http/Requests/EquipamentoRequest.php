@@ -40,7 +40,7 @@ class EquipamentoRequest extends FormRequest
                 {
                     return [
                         'nome'      =>    ['min:2', 'max:80', 'required'],
-                        'data_aquisicao' => ['date_format:"d/m/Y"', 'after_or_equal:' . (new \DateTime('01/01/1990'))->format("d/m/Y"), 'before_or_equal:' . (new \DateTime())->format("d/m/Y")],
+                        'data_aquisicao' => ['nullable','date_format:"d/m/Y"', 'after_or_equal:' . (new \DateTime('01/01/1990'))->format("d/m/Y"), 'before_or_equal:' . (new \DateTime())->format("d/m/Y")],
                         'tipo_equipamento_id'      =>    ['required'],
                         'setor_id'      =>    ['required'],
                     ];
@@ -51,7 +51,7 @@ class EquipamentoRequest extends FormRequest
                 {
                     return [
                         'nome' => ['min:2', 'max:80', 'required'],
-                        'data_aquisicao' => ['date_format:"d/m/Y"', 'after_or_equal:' . (new \DateTime('01/01/1990'))->format("d/m/Y"), 'before_or_equal:' . (new \DateTime())->format("d/m/Y")],                        
+                        'data_aquisicao' => ['nullable','date_format:"d/m/Y"', 'after_or_equal:' . (new \DateTime('01/01/1990'))->format("d/m/Y"), 'before_or_equal:' . (new \DateTime())->format("d/m/Y")],                        
                         'tipo_equipamento_id' => ['required'],
                         'setor_id' => ['required'],
                    ];
