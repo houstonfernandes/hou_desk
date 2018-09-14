@@ -67,6 +67,8 @@
                     	@elseif($servico->situacao == 5)
                     		<span class="glyphicon glyphicon-warning-sign text-warning" aria-hidden="true" title='Finalizado'></span>
                     	@endif
+                    	{{--<span data-livestamp="2012-08-03T00:29:22-07:00"></span>--}}
+                    	<span data-livestamp="{{$servico->created_at}}"></span>
                     </td>
                     <td>
                         <a href = "{{route('admin.equipamentos.edit', $servico->id) }}" class="btn btn-primary" title='Editar'>
@@ -90,3 +92,7 @@
     @include('partial.modal_excluir')
         
 @endsection
+@push('js')    
+    <script src="{{asset('js/livestamp.js')}}"></script>
+@endpush
+

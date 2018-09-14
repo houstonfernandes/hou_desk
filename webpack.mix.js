@@ -79,6 +79,8 @@ mix.copy('resources/assets/css/images', 'public/css/images')//jquery-ui css
 	.copy('resources/assets/css/jquery-ui.min.css', 'public/css');
 mix.js('resources/assets/js/jquery_ui.js', 'public/js');
 
+mix.js('resources/assets/js/livestamp.js', 'public/js');
+
 mix.copy('resources/assets/css/bootstrap_dropdown_sub.css', 'public/css');//menu bootstrap
 
 mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/', 'public/fonts/');//bootstrap fonts bug

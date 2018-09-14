@@ -1,14 +1,14 @@
-webpackJsonp([8],{
+webpackJsonp([9],{
 
-/***/ 25:
+/***/ 149:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(26);
+module.exports = __webpack_require__(150);
 
 
 /***/ }),
 
-/***/ 26:
+/***/ 150:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
@@ -21,8 +21,8 @@ $("form[name=form]").validate({
         password_confirmation: { required: true, equalTo: password }
     }
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ })
 
-},[25]);
+},[149]);

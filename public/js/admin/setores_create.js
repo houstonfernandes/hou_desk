@@ -1,14 +1,14 @@
-webpackJsonp([9],{
+webpackJsonp([10],{
 
-/***/ 29:
+/***/ 153:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(30);
+module.exports = __webpack_require__(154);
 
 
 /***/ }),
 
-/***/ 30:
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
@@ -17,8 +17,8 @@ $("form[name=form]").validate({
         nome: { required: true, minlength: 3, maxlength: 80 }
     }
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ })
 
-},[29]);
+},[153]);
