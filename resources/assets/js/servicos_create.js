@@ -1,7 +1,6 @@
 $(function(){
 	$('#setor_id').on('change',function(){
 		let setor_id = $(this).val(); 
-console.log('mudou' + setor_id);		
 		if(setor_id == ''){
 			$('#equipamento_id').empty();
 			return false;
@@ -16,6 +15,10 @@ console.log('mudou' + setor_id);
 	        success: function(data){
 	        	console.log(data.msg);
 	        	$('#equipamento_id').empty();
+        		let $option = $('<option>').prop({
+        			'value': '','selected':'selected'
+        		}).html('Selecione um equipamento');
+        		$('#equipamento_id').append($option);
 	        	$.each(data.equipamentos, function(i, equipamento){
 	        		let texto = equipamento.nome;
 	        			texto += (equipamento.descricao != null)? ' - ' + equipamento.descricao:' ';
@@ -33,7 +36,11 @@ console.log('mudou' + setor_id);
 	            	$('#divMsg').html(parsedJson.msg);
 	            }
 	            if ( jqXhr.status === 404 ) {
-	            	$('#divMsg').html(parsedJson.msg);
+	        		let $option = $('<option>').prop({
+	        			'value': '',
+	        		}).html(parsedJson.msg);
+		        	$('#equipamento_id').html($option);
+	            	//$('#divMsg').html(parsedJson.msg);
 	            }
 	        }
 	    });	

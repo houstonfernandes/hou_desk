@@ -17,7 +17,7 @@
 	<strong>Local:</strong> {{$servico->equipamento->setor->local->nome}} - <strong>Setor: </strong> {{$servico->equipamento->setor->nome}}
 </p>
 <p>
-	<strong>Data:</strong> {{date_format($servico->created_at, 'd/m/Y H:m')}}
+	<strong>Data:</strong> {{date_format($servico->created_at, 'd/m/Y H:i')}}
 </p>
 <p>
 	<strong>Email:</strong> {{$servico->equipamento->setor->local->email}}

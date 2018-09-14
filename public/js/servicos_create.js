@@ -16,7 +16,6 @@ module.exports = __webpack_require__(18);
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
 	$('#setor_id').on('change', function () {
 		var setor_id = $(this).val();
-		console.log('mudou' + setor_id);
 		if (setor_id == '') {
 			$('#equipamento_id').empty();
 			return false;
@@ -31,6 +30,10 @@ module.exports = __webpack_require__(18);
 			success: function success(data) {
 				console.log(data.msg);
 				$('#equipamento_id').empty();
+				var $option = $('<option>').prop({
+					'value': '', 'selected': 'selected'
+				}).html('Selecione um equipamento');
+				$('#equipamento_id').append($option);
 				$.each(data.equipamentos, function (i, equipamento) {
 					var texto = equipamento.nome;
 					texto += equipamento.descricao != null ? ' - ' + equipamento.descricao : ' ';
@@ -48,7 +51,11 @@ module.exports = __webpack_require__(18);
 					$('#divMsg').html(parsedJson.msg);
 				}
 				if (jqXhr.status === 404) {
-					$('#divMsg').html(parsedJson.msg);
+					var $option = $('<option>').prop({
+						'value': ''
+					}).html(parsedJson.msg);
+					$('#equipamento_id').html($option);
+					//$('#divMsg').html(parsedJson.msg);
 				}
 			}
 		});
