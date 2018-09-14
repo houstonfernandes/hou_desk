@@ -69,6 +69,7 @@
                     	@endif
                     	{{--<span data-livestamp="2012-08-03T00:29:22-07:00"></span>--}}
                     	<span data-livestamp="{{$servico->created_at}}"></span>
+                    	<span class='timericone glyphicon glyphicon-time' data-data_hora="{{$servico->created_at}}" data-tempo_limite="56"></span>
                     </td>
                     <td>
                         <a href = "{{route('admin.equipamentos.edit', $servico->id) }}" class="btn btn-primary" title='Editar'>
@@ -94,5 +95,6 @@
 @endsection
 @push('js')    
     <script src="{{asset('js/livestamp.js')}}"></script>
+    <script src="{{asset('js/timer_icone.js')}}"></script>
 @endpush
 

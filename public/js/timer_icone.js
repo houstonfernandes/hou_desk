@@ -1,4 +1,4 @@
-webpackJsonp([0],[
+webpackJsonp([1],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16727,168 +16727,57 @@ webpackContext.id = 131;
 /* 197 */,
 /* 198 */,
 /* 199 */,
-/* 200 */
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(201);
+module.exports = __webpack_require__(204);
 
 
 /***/ }),
-/* 201 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
-//moment language
+/* WEBPACK VAR INJECTION */(function($) {/**
+ * @author Houston S. Fernandes
+ * uso: <span class='timericone' data-dataHora="{{$servico->created_at}}" data-tempo_limite="6">ok</span>
+ */
 var moment = __webpack_require__(0);
-moment.locale('pt-br');
-//livestamp  - https://mattbradley.github.io/livestampjs/
-var livestamp = __webpack_require__(202);
+var segundos = 10;
+$(function () {
+  timerIcone();
+  setInterval(timerIcone, segundos * 1000);
+});
 
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
+timerIcone = function timerIcone() {
+  //console.log('atualizando timericone');
+  $('.timericone').each(function () {
+    var dataHora = $(this).data('data_hora');
+    var limite = $(this).data('tempo_limite');
+    var quaseLimite = limite * .8; //80% dolimite
+    var dataHoraLimite = moment(dataHora).add(limite, 'm').toDate();
+    var dataHoraQuaseLimite = moment(dataHora).add(quaseLimite, 'm').toDate();
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Livestamp.js / v2.0.0 / (c) 2015 Matt Bradley / MIT License
-(function (plugin) {
-  if (true) {
-    // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (plugin),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {
-    // Browser globals
-    plugin(jQuery, moment);
-  }
-}(function($, moment) {
-  var updateInterval = 1e3,
-      paused = false,
-      $livestamps = $([]),
+    //    	console.log(dataHora + ' ====== ' + dataHoraLimite);	
 
-  init = function() {
-    livestampGlobal.resume();
-  },
+    var antes = moment().isBefore(dataHoraQuaseLimite); // verifica se é antes do limite
+    var quase = moment().isAfter(dataHoraQuaseLimite) && moment().isBefore(dataHoraLimite);
 
-  prep = function($el, timestamp) {
-    var oldData = $el.data('livestampdata');
-    if (typeof timestamp == 'number')
-      timestamp *= 1e3;
+    //        console.log('quase='+quase);
 
-    $el.removeAttr('data-livestamp')
-      .removeData('livestamp');
-
-    timestamp = moment(timestamp);
-    if (moment.isMoment(timestamp) && !isNaN(+timestamp)) {
-      var newData = $.extend({ }, { 'original': $el.contents() }, oldData);
-      newData.moment = moment(timestamp);
-
-      $el.data('livestampdata', newData).empty();
-      $livestamps.push($el[0]);
+    if (antes) {
+      $(this).css('color', 'green'); //.text('adiantado');
+    } else if (quase) {
+      $(this).css('color', 'yellow'); //.text('atenção');
+      //$(this).prop('class', 'text-danger')
+    } else {
+      $(this).css('color', 'red'); //.text('atrasado');
     }
-  },
-
-  run = function() {
-    if (paused) return;
-    livestampGlobal.update();
-    setTimeout(run, updateInterval);
-  },
-
-  livestampGlobal = {
-    update: function() {
-      $('[data-livestamp]').each(function() {
-        var $this = $(this);
-        prep($this, $this.data('livestamp'));
-      });
-
-      var toRemove = [];
-      $livestamps.each(function() {
-        var $this = $(this),
-            data = $this.data('livestampdata');
-
-        if (data === undefined)
-          toRemove.push(this);
-        else if (moment.isMoment(data.moment)) {
-          var from = $this.html(),
-              to = data.moment.fromNow();
-
-          if (from != to) {
-            var e = $.Event('change.livestamp');
-            $this.trigger(e, [from, to]);
-            if (!e.isDefaultPrevented())
-              $this.html(to);
-          }
-        }
-      });
-
-      $livestamps = $livestamps.not(toRemove);
-      delete $livestamps.prevObject
-    },
-
-    pause: function() {
-      paused = true;
-    },
-
-    resume: function() {
-      paused = false;
-      run();
-    },
-
-    interval: function(interval) {
-      if (interval === undefined)
-        return updateInterval;
-      updateInterval = interval;
-    }
-  },
-
-  livestampLocal = {
-    add: function($el, timestamp) {
-      if (typeof timestamp == 'number')
-        timestamp *= 1e3;
-      timestamp = moment(timestamp);
-
-      if (moment.isMoment(timestamp) && !isNaN(+timestamp)) {
-        $el.each(function() {
-          prep($(this), timestamp);
-        });
-        livestampGlobal.update();
-      }
-
-      return $el;
-    },
-
-    destroy: function($el) {
-      $livestamps = $livestamps.not($el);
-      $el.each(function() {
-        var $this = $(this),
-            data = $this.data('livestampdata');
-
-        if (data === undefined)
-          return $el;
-
-        $this
-          .html(data.original ? data.original : '')
-          .removeData('livestampdata');
-      });
-
-      return $el;
-    },
-
-    isLivestamp: function($el) {
-      return $el.data('livestampdata') !== undefined;
-    }
-  };
-
-  $.livestamp = livestampGlobal;
-  $(init);
-  $.fn.livestamp = function(method, options) {
-    if (!livestampLocal[method]) {
-      options = method;
-      method = 'add';
-    }
-
-    return livestampLocal[method](this, options);
-  };
-}));
-
+  });
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ })
-],[200]);
+],[203]);
