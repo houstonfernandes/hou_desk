@@ -130,8 +130,8 @@ class UserRepository extends BaseRepository
     private function podeExcluir(User $user)
     {
         //@todo ver key
-        //$qtdSolicitados = count($user->servicosSolicitados);   //verificar servicos
-        //$qtdExecutados = count($user->servicosExecutados);   
+        $qtdSolicitados = count($user->servicosSolicitados);   //verificar servicos
+        $qtdExecutados = count($user->servicosExecutados);   
         if($qtdSolicitados > 0 || $qtdExecutados > 0) 
             return false;        
         return true;        

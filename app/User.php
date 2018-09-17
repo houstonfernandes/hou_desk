@@ -70,6 +70,36 @@ class User extends Authenticatable
     }
     
     /**
+     * verifica nos papeis se é tecnico
+     * @return boolean
+     * */
+    public function isTecnico()
+    {
+        foreach($this->roles as $role){//admin
+            if($role->name == 'tecnico')
+                return true;
+        }
+        return false;
+    }
+    
+    /**
+     * lista tecnicos
+     * @param $query
+     * @return array
+     */
+    public static function tecnicos()
+    {
+        $users = self::all();
+        $tecnicos = [];
+        foreach($users as $user){
+            if($user->isTecnico())
+                $tecnicos[] = $user;
+        }
+        return $tecnicos;
+    }
+    
+    
+    /**
      * verifica se os papeis da permission existem para o user
      * @return boolean
      * */
