@@ -39,7 +39,7 @@
         <input type="hidden" name="uf" value="RJ">
         {{--
         <label for="UF">UF</label>
-        <select id=='uf' name='uf' class="form-control">
+        <select id='uf' name='uf' class="form-control">
         	<option value=''>Selecione uma opção</option>
         	@foreach($ufBrasil as $id=>$value)
         	<option value="{{$id}}">{{$value}}</option>
@@ -74,7 +74,17 @@
         <label for="obs">Observações</label>
         <textarea class="form-control" id="obs" name="obs" rows="3">{{old('obs')}}</textarea>
     </div>
-
+    
+    <div class="form-group">
+        <label for="tecnico_id">Técnico</label>
+        <select id='tecnico_id' name='tecnico_id' class="form-control">
+        	<option value='' selected>Selecione uma opção</option>
+        	@foreach($tecnicos as $tecnico)
+        	<option value="{{$tecnico->id}}">{{$tecnico->name}} - {{$tecnico->local->nome}}</option>
+        	@endforeach
+        </select>
+	</div>
+	
     <div class="form-group">
   		<button type="submit" class="btn btn-primary">Confirmar</button>
   		<a class="btn btn-primary" href="{{route('admin.locais.index')}}">Cancelar</a>

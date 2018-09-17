@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\FornecedorRequest;
 use App\Domains\LocalRepository;
 use App\Http\Requests\LocalRequest;
+use App\User;
 
 class LocaisController extends Controller
 {
@@ -22,7 +22,12 @@ class LocaisController extends Controller
     public function create()
     {
         $ufBrasil = ufBrasil();
-        return view('admin.locais.create', compact('ufBrasil'));
+        $tecnicos = User::tecnicos();
+        
+//@todo 19/09 dd não está funcionando        
+        dd($tecnicos);
+       exit();
+        return view('admin.locais.create', compact('ufBrasil','tecnicos'));
     }
     
     public function store(LocalRequest $request)

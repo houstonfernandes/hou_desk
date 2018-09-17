@@ -24,7 +24,7 @@ $factory->define(App\Local::class, function (Faker $faker) {
         'cidade' => $faker->city,
         'obs' =>$faker->realText(),        
         'email' => $faker->email,
-        'cep' => $faker->numerify('#####-###'),        
+        'cep' => $faker->numerify('#####-###'),
     ];
 });
   

@@ -131,7 +131,9 @@ class UserRepository extends BaseRepository
     {
         //@todo ver key
         $qtdSolicitados = count($user->servicosSolicitados);   //verificar servicos
-        $qtdExecutados = count($user->servicosExecutados);   
+        $qtdExecutados = count($user->servicosExecutados);
+        if($user->isTecnico())//tecnico não pode ser excluido
+            return false;
         if($qtdSolicitados > 0 || $qtdExecutados > 0) 
             return false;        
         return true;        
