@@ -1,20 +1,16 @@
-# HOU_DESK - helpdesk em fase inicial 28/08/18 
+# HOU_DESK - helpdesk utilizando Laravel 5.6 
+Houston S. Fernandes - houstonsf.sys@gmail.com
 
-  >utilizando Laravel 5.6 - casos de uso e mer e instalacão em: app/docs
-  >> ## instalacao:
-  >>  1. $ composer install
-  >>  2. copiar o .env-example p .env e configurar o banco
-  >>  3. criar o banco de dados
-  >>  4. $ php artisan migrate
-  >>  5. dar permissão de escrita em public e storage
-  >>  6. teste:  $php artisan serve
-  
-  Houston S. fernandes - houstonsf.sys@gmail.com
-18/09/2018 - INSTALACAO SISTEMA HOU DESK
+## em fase inicial 28/08/18
+	18/09/2018 - implementando Serviços
+	
+## casos de uso, mer e instalacão em: app/docs
+
+
 ## requisitos:
 	> php 7.2, composer, banco:configurar .env(usado mysql)
 	
-## instalacao:
+## INSTALACAO SISTEMA HOU DESK:
 	1 - clonar repositorio
 		$ git clone ~/repositorios/hou_desk
 		(web) $ git clone https://github.com/houstonfernandes/hou_desk.git
