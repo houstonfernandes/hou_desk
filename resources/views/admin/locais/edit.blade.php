@@ -76,7 +76,17 @@
         <label for="obs">Observações</label>
         <textarea class="form-control" id="obs" name="obs" rows="3">{{$local->obs}}</textarea>
     </div>
-
+            
+    <div class="form-group">
+        <label for="tecnico_id">Técnico</label>
+        <select id='tecnico_id' name='tecnico_id' class="form-control" required>
+        	<option value='' selected>Selecione uma opção</option>
+        	@foreach($tecnicos as $tecnico)
+        	<option value="{{$tecnico->id}}" {{ $local->tecnico_id==$tecnico->id? "selected":"" }}>{{$tecnico->name}} - {{$tecnico->local->nome}}</option>
+        	@endforeach
+        </select>
+	</div>
+	
     <div class="form-group">
   		<button type="submit" class="btn btn-primary">Confirmar</button>
   		<a class="btn btn-primary" href="{{route('admin.locais.index')}}">Cancelar</a>

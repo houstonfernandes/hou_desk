@@ -23,10 +23,6 @@ class LocaisController extends Controller
     {
         $ufBrasil = ufBrasil();
         $tecnicos = User::tecnicos();
-        
-//@todo 19/09 dd não está funcionando        
-        dd($tecnicos);
-       exit();
         return view('admin.locais.create', compact('ufBrasil','tecnicos'));
     }
     
@@ -39,8 +35,9 @@ class LocaisController extends Controller
     
     public function edit($id){
         $ufBrasil = ufBrasil();
+        $tecnicos = User::tecnicos();
         $local = $this->repository->findByID($id);
-        return view('admin.locais.edit', compact('local', 'ufBrasil'));
+        return view('admin.locais.edit', compact('local', 'ufBrasil', 'tecnicos'));
     }
     
     public function update($id, LocalRequest $request)

@@ -15,7 +15,6 @@
         	<thead>
             	<tr>        	
             		<th>Nome</th>
-            		<th>CNPJ</th>
             		<th>tel</th>
             		<th>cel</th>
             		<th>email</th>
@@ -25,12 +24,17 @@
             <tbody>
             @foreach($locais as $local)
                 <tr>
-                    <td>{{$local->nome}}</td>
-                    <td>{{$local->cnpj}}</td>
+                    <td>
+                    	{{$local->nome}}
+                        @if(!$local->tecnico_id)
+                        	<span class="glyphicon glyphicon-info-sign text-warning" title='O Técnico não foi definido' aria-hidden="true"></span>
+                        @endif
+                    </td>
                     <td>{{$local->tel}}</td>
                     <td>{{$local->cel}}</td>
                     <td>{{$local->email}}</td>
                     <td>
+                    
                         <a href = "{{route('admin.setores.index', $local->id) }}" class="btn btn-primary" title="Setores">
                         	<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                         </a>

@@ -77,7 +77,7 @@
     
     <div class="form-group">
         <label for="tecnico_id">Técnico</label>
-        <select id='tecnico_id' name='tecnico_id' class="form-control">
+        <select id='tecnico_id' name='tecnico_id' class="form-control" required>
         	<option value='' selected>Selecione uma opção</option>
         	@foreach($tecnicos as $tecnico)
         	<option value="{{$tecnico->id}}">{{$tecnico->name}} - {{$tecnico->local->nome}}</option>

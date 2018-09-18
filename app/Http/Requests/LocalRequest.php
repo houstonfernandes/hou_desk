@@ -46,7 +46,8 @@ class LocalRequest extends FormRequest
                                     $query->where('cnpj', $this->cnpj);
                                 })
                         ],
-                        'nome'      =>    ['min:3', 'max:80', 'required']
+                        'nome'      =>    ['min:3', 'max:80', 'required'],
+                        'tecnico_id'      =>    ['required', 'exists:users,id']
                             
                     ];
                 }
@@ -54,7 +55,8 @@ class LocalRequest extends FormRequest
             case 'PATCH':
                 {
                     return [
-                        'nome'      =>    ['min:3','max:80', 'required']
+                        'nome'      =>    ['min:3','max:80', 'required'],
+                        'tecnico_id'      =>    ['required', 'exists:users,id']
                    ];
                 }
             default:break;
