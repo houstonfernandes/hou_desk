@@ -1,8 +1,12 @@
-Houston S. fernandes -houstonfernandes@gmail.com
-11/08/2018 - INSTALACAO SISTEMA HOU DESK
-
+Houston S. fernandes - houstonsf.sys@gmail.com
+18/09/2018 - INSTALACAO SISTEMA HOU DESK
+# requisitos:
+	php 7.2, composer, banco:configurar .env(usado mysql)
+	
+	
 1 - clonar repositorio
 	$ git clone ~/repositorios/hou_desk
+	(web) $ git clone https://github.com/houstonfernandes/hou_desk.git
 
 2 - selecionar dir
 	$ cd hou_desk/
@@ -15,9 +19,9 @@ Houston S. fernandes -houstonfernandes@gmail.com
 	$ mysql -u root -p
 
 	$mysql>
-		CREATE DATABASE hou-desk DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+		CREATE DATABASE hou_desk DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 	# criar usuario a atribuir permissoes
-		CREATE USER 'hou_desk_user'@'localhost' IDENTIFIED BY 'hou-desk'; GRANT ALL PRIVILEGES ON hou-desk.* TO 'hou_desk_user'@'localhost' WITH GRANT OPTION; 
+		CREATE USER 'hou_desk_user'@'localhost' IDENTIFIED BY 'hou-desk'; GRANT ALL PRIVILEGES ON hou_desk.* TO 'hou_desk_user'@'localhost' WITH GRANT OPTION; 
 
 5 - criar .env
 	$ cp .env.example .env
@@ -27,11 +31,15 @@ Houston S. fernandes -houstonfernandes@gmail.com
 
 7 -editar configuracoes do banco em .env
 
-8 - criar tabelas do banco e popular
+8 - configurar servidor de email e adicionar no .env
+	MAIL_FROM_ADDRESS="emailorigem@email.com"
+	MAIL_FROM_NAME="HOU_DESK Help Desk que sera exibido"	
+
+9 - criar tabelas do banco e popular
 	$ php artisan migrate
 	$php artisan db:seed
 
-9 - testar
+10 - testar
 	$ php artisan serve
 
 

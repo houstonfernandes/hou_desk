@@ -1,6 +1,6 @@
 # HOU_DESK - helpdesk em fase inicial 28/08/18 
 
-  >utilizando Laravel - casos de uso e mer e instalacão em: app/docs
+  >utilizando Laravel 5.6 - casos de uso e mer e instalacão em: app/docs
   >> ## instalacao:
   >>  1. $ composer install
   >>  2. copiar o .env-example p .env e configurar o banco
@@ -8,6 +8,53 @@
   >>  4. $ php artisan migrate
   >>  5. dar permissão de escrita em public e storage
   >>  6. teste:  $php artisan serve
+  
+  Houston S. fernandes - houstonsf.sys@gmail.com
+18/09/2018 - INSTALACAO SISTEMA HOU DESK
+## requisitos:
+	> php 7.2, composer, banco:configurar .env(usado mysql)
+	
+## instalacao:
+	1 - clonar repositorio
+		$ git clone ~/repositorios/hou_desk
+		(web) $ git clone https://github.com/houstonfernandes/hou_desk.git
+
+	2 - selecionar dir
+	$ cd hou_desk/
+
+	3 - instalar dependencias
+		$composer install 
+		//** se estiver desenvolvendo instalar dependencias de npm: $npm install
+
+	4 - criar banco
+		$ mysql -u root -p
+
+		$mysql>
+			CREATE DATABASE hou_desk DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+		# criar usuario a atribuir permissoes
+			CREATE USER 'hou_desk_user'@'localhost' IDENTIFIED BY 'hou-desk'; GRANT ALL PRIVILEGES ON hou_desk.* TO 'hou_desk_user'@'localhost' WITH GRANT OPTION; 
+
+	5 - criar .env
+		$ cp .env.example .env
+
+	6 - gerar app key
+		$ php artisan key:generate
+	
+	7 -editar configuracoes do banco em .env
+	
+	8 - configurar servidor de email e adicionar no .env
+		MAIL_FROM_ADDRESS="emailorigem@email.com"
+		MAIL_FROM_NAME="HOU_DESK Help Desk que sera exibido"	
+	
+	9 - criar tabelas do banco e popular
+		$ php artisan migrate
+		$php artisan db:seed
+	
+	10 - testar
+		$ php artisan serve
+
+
+  
   
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
@@ -31,38 +78,6 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
