@@ -2,14 +2,19 @@
 
 @section('content')
 
-    <h2 class='title'>Nova Solicitação de serviço</h2>
+    <h2 class='title'>Nova solicitação de serviço</h2>
     
 	<div>
         <ul class="list-group">
         	<li class="list-group-item active">Local: {{$local->nome}}</li>
+        	@if($local->tecnico)
+        	<li class="list-group-item ">Técnico: {{$local->tecnico->name}}	</li>        	
+             @else
+             <li class="list-group-item "><span class='text-warning'>Definir o técnico no cadastro do local. </span></li>
+        	@endif
         </ul>
     </div>
-
+    
 	<div>
         <ul class="list-group">
         	<li class="list-group-item active">Solicitante: {{Auth::user()->name}}</li>
@@ -49,11 +54,19 @@
     		<label for="descricao">Descrição do problema</label>
     		<textarea class="form-control" rows='3' name='descricao'>{{old('descricao')}}</textarea>        
 		</div>
-
+		
+		<div class="form-group">
+      		@if($local->tecnico)
+      			<label>
+        	     	<input type="checkbox" name="notificar_tecnico" value="1"> Notificar técnico
+        	    </label>
+        	@endif
+        </div>
 	
         <div class="form-group">
       		<button type="submit" class="btn btn-primary">Confirmar</button>
       		<a class="btn btn-primary" href="{{route('servicos.index', $local->id)}}">Cancelar</a>
+      		
     	</div>  		
 	</form>
     

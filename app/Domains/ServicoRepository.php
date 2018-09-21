@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Log;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\NaoPodeExcluirException;
 use App\Search\EquipamentoSearch;
-use App\Events\ServicoCriado;
 
 class ServicoRepository extends BaseRepository
 {
@@ -49,11 +48,8 @@ class ServicoRepository extends BaseRepository
             $input = $request->all();
             $input['solicitante_id'] = Auth::user()->id;
             $obj = $this->model->create($input);
-            
-            event(new ServicoCriado($obj));//evento email p/ técnico;
-            
             $msg = 'Solicitação de serviço criada com sucesso. ' . $obj->id;
-            return ['msg' => $msg, 'style' =>'success'];
+            return ['msg' => $msg, 'style' =>'success', 'servico' => $obj];
         }
         catch(\Exception $e){
             Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());

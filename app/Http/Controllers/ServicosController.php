@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\EquipamentoRequest;
 use App\Local;
@@ -11,6 +12,8 @@ use App\TipoEquipamento;
 use App\Domains\ServicoRepository;
 use App\TipoServico;
 use App\Http\Requests\ServicoRequest;
+use App\Events\ServicoCriado;
+
 
 class ServicosController extends Controller
 {
@@ -39,7 +42,19 @@ class ServicosController extends Controller
     public function store(ServicoRequest $request)
     {
         $saida = $this->repository->store($request);
+        
+        if($request->notificar_tecnico==1){
+            try{
+                event(new ServicoCriado($saida['servico']));//evento email p/ técnico;
+                $saida['msg'] .='<p class="text-success">Email enviado para o técnico.</p>';
+            }catch (\Exception $e){
+                Log::error(__METHOD__ . ' Exception: ' . $e->__toString() . '-' . $e->getMessage());
+                $saida['msg'] .='<p class="text-danger">Houve falha ao enviar email para o técnico.</p>';                
+            }
+        }
+        
         flash($saida['msg'], $saida['style']);
+        
         return redirect()->route('servicos.index');
     }
     

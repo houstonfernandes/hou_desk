@@ -23,9 +23,6 @@
 		<div>
             <ul class="list-group">
             	<li class="list-group-item active">Local: {{$local->nome}}</li>
-            	<li class="list-group-item">email: {{$local->email}}</li>
-            	<li class="list-group-item">Tel: {{$local->tel}}</li>
-            	<li class="list-group-item">Cel: {{$local->cel}}</li>
             </ul>
         </div>
         @else

@@ -30,4 +30,7 @@ class Local extends Model
         return $this->hasMany(User::class);
     }
     
+    public function tecnico(){
+        return $this->belongsTo(User::class, 'tecnico_id');
+    }
 }
