@@ -1,7 +1,6 @@
 <?php
-namespace App\Domains;
 
-use App\Servico;
+namespace App\Domains;
 
 use App\Support\Repositories\BaseRepository;
 use Illuminate\Foundation\Http\FormRequest;
@@ -9,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+use App\Servico;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\NaoPodeExcluirException;
 use App\Search\EquipamentoSearch;
@@ -22,6 +22,16 @@ class ServicoRepository extends BaseRepository
     protected $perPage = 15;
     private $_nome = 'Servico';
     private $_tabela = 'servicos';
+    
+    const STATUS_CRIADO = 0;
+    const STATUS_EMAIL_ENVIADO = 1;
+    const STATUS_TECNICO_CIENTE = 2;
+    const STATUS_A_EXECUTAR = 3;
+    const STATUS_EM_EXECUCAO = 4;
+    const STATUS_FINALIZADO = 5;
+    
+    
+    
     
     /**
      * lista paginada para index - serviços por local
@@ -97,10 +107,9 @@ class ServicoRepository extends BaseRepository
         }
     }
     
-    private function podeExcluir(Equipamento $obj)
+    private function podeExcluir(Servico $obj)
     {
-        $qtd= count($obj->servicos);   
-        return ($qtd == 0)? true:false;        
+        return false;
     }
     
     /**

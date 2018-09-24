@@ -18,11 +18,6 @@ Route::prefix('api')
     ->group(function(){
     Route::get('equipamentos/listar_local/{id}', ['as' => 'equipamento.listar_local', 'uses' => 'EquipamentosController@listarLocal']);//json
     Route::get('equipamentos/listar_setor/{id}', ['as' => 'equipamento.listar_setor', 'uses' => 'EquipamentosController@listarSetor']);//json
-    
-    Route::get('products/consultar/{id}', ['as' => 'produto.consultar.id', 'uses' => 'ProductsController@consultarId']);//json
-    Route::post('products/search/', ['as' => 'products.search', 'uses' => 'ProductsController@search']);//json
-    Route::post('fornecedores/search/', ['as' => 'fornecedores.search', 'uses' => 'FornecedoresController@search']);//json
-    Route::get('categories/list', ['as' => 'categories.list', 'uses' => 'CategoriesController@list']);//json
         
     Route::post('users/get_permissions', ['as' => 'users.get_permissions', 'uses' => 'UsersController@getPermissions']);//json    
 });
@@ -37,6 +32,8 @@ Route::group(['prefix' => 'servicos', 'middleware'=>'auth', 'as' => 'servicos.']
     Route::get('/', ['as' => 'index', 'uses' => 'ServicosController@index']);
     Route::get('create', ['as' => 'create', 'uses' => 'ServicosController@create']);
     Route::post('/', ['as' => 'store', 'uses' => 'ServicosController@store']);
+    Route::get('consultar/{id}', ['as' => 'consultar', 'uses' => 'ServicosController@consultar']);
+    
     //Route::get('/{id}', ['as' => 'update_own', 'uses' => 'UsersController@updateOwn']);//usar attr hidden name=_method value=PUT
 });
         

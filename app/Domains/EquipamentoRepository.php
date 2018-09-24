@@ -21,6 +21,12 @@ class EquipamentoRepository extends BaseRepository
     protected $perPage = 15;
     private $_nome = 'Equipamento';
     
+    const  STATUS_INATIVO = 0;
+    const  STATUS_ATIVO = 1;
+    const  STATUS_MANUTENCAO = 2;
+    const  STATUS_MANUTENCAO_OK = 3;
+    
+    
     /**
      * lista paginada para index - equipamentos por local
      */
@@ -192,17 +198,22 @@ class EquipamentoRepository extends BaseRepository
     /**
      * lista equipamentos por setor
      * @param int setor id
+     * @param boolean ativo
      * @return array json
      */
-    public function listarSetor($id)
+    public function listarSetor($id, $ativo=true)
     {
         $saida = [];
         try{
             $query = $this->newQuery();
+           
+//            dd(self::STATUS_ATIVO);            
             $query->select('equipamentos.*');
-            $query->where('setor_id', $id)
-                ->where('situacao', '>', 0)//somente ativos
-                ->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
+            $query->where('setor_id', $id);
+//            if($ativo==true){            
+                $query->where('situacao', '>=', self::STATUS_ATIVO);           //somente ativos
+  //          }
+            $query->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
             $result = $query->get();
             $qtd = $result->count();
             if($qtd == 0){

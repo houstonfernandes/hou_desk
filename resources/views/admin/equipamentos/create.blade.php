@@ -27,10 +27,14 @@
     	<div class="form-group">
     	    <label for="setor_id">Setor</label>
             <select id=='setor_id' name='setor_id' class="form-control" required>
+            	@if($local->setores->count() > 0)
             	<option value=''>Selecione uma opção</option>
             	@foreach($local->setores as $setor)            	
             	<option value="{{$setor->id}}" {{$setor->id==old('setor_id')?'selected':''}}>{{$setor->nome}}</option>
             	@endforeach
+            	@else
+            	<option value=''>Nenhum setor cadastrado</option>
+            	@endif
             </select>
         </div>
 

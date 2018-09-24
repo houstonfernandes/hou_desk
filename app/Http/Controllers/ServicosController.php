@@ -42,10 +42,14 @@ class ServicosController extends Controller
     public function store(ServicoRequest $request)
     {
         $saida = $this->repository->store($request);
-        
+        $servico = $saida['servico'];
         if($request->notificar_tecnico==1){
             try{
-                event(new ServicoCriado($saida['servico']));//evento email p/ técnico;
+                event(new ServicoCriado($servico));//evento email p/ técnico;
+                
+                $servico->situacao = ServicoRepository::STATUS_EMAIL_ENVIADO;
+                $servico->save();
+                
                 $saida['msg'] .='<p class="text-success">Email enviado para o técnico.</p>';
             }catch (\Exception $e){
                 Log::error(__METHOD__ . ' Exception: ' . $e->__toString() . '-' . $e->getMessage());
@@ -58,11 +62,20 @@ class ServicosController extends Controller
         return redirect()->route('servicos.index');
     }
     
-    public function edit($id){
-        $tiposEquipamentos = TipoEquipamento::ativo()->get();
-        $equipamento = $this->repository->findByID($id);
-        $local = $equipamento->setor->local;
-        return view('admin.equipamentos.edit', compact('equipamento', 'tiposEquipamentos', 'local'));
+    public function consultar($id){
+        $servico = $this->repository->findByID($id);
+        //$tiposEquipamentos = TipoEquipamento::ativo()->get();
+        
+        //se tecnico mudar o status p tecnico ciente
+        if(Auth::user()->isTecnico() && $servico->situacao != ServicoRepository::STATUS_TECNICO_CIENTE ){
+            //dd('é tecnico');
+            $servico->situacao = ServicoRepository::STATUS_TECNICO_CIENTE;
+            $servico->save();
+        }
+        
+        //mensagens = Mensagem
+        
+        return view('servicos.consultar', compact('servico'));
     }
     
     public function update($id, EquipamentoRequest $request)
