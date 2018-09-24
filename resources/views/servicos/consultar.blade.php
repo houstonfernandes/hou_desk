@@ -21,7 +21,6 @@
         </ul>
     </div>
 
-    <form method="post" action="#" name='form'>
     	<div class="form-group">
     	    <label for="setor_id">Setor</label>
     	    <input type="text" class="form-control" readonly value={{$servico->equipamento->setor->nome}}>
@@ -41,19 +40,63 @@
     		<label for="descricao">Descrição do problema</label>
     		<textarea class="form-control" rows='3' readonly>{{$servico->descricao}}</textarea>        
 		</div>
-	
-	
+		
+        <div class="panel panel-default">
+          <div class="panel-heading">          
+            <h3 class="panel-title">Mensagens </h3>
+          </div>
+          <div class="panel-body">
+            <div class="list-group">
+              <p class="list-group-item ">
+              	<strong>Usuário:</strong> sjdsjdhsdjsdjsd 
+              	<span class="pull-right"><strong>Data: </strong> 24/09/2018 15:18 </span> 
+              </p>
+              <li class="list-group-item">Dapibus ac facilisis indfdflçdçlfçl dçlfçldffdflçdfçdlfç dfldçf ldfçdl fçdl fçdlfçdfldçfldfçdlfçd,dçcd dfdfdfd dfdf df</li>              
+          	</div>
+
+            <div class="list-group">
+              <p class="list-group-item ">
+              	<strong>Usuário:</strong> sjdsjdhsdjsdjsd 
+              	<span class="pull-right"><strong>Data: </strong> 24/09/2018 15:18 </span> 
+              </p>
+              <li class="list-group-item">Dapibus ac facilisis indfdflçdçlfçl dçlfçldffdflçdfçdlfç dfldçf ldfçdl fçdl fçdlfçdfldçfldfçdlfçd,dçcd dfdfdfd dfdf df</li>              
+          	</div>
+
+            <div class="list-group">
+              <p class="list-group-item ">
+              	<strong>Usuário:</strong> sjdsjdhsdjsdjsd 
+              	<span class="pull-right"><strong>Data: </strong> 24/09/2018 15:18 </span> 
+              </p>
+              <li class="list-group-item">Dapibus ac facilisis indfdflçdçlfçl dçlfçldffdflçdfçdlfç dfldçf ldfçdl fçdl fçdlfçdfldçfldfçdlfçd,dçcd dfdfdfd dfdf df</li>              
+          	</div>
+          </div>
+        </div>
+        
+    		<form method="post" action="#" name='form'>
+    			<input type='hidden' name="user_id" value="{{Auth::user()->id}}">   		
+    		
+            <div class="list-group ">
+        		<p class="list-group-item active">Escrever Mensagem</p>
+            	<textarea class="list-group-item form-control" rows='3' ></textarea>
+            	<button type='button' class="btn btn-primary">Salvar</button>
+          	</div>
+          	
+			</form>
+        
+       	
         <div class="form-group">
+        	@if(Auth::user()->isTecnico())
       		<a class="btn btn-primary" href="{{route('servicos.index', $servico->equipamento->setor->local->id)}}">
 	      		<span class="glyphicon glyphicon-cog" aria-hidden="true" title='A executar'></span>
       			Atender
-      		</a>      		
+      		</a>
+      		@endif
         
       		<a class="btn btn-primary" href="{{route('servicos.index', $servico->equipamento->setor->local->id)}}">
 	      		<span class="glyphicon glyphicon-repeat" aria-hidden="true" title='A executar'></span>
       			Servicos
       		</a>      		
     	</div>  		
-	</form>
+	
     
 @endsection
