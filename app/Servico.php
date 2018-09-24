@@ -48,4 +48,13 @@ class Servico extends Model
     {
         return $this->belongsTo(Equipamento::class);
     }
+    
+    /**
+     * obtem as mensagens
+     * */
+    public function mensagens()
+    {
+        return $this->hasMany(MensagemServico::class);
+    }
+    
 }

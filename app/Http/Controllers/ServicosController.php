@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\EquipamentoRequest;
+use App\Http\Requests\MensagemServicoRequest;
 use App\Local;
 use App\TipoEquipamento;
 use App\Domains\ServicoRepository;
@@ -102,5 +103,15 @@ class ServicosController extends Controller
         $saida = $this->repository->search($request);
         return response()->json($saida, $saida['statusCode']);
     }
+    
+    public function storeMensagem(MensagemServicoRequest $request)
+    {
+        $saida = $this->repository->storeMensagem($request);
+        $servicoId = $request->servico_id;
+        flash($saida['msg'], $saida['style']);
+        
+        return redirect()->route('servicos.consultar', $servicoId);
+    }
+    
     
 }

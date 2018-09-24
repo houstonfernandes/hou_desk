@@ -46,41 +46,36 @@
             <h3 class="panel-title">Mensagens </h3>
           </div>
           <div class="panel-body">
+          
+          	@forelse($servico->mensagens as $mensagem)
             <div class="list-group">
               <p class="list-group-item ">
-              	<strong>Usuário:</strong> sjdsjdhsdjsdjsd 
-              	<span class="pull-right"><strong>Data: </strong> 24/09/2018 15:18 </span> 
+              	<strong>Usuário:</strong> {{$mensagem->user->name}} 
+              	<span class="pull-right"><strong>Data: </strong> {{date_format($mensagem->created_at, "d/m/Y H:i:s")}}</span> 
               </p>
-              <li class="list-group-item">Dapibus ac facilisis indfdflçdçlfçl dçlfçldffdflçdfçdlfç dfldçf ldfçdl fçdl fçdlfçdfldçfldfçdlfçd,dçcd dfdfdfd dfdf df</li>              
+              <li class="list-group-item">{{$mensagem->mensagem}}</li>              
           	</div>
-
+          	@empty
             <div class="list-group">
-              <p class="list-group-item ">
-              	<strong>Usuário:</strong> sjdsjdhsdjsdjsd 
-              	<span class="pull-right"><strong>Data: </strong> 24/09/2018 15:18 </span> 
-              </p>
-              <li class="list-group-item">Dapibus ac facilisis indfdflçdçlfçl dçlfçldffdflçdfçdlfç dfldçf ldfçdl fçdl fçdlfçdfldçfldfçdlfçd,dçcd dfdfdfd dfdf df</li>              
+              <li class="list-group-item list-group-item-warning">Não existe mensagem para este serviço.</li>              
           	</div>
-
-            <div class="list-group">
-              <p class="list-group-item ">
-              	<strong>Usuário:</strong> sjdsjdhsdjsdjsd 
-              	<span class="pull-right"><strong>Data: </strong> 24/09/2018 15:18 </span> 
-              </p>
-              <li class="list-group-item">Dapibus ac facilisis indfdflçdçlfçl dçlfçldffdflçdfçdlfç dfldçf ldfçdl fçdl fçdlfçdfldçfldfçdlfçd,dçcd dfdfdfd dfdf df</li>              
-          	</div>
+          	
+			@endforelse
+			
           </div>
         </div>
         
-    		<form method="post" action="#" name='form'>
-    			<input type='hidden' name="user_id" value="{{Auth::user()->id}}">   		
-    		
-            <div class="list-group ">
-        		<p class="list-group-item active">Escrever Mensagem</p>
-            	<textarea class="list-group-item form-control" rows='3' ></textarea>
-            	<button type='button' class="btn btn-primary">Salvar</button>
-          	</div>
-          	
+    		<form method="post" action="{{route('servicos.store_mensagem')}}" name='form'>
+    		{{ csrf_field() }}
+    			<input type='hidden' name="servico_id" value="{{$servico->id}}">
+                <div class="list-group ">
+            		<p class="list-group-item active">Escrever Mensagem</p>
+                	<textarea class="list-group-item form-control" rows='3' name='mensagem' ></textarea>
+                	<button type='submit' class="btn btn-primary">
+                		<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" title='Salvar'></span>            	
+                		Salvar
+                	</button>
+              	</div>   	
 			</form>
         
        	

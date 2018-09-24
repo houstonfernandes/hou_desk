@@ -150,4 +150,28 @@ class ServicoRepository extends BaseRepository
         }
         return $saida;            
     }
+    
+    /**
+     * armazena mensagem de serviço
+     * @param FormRequest $request
+     * @return array 'sucesso', 'id','erro'
+     */
+    public function storeMensagem(FormRequest $request)
+    {
+        try{
+            $input = $request->all();
+            $input['user_id'] = Auth::user()->id;
+            $input['situacao'] = 0;
+            $modelMensagem = new \App\MensagemServico();
+            $obj = $modelMensagem->create($input);
+            $msg = 'Mensagem criada com sucesso. ' . $obj->id;
+            return ['msg' => $msg, 'style' =>'success'];
+        }
+        catch(\Exception $e){
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+            return  ['msg' => 'falha ao gravar '  .$this->_nome, 'style' =>'danger'];
+        }
+    }
+    
+    
 }
