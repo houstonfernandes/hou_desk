@@ -16727,24 +16727,26 @@ webpackContext.id = 131;
 /* 197 */,
 /* 198 */,
 /* 199 */,
-/* 200 */
+/* 200 */,
+/* 201 */,
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(201);
+module.exports = __webpack_require__(203);
 
 
 /***/ }),
-/* 201 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //moment language
 var moment = __webpack_require__(0);
 moment.locale('pt-br');
 //livestamp  - https://mattbradley.github.io/livestampjs/
-var livestamp = __webpack_require__(202);
+var livestamp = __webpack_require__(204);
 
 /***/ }),
-/* 202 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Livestamp.js / v2.0.0 / (c) 2015 Matt Bradley / MIT License
@@ -16891,4 +16893,4 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ })
-],[200]);
+],[202]);

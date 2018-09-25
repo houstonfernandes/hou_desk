@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Log;
 
 use App\Servico;
 use App\Exceptions\NotFoundException;
-use App\Exceptions\NaoPodeExcluirException;
 use App\Search\EquipamentoSearch;
 
 class ServicoRepository extends BaseRepository
@@ -65,51 +64,6 @@ class ServicoRepository extends BaseRepository
             Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
             return  ['msg' => 'falha ao gravar '  .$this->_nome, 'style' =>'danger'];
         }
-    }
-
-    public function update($id, FormRequest $request)
-    {
-        try{
-            $input = $request->all();
-            $input['data_aquisicao'] = dataGravar($request->data_aquisicao);            
-            $obj = $this->findByID($id);
-            $obj->update($input);
-            $msg = $this->_nome .' atualizado com sucesso. - ' . $obj->nome;
-            return ['msg' => $msg, 'style' =>'success'];
-        }
-        catch (\Exception $e){
-            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());                        
-            return  ['msg' => 'falha ao atualizar ' . $this->_nome, 'style' =>'danger'];
-        }
-    }
-    
-    public function delete($id)
-    {
-        try{
-            $obj = $this->findByID($id);
-            $nome = $obj->nome;
-            
-            if ($this->podeExcluir($obj)){
-                $obj->delete();
-                $msg = $this->_nome . ' excluido com sucesso. - '. $nome;
-                return ['msg' => $msg, 'style' =>'success'];
-            }
-            else {
-                throw new NaoPodeExcluirException($this->_nome. ' ' . $nome .' não pode ser excluído, pois possui serviços.');
-            }
-        }
-        catch (NaoPodeExcluirException $e){
-            return  ['msg' => $e->getMessage(), 'style' =>'danger'];
-        }
-        catch (\Exception $e){
-            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());            
-            return  ['msg' => 'falha ao excluir ' . $this->_nome, 'style' =>'danger'];
-        }
-    }
-    
-    private function podeExcluir(Servico $obj)
-    {
-        return false;
     }
     
     /**
@@ -172,6 +126,27 @@ class ServicoRepository extends BaseRepository
             return  ['msg' => 'falha ao gravar '  .$this->_nome, 'style' =>'danger'];
         }
     }
+
+    /**
+     * armazena atendimento do servico, mudando a situacao e armazenando a solução, se finalizado
+     * @param FormRequest $request
+     * @return array 'sucesso', 'id','erro'
+     */
+    public function atender(FormRequest $request)
+    {
+        try{
+            $input = $request->all();            
+            $obj = $this->findByID($request->servico_id);
+            $obj->update($input);
+            $msg = 'Serviço <strong>' . $obj->equipamento->setor->local->nome . ' - '  . $obj->equipamento->setor->nome . ' -> ' .  $obj->equipamento->nome . '</strong> atualizado com sucesso.';
+            return ['msg' => $msg, 'style' =>'success'];
+        }
+        catch(\Exception $e){
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+            return  ['msg' => 'falha ao gravar '  .$this->_nome, 'style' =>'danger'];
+        }
+    }
+    
     
     
 }

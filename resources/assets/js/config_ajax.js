@@ -7,10 +7,15 @@ var divAjaxStatus = $('<div id=ajaxStatus>');
 window.exibirAlerta = function (msg, classe)
 {
 //    console.log('em exibir alerta class=' +classe);
-    var msgString = '<div role="alert" class="alert alert-' + classe + '" ><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-    msgString += msg;
-    $( '#divMsg').html(msgString).show();
-
+	
+    var msgString = `<div role="alert" class="alert alert-${classe}">
+    					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+    						&times;
+    					</button>
+    					${msg}
+    				</div>`;
+    
+    $( '#divMsg').html(msgString).show();    	
 }
 
 window.esconderAlerta = function()

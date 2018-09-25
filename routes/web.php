@@ -34,6 +34,7 @@ Route::group(['prefix' => 'servicos', 'middleware'=>'auth', 'as' => 'servicos.']
     Route::post('/', ['as' => 'store', 'uses' => 'ServicosController@store']);
     Route::get('consultar/{id}', ['as' => 'consultar', 'uses' => 'ServicosController@consultar']);
     Route::post('store_mensagem', ['as' => 'store_mensagem', 'uses' => 'ServicosController@storeMensagem']);
+    Route::put('atender', ['as' => 'atender', 'uses' => 'ServicosController@atender']);
     
     //Route::get('/{id}', ['as' => 'update_own', 'uses' => 'UsersController@updateOwn']);//usar attr hidden name=_method value=PUT
 });

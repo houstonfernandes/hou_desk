@@ -28,15 +28,15 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 161:
+/***/ 163:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(162);
+module.exports = __webpack_require__(164);
 
 
 /***/ }),
 
-/***/ 162:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -46,9 +46,9 @@ module.exports = __webpack_require__(162);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(163);
-bootbox = __webpack_require__(165); //lib dialogs, confirm bootstrap
-window.Vue = __webpack_require__(166);
+__webpack_require__(165);
+bootbox = __webpack_require__(167); //lib dialogs, confirm bootstrap
+window.Vue = __webpack_require__(168);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -65,7 +65,7 @@ const app = new Vue({
 
 /***/ }),
 
-/***/ 163:
+/***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -81,7 +81,7 @@ try {
   //  window.$ = window.jQuery = require('jquery');
 
   __webpack_require__(132);
-  __webpack_require__(164);
+  __webpack_require__(166);
 } catch (e) {
   console.error('Falha ao carregar modulos iniciais js');
 }
@@ -129,7 +129,7 @@ if (token) {
 
 /***/ }),
 
-/***/ 164:
+/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*var imagemErro ="<img src='"  + baseUrl + "/imagens/erro.png' width='30' height='30'/> ";
@@ -140,8 +140,9 @@ var divAjaxStatus = $('<div id=ajaxStatus>');
 */
 window.exibirAlerta = function (msg, classe) {
 	//    console.log('em exibir alerta class=' +classe);
-	var msgString = '<div role="alert" class="alert alert-' + classe + '" ><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-	msgString += msg;
+
+	var msgString = '<div role="alert" class="alert alert-' + classe + '">\n    \t\t\t\t\t<button type="button" class="close" data-dismiss="alert" aria-hidden="true">\n    \t\t\t\t\t\t&times;\n    \t\t\t\t\t</button>\n    \t\t\t\t\t' + msg + '\n    \t\t\t\t</div>';
+
 	$('#divMsg').html(msgString).show();
 };
 
@@ -225,7 +226,7 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ 165:
+/***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -1220,7 +1221,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 166:
+/***/ 168:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12183,11 +12184,11 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127), __webpack_require__(167).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127), __webpack_require__(169).setImmediate))
 
 /***/ }),
 
-/***/ 167:
+/***/ 169:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -12243,7 +12244,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(168);
+__webpack_require__(170);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -12258,7 +12259,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ 168:
+/***/ 170:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -12448,11 +12449,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127), __webpack_require__(169)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127), __webpack_require__(171)))
 
 /***/ }),
 
-/***/ 169:
+/***/ 171:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -12643,4 +12644,4 @@ process.umask = function() { return 0; };
 
 /***/ })
 
-},[161]);
+},[163]);

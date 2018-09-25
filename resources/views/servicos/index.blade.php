@@ -49,26 +49,16 @@
                     <td>{{$servico->equipamento->setor->nome}}</td>
                     <td>{{$servico->solicitante->name}}</td>
                     <td>
-	                    @if($servico->situacao == 0)
-                    		<span class="glyphicon glyphicon-plus text-success" aria-hidden="true" title='Solicitação iniciada'></span>
-                    	@elseif($servico->situacao == 1)
-                    		<span class="glyphicon glyphicon-envelope text-success" aria-hidden="true" title='Tecnico notificado'></span>
-                    	@elseif($servico->situacao == 2)
-                    		<span class="glyphicon glyphicon-user text-success" aria-hidden="true" title='Técnico ciente'></span>
-                    	@elseif($servico->situacao == 3)
-                    		<span class="glyphicon glyphicon-fire text-warning" aria-hidden="true" title='A executar'></span>                    		
-                    	@elseif($servico->situacao == 4)
-                    		<span class="glyphicon glyphicon-cog text-warning" aria-hidden="true" title='Em execução'></span>
-                    	@elseif($servico->situacao == 5)
-                    		<span class="glyphicon glyphicon-thumbs-up text-success" aria-hidden="true" title='Finalizado'></span>
+                    
+                    	@include('partial.situacao_servico')
+                    	@if($servico->situacao!=5)                    	
+                    		<span class='timericone glyphicon glyphicon-time' data-data_hora="{{$servico->created_at}}" data-tempo_limite="{{$servico->tipoServico->duracaoMinutos()}}" title="{{date_format($servico->created_at, 'd/m/Y H:i:s')}}"></span>
                     	@endif
-                    	<span class='timericone glyphicon glyphicon-time' data-data_hora="{{$servico->created_at}}" data-tempo_limite="{{$servico->tipoServico->duracaoMinutos()}}"></span>
-                    	<span data-livestamp="{{$servico->created_at}}"></span>
-                    	{{--<span data-livestamp="2012-08-03T00:29:22-07:00"></span>--}}
+                    		<span data-livestamp="{{$servico->created_at}}"></span>
                     </td>
                     <td>
                         <a href = "{{route('servicos.consultar', $servico->id) }}" class="btn btn-primary" title='Consultar'>
-                        	<span class="glyphicon glyphicon-edit text-success" aria-hidden="true"></span>
+                        	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                        	</a>
                     </td>
                 </tr>

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\EquipamentoRequest;
 use App\Http\Requests\MensagemServicoRequest;
+use App\Http\Requests\AtenderServicoRequest;
 use App\Local;
-use App\TipoEquipamento;
 use App\Domains\ServicoRepository;
 use App\TipoServico;
 use App\Http\Requests\ServicoRequest;
@@ -68,7 +68,7 @@ class ServicosController extends Controller
         //$tiposEquipamentos = TipoEquipamento::ativo()->get();
         
         //se tecnico mudar o status p tecnico ciente
-        if(Auth::user()->isTecnico() && $servico->situacao != ServicoRepository::STATUS_TECNICO_CIENTE ){
+        if(Auth::user()->isTecnico() && $servico->situacao <= ServicoRepository::STATUS_TECNICO_CIENTE ){
             //dd('é tecnico');
             $servico->situacao = ServicoRepository::STATUS_TECNICO_CIENTE;
             $servico->save();
@@ -108,9 +108,18 @@ class ServicosController extends Controller
     {
         $saida = $this->repository->storeMensagem($request);
         $servicoId = $request->servico_id;
-        flash($saida['msg'], $saida['style']);
+        
+        //flash($saida['msg'], $saida['style']);
         
         return redirect()->route('servicos.consultar', $servicoId);
+    }
+    
+    public function atender(AtenderServicoRequest $request)
+    {
+        $saida = $this->repository->atender($request);
+        $servicoId = $request->servico_id;        
+        flash($saida['msg'], $saida['style']);        
+        return redirect()->route('servicos.index', $servicoId);
     }
     
     
