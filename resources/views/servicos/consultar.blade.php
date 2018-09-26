@@ -101,7 +101,7 @@
 		@if(Auth::user()->isTecnico() && $servico->situacao != 5)  
             <div class="panel panel-default">
               <div class="panel-heading">          
-                <h3 class="panel-title">Atendimento do serviço</h3>
+                <h3 class="panel-title">Atendimento ao serviço</h3>
               </div>
               <div class="panel-body">      			
             		<form method="post" action="{{route('servicos.atender')}}" name='form_atendimento'>
@@ -124,6 +124,12 @@
                         	<span id="erro_atender"></span>
             			</div>
             			
+                		<div class="form-group">
+                      			<label>
+                        	     	<input type="checkbox" name="notificar_solicitante" value="1"> Notificar solicitante ao finalizar - {{$servico->solicitante->name}}
+                        	    </label>
+                        </div>
+                        
                     	<div class="form-group">
                         	<button type='submit' class="btn btn-primary">
                         		<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" title='Salvar'></span>            	

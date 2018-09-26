@@ -8,12 +8,7 @@
     		<a class="btn btn-primary" href="{{route('servicos.create')}}">
     			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
     			Nova solicitação
-    		</a>
-    		<a class="btn btn-primary" href="{{route('admin.tipos_equipamento.index')}}">
-    			<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>	
-    			Tipos de equipamentos
-    		</a>
-    		
+    		</a>    		
     		<a href = "{{route('admin.locais.index') }}" class="btn btn-primary" title='voltar para locais'>
     			<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
     			Locais

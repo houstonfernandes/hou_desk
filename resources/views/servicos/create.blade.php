@@ -55,13 +55,13 @@
     		<textarea class="form-control" rows='3' name='descricao'>{{old('descricao')}}</textarea>        
 		</div>
 		
+      	@if($local->tecnico)
 		<div class="form-group">
-      		@if($local->tecnico)
       			<label>
         	     	<input type="checkbox" name="notificar_tecnico" value="1"> Notificar técnico
         	    </label>
-        	@endif
         </div>
+        @endif
 	
         <div class="form-group">
       		<button type="submit" class="btn btn-primary">Confirmar</button>

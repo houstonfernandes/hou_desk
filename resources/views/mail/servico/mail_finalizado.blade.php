@@ -2,7 +2,7 @@
 # Solicitação de serviço
 
 <p>
-	Foi solicitado um servico do tipo <strong> {{$servico->tipoServico->nome}} </strong>, solicitado por <strong> {{$servico->solicitante->name}}</strong>
+	Foi Finalizado o servico do tipo <strong> {{$servico->tipoServico->nome}} </strong>, solicitado por <strong> {{$servico->solicitante->name}}</strong>
 </p>.
 <p>
 	<strong>Descrição:</strong> {{$servico->descricao }}

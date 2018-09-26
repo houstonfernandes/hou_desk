@@ -14,6 +14,7 @@ use App\Domains\ServicoRepository;
 use App\TipoServico;
 use App\Http\Requests\ServicoRequest;
 use App\Events\ServicoCriado;
+use App\Events\ServicoFinalizado;
 
 
 class ServicosController extends Controller
@@ -79,21 +80,7 @@ class ServicosController extends Controller
         return view('servicos.consultar', compact('servico'));
     }
     
-    public function update($id, EquipamentoRequest $request)
-    {
-        $saida = $this->repository->update($id, $request);
-        flash($saida['msg'], $saida['style']);        
-        return redirect()->route('admin.equipamentos.index', $request->local_id);
-    }
-    
-    public function delete($id)
-    {
-        $equipamento = $this->repository->findByID($id);
-        $local = $equipamento->setor->local;        
-        $saida = $this->repository->delete($id);
-        flash($saida['msg'], $saida['style']);        
-        return redirect()->route('admin.equipamentos.index', $local->id);
-    } 
+
     /**
      * procura fornecedor por diversos campos
      * @param request [nome, ]
@@ -117,9 +104,21 @@ class ServicosController extends Controller
     public function atender(AtenderServicoRequest $request)
     {
         $saida = $this->repository->atender($request);
-        $servicoId = $request->servico_id;        
+        $servico = $this->repository->findByID($request->servico_id);        
+        
+        if($request->notificar_solicitante == 1){
+            try{
+                event(new ServicoFinalizado($servico));//evento email p/ técnico;                
+                $saida['msg'] .='<p class="text-success">Email enviado para o solicitante.</p>';
+            }catch (\Exception $e){
+                Log::error(__METHOD__ . ' Exception: ' . $e->__toString() . '-' . $e->getMessage());
+                $saida['msg'] .='<p class="text-danger">Houve falha ao enviar email para o solicitante.</p>';
+            }
+        }
+        
+        
         flash($saida['msg'], $saida['style']);        
-        return redirect()->route('servicos.index', $servicoId);
+        return redirect()->route('servicos.index');
     }
     
     

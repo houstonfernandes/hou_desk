@@ -41,14 +41,13 @@ class MeuResetSenha extends Notification
     public function toMail($notifiable)
     {
         return (
-            new MailMessage) ->subject('Reset senha - COMERCIAL HSF')
-            ->from(config('app.email'),config('app.name'))
+            new MailMessage) ->subject('Reset senha - '. config('app.name'))
+            ->from(config('mail.from.address'),config('app.name'))
             ->greeting('Olá!')
             ->line('Você está recebendo este e-mail porque nós recebemos uma solicitação de troca de senha para sua conta.')
             ->action('REDEFINIR SENHA', route('password.reset', $this->token))
             ->line('Se você não solicitou uma redefinição de senha, nenhuma ação é necessária.')
-            ->markdown('vendor.notifications.email'
-       );         
+            ->markdown('notification.user.password_reset');         
     }
 
     /**
