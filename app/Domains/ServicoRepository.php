@@ -16,9 +16,9 @@ class ServicoRepository extends BaseRepository
 {
     protected $modelClass = Servico::class;
     protected $model;
-    protected $orderBy = 'created_at';
-    protected $orderByDirection = 'desc';
-    protected $perPage = 15;
+    protected $orderBy = 'situacao';
+    protected $orderByDirection = 'asc';
+    protected $perPage = 20;
     private $_nome = 'Servico';
     private $_tabela = 'servicos';
     
@@ -28,9 +28,6 @@ class ServicoRepository extends BaseRepository
     const STATUS_A_EXECUTAR = 3;
     const STATUS_EM_EXECUCAO = 4;
     const STATUS_FINALIZADO = 5;
-    
-    
-    
     
     /**
      * lista paginada para index - serviços por local
@@ -137,6 +134,9 @@ class ServicoRepository extends BaseRepository
         try{
             $input = $request->all();            
             $obj = $this->findByID($request->servico_id);
+            if($input['situacao'] == self::STATUS_FINALIZADO){
+                $input['data_solucao'] = new \DateTime();                
+            }
             $obj->update($input);
             $msg = 'Serviço <strong>' . $obj->equipamento->setor->local->nome . ' - '  . $obj->equipamento->setor->nome . ' -> ' .  $obj->equipamento->nome . '</strong> atualizado com sucesso.';
             return ['msg' => $msg, 'style' =>'success'];
