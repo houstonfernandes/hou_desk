@@ -106,7 +106,7 @@ class ServicosController extends Controller
         $saida = $this->repository->atender($request);
         $servico = $this->repository->findByID($request->servico_id);        
         
-        if($request->notificar_solicitante == 1){
+        if($request->notificar_solicitante == 1 && $request->situacao == ServicoRepository::STATUS_FINALIZADO){
             try{
                 event(new ServicoFinalizado($servico));//evento email p/ técnico;                
                 $saida['msg'] .='<p class="text-success">Email enviado para o solicitante.</p>';

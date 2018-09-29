@@ -14,7 +14,7 @@ class TipoServico extends Model
      */
     public function servicos()
     {
-        return $this->belongsToMany('App\Servico');
+        return $this->hasMany('App\Servico');
     }
     
     public function scopeOfTipoServico($query, $id){

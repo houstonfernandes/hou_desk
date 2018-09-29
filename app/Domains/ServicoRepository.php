@@ -16,8 +16,8 @@ class ServicoRepository extends BaseRepository
 {
     protected $modelClass = Servico::class;
     protected $model;
-    protected $orderBy = 'situacao';
-    protected $orderByDirection = 'asc';
+    protected $orderBy = 'created_at';
+    protected $orderByDirection = 'desc';
     protected $perPage = 20;
     private $_nome = 'Servico';
     private $_tabela = 'servicos';
@@ -138,7 +138,7 @@ class ServicoRepository extends BaseRepository
                 $input['data_solucao'] = new \DateTime();                
             }
             $obj->update($input);
-            $msg = 'Serviço <strong>' . $obj->equipamento->setor->local->nome . ' - '  . $obj->equipamento->setor->nome . ' -> ' .  $obj->equipamento->nome . '</strong> atualizado com sucesso.';
+            $msg = 'Serviço <strong>' . $obj->equipamento->setor->local->nome . ' - '  . $obj->equipamento->setor->nome . ' -> ' .  $obj->equipamento->nome . ' - '. $obj->tipoServico->nome . '</strong> atualizado com sucesso.';
             return ['msg' => $msg, 'style' =>'success'];
         }
         catch(\Exception $e){

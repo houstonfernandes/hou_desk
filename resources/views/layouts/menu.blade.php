@@ -40,9 +40,10 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros</a>
                             <ul class="dropdown-menu">
                             
-	                           <li><a href="{{ route('admin.locais.index') }}" title="Cadastro de Locais">Cadastro de Locais</a></li>
-	                           <li><a href="{{ route('admin.tipos_equipamento.index') }}" title="Cadastro de Tipos de equipamentos">Cadastro de Tipos Equip.</a></li>								
-	                           <li><a href="{{ route('admin.users.index') }}" title="Cadastro de Usuários">Cadastro de Usuários</a></li>
+	                           <li><a href="{{ route('admin.locais.index') }}" title="Cadastro de Locais">Locais</a></li>
+	                           <li><a href="{{ route('admin.tipos_equipamento.index') }}" title="Cadastro de Tipos de equipamento">Tipos Equipamento</a></li>
+	                           <li><a href="{{ route('admin.tipos_servico.index') }}" title="Cadastro de Tipos de serviço">Tipos de Serviço</a></li>
+	                           <li><a href="{{ route('admin.users.index') }}" title="Cadastro de Usuários">Usuários</a></li>
 	                           @can('user_role')
 	                           @endcan
                         <li class="dropdown-submenu">

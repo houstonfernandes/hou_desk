@@ -120,7 +120,7 @@
             			
                     	<div class="form-group">
                     		<label for='solucao'>Solução</label>
-                        	<textarea class="form-control" rows='3' name='solucao' title='A solução só será exibida aṕos o serviço estar finalizado'></textarea>
+                        	<textarea class="form-control" rows='3' name='solucao' title='A solução só será exibida para o usuário aṕos o serviço estar finalizado'>{{$servico->solucao}}</textarea>
                         	<span id="erro_atender"></span>
             			</div>
             			

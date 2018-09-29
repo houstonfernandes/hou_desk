@@ -54,6 +54,20 @@ Route::prefix('admin/users')
         Route::get('{id}/roles', ['as' => 'roles', 'uses' => 'UsersController@roles']);
         Route::put('{id}/roles', ['as' => 'roles', 'uses' => 'UsersController@rolesUpdate']);
     });
+
+Route::prefix('admin/tipos_servico')
+    ->name('admin.tipos_servico.')
+    ->middleware('auth')
+    ->group(function(){
+        Route::get('/', ['as' => 'index', 'uses' => 'TipoServicoController@index']);
+        Route::post('/', ['as' => 'store', 'uses' => 'TipoServicoController@store']);
+        Route::get('create', ['as' => 'create', 'uses' => 'TipoServicoController@create']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'TipoServicoController@edit']);
+        Route::put('/{id}', ['as' => 'update', 'uses' => 'TipoServicoController@update']);
+        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'TipoServicoController@delete']);
+    });
+            
+    
     
 Route::prefix('admin/tipos_equipamento')
         ->name('admin.tipos_equipamento.')
