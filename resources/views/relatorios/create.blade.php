@@ -74,6 +74,13 @@
 
 @push('js')
     <script src="{{asset('js/jquery_validation.js')}}"></script>
+    <script src="{{asset('js/jquery_mask_plugin.js')}}"></script>
+    <script src="{{asset('js/jquery_ui.js')}}"></script>
+    <script src="{{asset('js/jquery_numeric.js')}}"></script>
     
     <script src="{{asset('js/servicos_create.js')}}"></script>
+@endpush
+
+@push('css')
+	<link rel='stylesheet' media='all' href="{{asset('css/jquery-ui.min.css')}}" type='text/css' />
 @endpush

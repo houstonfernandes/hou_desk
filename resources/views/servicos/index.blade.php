@@ -45,7 +45,8 @@
                     <td>{{$servico->solicitante->name}}</td>
                     <td>
                     
-                    	@include('partial.situacao_servico')
+                    	@include('partial.icone_situacao_servico')
+                    	
                     	@if($servico->situacao!=5)                    	
                     		<span class='timericone glyphicon glyphicon-time' data-data_hora="{{$servico->created_at}}" data-tempo_limite="{{$servico->tipoServico->duracaoMinutos()}}" title="{{date_format($servico->created_at, 'd/m/Y H:i:s')}}"></span>
                     	@endif

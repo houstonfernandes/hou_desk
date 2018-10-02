@@ -9,7 +9,9 @@
         	<li class="list-group-item active">
         		Solicitante: {{$servico->solicitante->name}}        		
         		<span class="pull-right"><strong>Data da solicitação: </strong> {{date_format($servico->created_at, "d/m/Y H:i:s")}}
-        			@include('partial.situacao_servico')
+        			
+        			@include('partial.icone_situacao_servico')
+        			
         		</span>
         	</li>
         </ul>

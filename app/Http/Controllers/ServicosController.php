@@ -82,7 +82,7 @@ class ServicosController extends Controller
     
 
     /**
-     * procura fornecedor por diversos campos
+     * procura por diversos campos
      * @param request [nome, ]
      * @return array json
      */

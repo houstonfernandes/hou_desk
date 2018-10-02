@@ -111,8 +111,8 @@ class EquipamentoRepository extends BaseRepository
     }
     
     /**
-     * procura setores por diversos campos
-     * @param request [nome, marca, cod_barra]
+     * procura equipamentos por diversos campos
+     * @param request [situacao, local, tipo, setor]
      * @return array json
      */
     public function search(Request $request)
@@ -147,6 +147,71 @@ class EquipamentoRepository extends BaseRepository
             Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());            
         }
         return $saida;            
+    }
+    
+    /**
+     * procura equipamentos por diversos campos
+     * @param request [situacao, local, tipo, setor]
+     * @return array json
+     */
+    public function relatorioDescritivo(Request $request)
+    {
+        $saida = [];
+        try{
+            $objQuery = EquipamentoSearch::apply($request)
+                ->orderBy($this->orderBy, $this->orderByDirection);
+            
+            //$query = DocumentSearch::apply($request);
+            
+//            $whereString = $this->getWhereString($request);
+            
+            $equipamentos = $objQuery
+                ->select('nome', 'descricao', 'num_etiqueta', 'num_patrimonio', 'situacao', 'setor_id', 'st.nome AS setor_nome', 'lc.nome AS local_nome', 'te.nome AS tipo_equipamento_nome')
+                    ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
+                    ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
+                    ->join('locais AS lc', 'st.local_id', '=', 'lc.id');
+//                ->groupBy('locais.id', 'sub_tipo_documento_id')
+//                ->orderBy('sub_tipo', 'asc')//@todo ordenar por mais de um campo
+//                ->orderBy('origem', 'asc')
+                        //->get();
+            
+            //dd($documentos);
+/*
+ * 
+ //@todo pesquisar primeiro depois verificar a query string            
+                        
+            session(['documentos' => $documentos]);//armazenar na sessão
+            session(['document_origem_id'=> $request->origem_id]);//armazenar na sessão
+            session(['document_where_string'=> $whereString]);//armazenar na sessão
+            
+*/
+            
+            $result = $objQuery->get();
+            if($result->count()==0){
+                throw new NotFoundException($this->_nome . ' não encontrado.');
+            }
+            
+            $saida = [
+                'msg' =>$this->_nome . ' encontrado.',
+                'equipamentos' => $result,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
     }
     
     
