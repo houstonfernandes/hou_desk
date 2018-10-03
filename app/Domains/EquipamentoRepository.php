@@ -180,13 +180,19 @@ class EquipamentoRepository extends BaseRepository
                         session(['rel_local_id' => $request->local_id]);                        
                     }else{
                         session()->pull('rel_local_id');
-                    }
-                    
+                    }                    
                     if($request->tipo_equipamento_id) {
                         session(['rel_tipo_equipamento_id' => $request->tipo_equipamento_id]);
                     }else{
                         session()->pull('rel_tipo_equipamento_id');
                     }
+                    if($request->situacao != null) {
+                        session(['rel_situacao' => $request->situacao]);
+                    }else{
+                        session(['rel_situacao' => null]);
+                    }
+                    
+               //     dd($request->situacao);
                     
             //dd($documentos);
 /*

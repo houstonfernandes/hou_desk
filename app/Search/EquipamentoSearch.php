@@ -37,6 +37,10 @@ class EquipamentoSearch
             $obj->where('tipo_equipamento_id', '=', $request->tipo_equipamento_id);
         }
         
+        if($request->situacao != null) {
+            $obj->where('situacao', '=', $request->situacao);
+        }
+        
         if($request->limit) {//limite de linhas
             $obj->limit($request->limit);
         }

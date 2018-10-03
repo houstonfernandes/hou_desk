@@ -13,7 +13,7 @@ class RelatoriosController extends Controller
     {
         $tipo_equipamento_id = 0;
         $local_id = 0;
-        
+        $situacao = '';
         $tiposEquipamento = TipoEquipamento::all(['id', 'nome']);
         $locais = Local::all(['id','nome']);
                         
@@ -27,8 +27,13 @@ class RelatoriosController extends Controller
         if(session()->has('rel_local_id')){
             $local_id = session('rel_local_id');
         }
+        
+        if(session()->has('rel_situacao')){
+            $situacao = session('rel_situacao');
+        }
+        
 //dd($local_id);
 //dd(str_plural('palavra'));
-        return view('relatorios.equipamentos_descritivo', compact('equipamentos', 'tiposEquipamento','locais', 'tipo_equipamento_id','local_id'));
+        return view('relatorios.equipamentos_descritivo', compact('equipamentos', 'tiposEquipamento','locais', 'tipo_equipamento_id','local_id', 'situacao'));
     }    
 }

@@ -32,6 +32,14 @@
                 	@endforeach
                 </select>
                 
+        	    <label for="situacao">Situação</label>
+                <select id='situacao' name='situacao' class="form-control">
+                	<option value=''>todas</option>
+                	@foreach(config('equipamento.situacoes') as $k => $value)
+                		<option value="{{$k}}" {{($situacao == $k && $situacao != null )?'selected':''}}>{{$value}}</option>
+                	@endforeach
+                </select>
+                
                 <button type="submit" class="btn btn-default">Buscar</button>
                 
                 </form>

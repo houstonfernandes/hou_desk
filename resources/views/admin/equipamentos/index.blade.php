@@ -52,15 +52,10 @@
                     <td>{{$equipamento->tipoEquipamento->nome}}</td>
                     <td>{{$equipamento->setor->nome}}</td>
                     <td>{{$equipamento->num_patrimonio}}</td>
-                    <td>@if($equipamento->situacao == 0)
-                    		<span class="glyphicon glyphicon-thumbs-down text-danger" aria-hidden="true" title='inativo'></span>
-                    	@elseif($equipamento->situacao == 1)
-                    		<span class="glyphicon glyphicon-thumbs-up text-success" aria-hidden="true" title='ativo'></span>
-                    	@elseif($equipamento->situacao == 2)
-                    		<span class="glyphicon glyphicon-warning-sign text-success" aria-hidden="true" title='ativo, já foi p/ manutenção'></span>
-                    	@elseif($equipamento->situacao == 3)
-                    		<span class="glyphicon glyphicon-warning-sign text-warning" aria-hidden="true" title='ativo'></span>                    		
-                    	@endif
+                    <td>
+                    
+                    	@include('partial.icone_situacao_equipamento')
+                    	                    	
                     </td>
                     <td>
                         <a href = "{{route('admin.equipamentos.edit', $equipamento->id) }}" class="btn btn-primary" title='Editar'>

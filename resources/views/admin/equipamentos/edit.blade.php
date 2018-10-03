@@ -66,25 +66,15 @@
         <label for="origem">Origem</label>
         <input type="text" class="form-control" id="origem" name="origem" value="{{$equipamento->origem}}" maxlength="100">
       </div>
-      
-	<div class="radio">
-    	<label>
-    		<input type="radio" name='situacao' value='0' {{($equipamento->situacao==0)?'checked':'' }} >Inativo
-    	</label>
-  	</div>
-	<div class="radio">
-    	<label>
-    		<input type="radio" name='situacao' value='1' {{($equipamento->situacao==1)?'checked':'' }}>Ativo
-  	</div>
-	<div class="radio">
-    	<label>
-      		<input type="radio" name='situacao' value='2' {{ ($equipamento->situacao==2)?'checked':'' }}>para manutenção
-  	</div>
-	<div class="radio">
-    	<label>
-      		<input type="radio" name='situacao' value='3' {{ ($equipamento->situacao==3)?'checked':'' }}>para manutenção mais de uma vez
-  	</div>
-	
+
+	@foreach(config('equipamento.situacoes') as $k => $value)
+		<div class="radio">
+        	<label>
+        		<input type="radio" name='situacao' value='{{$k}}' {{($equipamento->situacao==$k)?'checked':'' }} >{{$value}}
+        	</label>
+  		</div>
+	@endforeach	
+
     <div class="form-group">
   		<button type="submit" class="btn btn-primary">Confirmar</button>
   		<a class="btn btn-primary" href="{{route('admin.equipamentos.index', $local->id)}}">Cancelar</a>
