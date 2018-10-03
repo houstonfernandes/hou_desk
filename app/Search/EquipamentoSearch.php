@@ -32,6 +32,10 @@ class EquipamentoSearch
         if($request->setor_id && trim($request->setor_id)!='') {
             $obj->where('setor_id', '=', $request->setor_id);
         }
+
+        if($request->tipo_equipamento_id && trim($request->tipo_equipamento_id)!='') {
+            $obj->where('tipo_equipamento_id', '=', $request->tipo_equipamento_id);
+        }
         
         if($request->limit) {//limite de linhas
             $obj->limit($request->limit);

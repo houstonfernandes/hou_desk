@@ -38,6 +38,11 @@ Route::group(['prefix' => 'servicos', 'middleware'=>'auth', 'as' => 'servicos.']
     
     //Route::get('/{id}', ['as' => 'update_own', 'uses' => 'UsersController@updateOwn']);//usar attr hidden name=_method value=PUT
 });
+
+Route::group(['prefix' => 'relatorios', 'middleware'=>'auth', 'as' => 'relatorios.'], function () {
+    Route::get('/', ['as' => 'equipamentos_descritivo', 'uses' => 'RelatoriosController@equipamentosDescritivo']);
+    Route::post('/', ['as' => 'equipamentos_descritivo', 'uses' => 'RelatoriosController@equipamentosDescritivo']);
+});
         
 
 // **** ADMIN

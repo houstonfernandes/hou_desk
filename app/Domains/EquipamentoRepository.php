@@ -166,7 +166,7 @@ class EquipamentoRepository extends BaseRepository
 //            $whereString = $this->getWhereString($request);
             
             $equipamentos = $objQuery
-                ->select('nome', 'descricao', 'num_etiqueta', 'num_patrimonio', 'situacao', 'setor_id', 'st.nome AS setor_nome', 'lc.nome AS local_nome', 'te.nome AS tipo_equipamento_nome')
+                ->select('equipamentos.nome', 'equipamentos.descricao', 'equipamentos.num_etiqueta', 'equipamentos.num_patrimonio', 'equipamentos.situacao', 'equipamentos.setor_id', 'st.nome AS setor_nome', 'lc.nome AS local_nome', 'te.nome AS tipo_equipamento_nome')
                     ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
                     ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
                     ->join('locais AS lc', 'st.local_id', '=', 'lc.id');
@@ -174,7 +174,11 @@ class EquipamentoRepository extends BaseRepository
 //                ->orderBy('sub_tipo', 'asc')//@todo ordenar por mais de um campo
 //                ->orderBy('origem', 'asc')
                         //->get();
-            
+
+                    if($request->local_id && trim($request->local_id)!='') {
+                        $objQuery->where('lc.id', '=', $request->local_id);
+                    }
+                    
             //dd($documentos);
 /*
  * 
@@ -188,7 +192,7 @@ class EquipamentoRepository extends BaseRepository
             
             $result = $objQuery->get();
             if($result->count()==0){
-                throw new NotFoundException($this->_nome . ' não encontrado.');
+                throw new NotFoundException('equipamento' . ' não encontrado.');
             }
             
             $saida = [
@@ -200,6 +204,7 @@ class EquipamentoRepository extends BaseRepository
         catch (NotFoundException $e){
             $saida = [
                 'msg' => $e->getMessage(),
+                'equipamentos'=>[],
                 'statusCode' => $e->getCode()
             ];
             
