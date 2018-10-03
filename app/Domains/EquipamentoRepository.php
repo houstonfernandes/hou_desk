@@ -175,8 +175,17 @@ class EquipamentoRepository extends BaseRepository
 //                ->orderBy('origem', 'asc')
                         //->get();
 
-                    if($request->local_id && trim($request->local_id)!='') {
-                        $objQuery->where('lc.id', '=', $request->local_id);
+                    if($request->local_id) {
+                        $objQuery->where('lc.id', '=', $request->local_id);                        
+                        session(['rel_local_id' => $request->local_id]);                        
+                    }else{
+                        session()->pull('rel_local_id');
+                    }
+                    
+                    if($request->tipo_equipamento_id) {
+                        session(['rel_tipo_equipamento_id' => $request->tipo_equipamento_id]);
+                    }else{
+                        session()->pull('rel_tipo_equipamento_id');
                     }
                     
             //dd($documentos);

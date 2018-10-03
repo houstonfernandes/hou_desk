@@ -111,13 +111,11 @@
 
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<b class="caret"></b></a>
-{{--
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="">Documentos registrados</a>
+                            <a href="{{route('relatorios.equipamentos_descritivo')}}">Equipamentos descritivo</a>
                         </li>
                     </ul>
---}}
                 </li>
 {{--
                 <li>
