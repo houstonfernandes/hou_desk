@@ -12,6 +12,12 @@
 
         <!-- Styles -->
         <style>
+            body{
+                background: url('imagens/houdeska.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -41,7 +47,7 @@
                 top: 18px;
             }
 
-            .content {
+            .content {<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
                 text-align: center;
             }
 
@@ -62,12 +68,13 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+     
         </style>
     <link rel='stylesheet' media='all' href="{{asset('css/layout.css')}}" type='text/css' />
         
     </head>
     <body>
-        <div class="nav navbar-nav navbar-left"
+        <div class="nav navbar-nav navbar-left">
             <ul class="dropdown-menu">
                  <li><a href="{{ route('admin.users.index') }}" title="Cadastro de Usuários">Cadastro de Usuários</a></li>   
                 <li><a href="#" title="Cadastro de equipamentos">Cadastro de equipamentos</a></li>  

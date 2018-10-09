@@ -8,7 +8,7 @@
 
 //*** SEM AUTH
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 })->name('/');
 Route::pattern('id','[0-9]+');
 
