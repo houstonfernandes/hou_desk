@@ -1,6 +1,56 @@
 @import 'paleta';
 @import 'layout_bootstrap';
 
+.table{
+  > thead > tr > th {
+    color:$white;
+    text-shadow: 1px 1px 2px #000;
+    background-color:  $color-primary-0;
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.3));
+    }
+}
+
+.navbar-default {
+    background-color:  $color-primary-0; 
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.5));
+}
+
+ .list-group-item.active{
+    color:$white;
+    text-shadow: 1px 1px 2px #000;
+    background-color:  $color-primary-0; 
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.4));
+}
+ .list-group-item.active:hover{
+    color:$white;
+    background-color:  $color-primary-0; 
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.4));
+}
+
+.alert{
+	  margin-top: 5px;
+	  margin-bottom: 5px;
+}
+
+a.btn, button.btn-primary{
+	  margin-top: 5px;
+	  margin-bottom: 5px;
+	    background-color:  $color-primary-0; 
+	    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.6));
+		&:hover{
+			    background-color:  $color-primary-1; 
+		}
+}
+.btn-default{
+		&:hover{
+			    background-color:  $color-primary-1; 
+		}
+}
+
+.btn-link{
+	color:$navbar-default-link-color;
+}
+
 .navbar-brand img {
     padding-top: -20px;
     margin-top: -5px;
@@ -11,12 +61,12 @@
 }
 
 h2.title{
-  color: $black;
+  color: $brand-primary; 
   text-align: center;
   text-shadow: $navbar-default-bg 2px 2px 6px;
   font-style: italic;
-  margin-bottom: 20px;
-  margin-top: 15px;
+  margin-bottom: 11px;
+  margin-top: 10px;
 }
 
 .error {

@@ -1421,13 +1421,13 @@ textarea {
 }
 
 a {
-  color: #181E57;
+  color: #080D3A;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #07091b;
+  color: black;
   text-decoration: underline;
 }
 
@@ -1696,12 +1696,12 @@ mark,
 }
 
 .text-primary {
-  color: #181E57;
+  color: #080D3A;
 }
 
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #0d102f;
+  color: #02030d;
 }
 
 .text-success {
@@ -1745,12 +1745,12 @@ a.text-danger:focus {
 }
 
 .bg-primary {
-  background-color: #181E57;
+  background-color: #080D3A;
 }
 
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: #0d102f;
+  background-color: #02030d;
 }
 
 .bg-success {
@@ -4414,7 +4414,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 
 .btn-link {
-  color: #181E57;
+  color: #080D3A;
   font-weight: normal;
   border-radius: 0;
 }
@@ -4438,7 +4438,7 @@ fieldset[disabled] .btn-link {
 
 .btn-link:hover,
 .btn-link:focus {
-  color: #07091b;
+  color: black;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4606,7 +4606,7 @@ tbody.collapse.in {
   color: #fff;
   text-decoration: none;
   outline: 0;
-  background-color: #181E57;
+  background-color: #080D3A;
 }
 
 .dropdown-menu > .disabled > a,
@@ -5109,7 +5109,7 @@ tbody.collapse.in {
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: #eeeeee;
-  border-color: #181E57;
+  border-color: #080D3A;
 }
 
 .nav .nav-divider {
@@ -5169,7 +5169,7 @@ tbody.collapse.in {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #181E57;
+  background-color: #080D3A;
 }
 
 .nav-stacked > li {
@@ -5973,7 +5973,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 6px 12px;
   line-height: 1.42857143;
   text-decoration: none;
-  color: #181E57;
+  color: #080D3A;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -5997,7 +5997,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span:hover,
 .pagination > li > span:focus {
   z-index: 2;
-  color: #07091b;
+  color: black;
   background-color: #eeeeee;
   border-color: #ddd;
 }
@@ -6010,8 +6010,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > .active > span:focus {
   z-index: 3;
   color: #fff;
-  background-color: #181E57;
-  border-color: #181E57;
+  background-color: #080D3A;
+  border-color: #080D3A;
   cursor: default;
 }
 
@@ -6159,12 +6159,12 @@ a.label:focus {
 }
 
 .label-primary {
-  background-color: #181E57;
+  background-color: #080D3A;
 }
 
 .label-primary[href]:hover,
 .label-primary[href]:focus {
-  background-color: #0d102f;
+  background-color: #02030d;
 }
 
 .label-success {
@@ -6236,7 +6236,7 @@ a.label:focus {
 
 .list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
-  color: #181E57;
+  color: #080D3A;
   background-color: #fff;
 }
 
@@ -6340,7 +6340,7 @@ a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #181E57;
+  border-color: #080D3A;
 }
 
 .alert {
@@ -6475,7 +6475,7 @@ a.thumbnail.active {
   line-height: 20px;
   color: #fff;
   text-align: center;
-  background-color: #181E57;
+  background-color: #080D3A;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: width 0.6s ease;
@@ -6661,8 +6661,8 @@ button.list-group-item {
 .list-group-item.active:focus {
   z-index: 2;
   color: #fff;
-  background-color: #181E57;
-  border-color: #181E57;
+  background-color: #080D3A;
+  border-color: #080D3A;
 }
 
 .list-group-item.active .list-group-item-heading,
@@ -6680,7 +6680,7 @@ button.list-group-item {
 .list-group-item.active .list-group-item-text,
 .list-group-item.active:hover .list-group-item-text,
 .list-group-item.active:focus .list-group-item-text {
-  color: #6671d5;
+  color: #2c3ee2;
 }
 
 .list-group-item-success {
@@ -7114,26 +7114,26 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-default {
-  border-color: #0d102f;
+  border-color: #02030d;
 }
 
 .panel-default > .panel-heading {
   color: #fff;
-  background-color: #1e256b;
-  border-color: #0d102f;
+  background-color: #0b1250;
+  border-color: #02030d;
 }
 
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #0d102f;
+  border-top-color: #02030d;
 }
 
 .panel-default > .panel-heading .badge {
-  color: #1e256b;
+  color: #0b1250;
   background-color: #fff;
 }
 
 .panel-default > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #0d102f;
+  border-bottom-color: #02030d;
 }
 
 .panel-primary {
@@ -8357,12 +8357,6 @@ button.close {
     /background-color: #fff;
 }*/
 
-.alert,
-.btn {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .table > thead > tr > th {
   color: #fff;
   text-shadow: 1px 1px 2px #000;
@@ -8373,16 +8367,50 @@ button.close {
 
 .navbar-default {
   background-color: #313774;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.3)));
-  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.5)));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
 }
 
 .list-group-item.active {
   color: #fff;
   text-shadow: 1px 1px 2px #000;
   background-color: #313774;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.3)));
-  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.4)));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.list-group-item.active:hover {
+  color: #fff;
+  background-color: #313774;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.4)));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.alert {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+a.btn,
+button.btn-primary {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #313774;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.6)));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+}
+
+a.btn:hover,
+button.btn-primary:hover {
+  background-color: #7C81AF;
+}
+
+.btn-default:hover {
+  background-color: #7C81AF;
+}
+
+.btn-link {
+  color: #fff;
 }
 
 .navbar-brand img {
@@ -8396,12 +8424,12 @@ button.close {
 }
 
 h2.title {
-  color: #000;
+  color: #080D3A;
   text-align: center;
   text-shadow: #313774 2px 2px 6px;
   font-style: italic;
-  margin-bottom: 20px;
-  margin-top: 15px;
+  margin-bottom: 11px;
+  margin-top: 10px;
 }
 
 .error {

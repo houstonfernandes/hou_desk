@@ -68,7 +68,7 @@
                 </tr>
 			@empty
 				<tr>
-					<td colspan='4' class='alert-warning'>Nenhum registro encontrado.</td>
+					<td colspan='6' class='alert-warning'>Nenhum registro encontrado.</td>
 				</tr>                
             @endforelse
         	</tbody>        	
