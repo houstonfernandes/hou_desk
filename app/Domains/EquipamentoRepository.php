@@ -239,24 +239,29 @@ class EquipamentoRepository extends BaseRepository
             //            $whereString = $this->getWhereString($request);
             
             $objQuery
-            ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
             ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
             ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
             ->join('locais AS lc', 'st.local_id', '=', 'lc.id')
-            ->groupBy('lc.id')
+            
             //                ->orderBy('sub_tipo', 'asc')//@todo ordenar por mais de um campo
             ->orderBy('lc.nome', 'asc');
             //->get();
             
 //@todo verificar se !local_id agrupar por setor_id            
-            /*
-            if($request->local_id) {
-                $objQuery->where('lc.id', '=', $request->local_id);
+            
+            if($request->local_id) {                
+                $objQuery                
+                    ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'st.nome AS local_nome', 'lc.id AS local_id')
+                    ->groupBy('st.id')
+                    ->where('lc.id', '=', $request->local_id);
                 session(['rel_local_id' => $request->local_id]);
             }else{
+                $objQuery
+                    ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
+                    ->groupBy('lc.id');                
                 session()->pull('rel_local_id');
             }
-            */
+            
             if($request->tipo_equipamento_id) {
                 session(['rel_tipo_equipamento_id' => $request->tipo_equipamento_id]);
             }else{

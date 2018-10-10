@@ -69,11 +69,6 @@
     	@if($equipamentos)
 {{--   		<div class="alert alert-success" role="alert">{{($equipamentos->total > 1)?'foram encontrados:':'foi encontrado:'}} {{$equipamentos->total}} {{str_plural('equipamento', $equipamentos->count())}}.</div>
 --}}
-   		
-        <div class="container" style="width:90%">
-            <canvas id="chart"></canvas>
-        </div>
-   		
     	<table class='table table-striped'>
         	<thead>
             	<tr>        	
@@ -94,7 +89,10 @@
    		@else   		
     		<div class="alert alert-warning" role="alert">Nenhum equipamento encontrado.</div>
     	@endif
-    	
+   		
+        <div class="container" style="position: relative; height:40vh; width:80vw">
+            <canvas id="chart"></canvas>
+        </div>
 
     </div>
 {{--        

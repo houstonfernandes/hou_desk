@@ -14,23 +14,6 @@ module.exports = __webpack_require__(144);
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
-	local_id = $('#local_id').val();
-
-	if (local_id != '') {
-		listarSetores();
-	}
-
-	$('#local_id').on('change', function () {
-		local_id = $(this).val();
-		if (local_id == '') {
-			limparSetores();
-			return false;
-		}
-		listarSetores();
-	});
-	//console.log(equipamentos);
-
-
 	$.each(equipamentos, function (i, e) {
 		locais.push(e.local_nome);
 		quantidades.push(parseInt(e.quantidade));
@@ -38,14 +21,6 @@ module.exports = __webpack_require__(144);
 	});
 
 	try {
-		/*
-   
-       if(origem_id == "*"){
-          throw "origem nao definida!!";
-      }
-      
-      */
-
 		if (equipamentos.length == 0) {
 			throw "sem registros";
 		}
@@ -55,12 +30,22 @@ module.exports = __webpack_require__(144);
 			data: {
 				labels: locais,
 				datasets: [{
-					label: 'quantidade', //'Documentos Registrados',
+					label: 'quantidades', //'Documentos Registrados',
 					data: quantidades,
 					backgroundColor: cores
 				}]
 			},
 			options: {
+				title: {
+					display: true,
+					text: 'Quantidade de equipamentos'
+				},
+				legend: {
+					display: false,
+					labels: {
+						fontColor: 'red'
+					}
+				},
 				scales: {
 					yAxes: [{
 						ticks: {
@@ -80,55 +65,6 @@ var locais = [];
 var quantidades = [];
 var cores = [];
 var canvas = document.getElementById("chart");
-
-var local_id = void 0;
-var limparSetores = function limparSetores() {
-	$('#setor_id').empty();
-};
-
-var listarSetores = function listarSetores() {
-	//buscar locais e montar options
-	$.ajax({
-		url: baseUrl + 'api/locais/listar_setores/' + local_id,
-		type: 'GET',
-		data: {
-			//	        	_token: _token
-		},
-		success: function success(data) {
-			console.log(data.msg);
-			$('#setor_id').empty();
-			var $option = $('<option>').prop({
-				'value': '', 'selected': 'selected'
-			}).html('todos');
-			$('#setor_id').append($option);
-			var selected = $('#setor_id_value').val();
-			$.each(data.setores, function (i, setor) {
-				var texto = setor.nome;
-				var $option = $('<option>').prop({
-					'value': setor.id
-				});
-				if (selected == setor.id) {
-					$option.prop('selected', 'selected');
-				}
-				$option.html(texto);
-				$('#setor_id').append($option);
-			});
-		},
-		error: function error(jqXhr) {
-			var parsedJson = jqXhr.responseJSON;
-			if (jqXhr.status === 500) {
-				$('#divMsg').html(parsedJson.msg);
-			}
-			if (jqXhr.status === 404) {
-				var $option = $('<option>').prop({
-					'value': ''
-				}).html(parsedJson.msg);
-				$('#setor_id').html($option);
-				//$('#divMsg').html(parsedJson.msg);
-			}
-		}
-	});
-};
 
 window.getRandomColor = function () {
 	var letters = '0123456789ABCDEF'.split('');
