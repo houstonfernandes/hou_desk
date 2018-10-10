@@ -17,7 +17,7 @@ class EquipamentoRepository extends BaseRepository
 {
     protected $modelClass = Equipamento::class;
     protected $model;
-    protected $orderBy = 'equipamentos.nome';
+    protected $orderBy = 'nome';
     protected $orderByDirection = 'asc';
     protected $perPage = 15;
     private $_nome = 'Equipamento';

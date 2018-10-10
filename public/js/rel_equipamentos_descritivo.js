@@ -1,16 +1,14 @@
-webpackJsonp([5],{
+webpackJsonp([12],{
 
-/***/ 141:
+/***/ 145:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(142);
-__webpack_require__(143);
-module.exports = __webpack_require__(144);
+module.exports = __webpack_require__(146);
 
 
 /***/ }),
 
-/***/ 142:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
@@ -80,20 +78,6 @@ var listarSetores = function listarSetores() {
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
-/***/ }),
-
-/***/ 143:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 144:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
 /***/ })
 
-},[141]);
+},[145]);

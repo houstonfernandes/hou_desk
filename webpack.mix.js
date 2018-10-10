@@ -25,6 +25,7 @@ mix.extract([
     'jquery', 'bootstrap-sass'
 ]);
 
+mix.js('resources/assets/js/rel_equipamentos_quantitativo.js', 'public/js');
 mix.js('resources/assets/js/rel_equipamentos_descritivo.js', 'public/js');
 mix.js('resources/assets/js/servicos_atender.js', 'public/js');
 mix.js('resources/assets/js/servicos_create.js', 'public/js');
@@ -88,3 +89,6 @@ mix.js('resources/assets/js/timer_icone.js', 'public/js');
 mix.copy('resources/assets/css/bootstrap_dropdown_sub.css', 'public/css');//menu bootstrap
 
 mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/', 'public/fonts/');//bootstrap fonts bug
+
+mix.js('node_modules/chart.js/dist/Chart.js', 'public/js');
+

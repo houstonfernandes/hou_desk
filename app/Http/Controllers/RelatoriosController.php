@@ -52,7 +52,7 @@ class RelatoriosController extends Controller
         $locais = Local::all(['id','nome']);
         
         $saida = $repository->relatorioQuantitativo($request);
-dd($saida);        
+//dd($saida);
         $equipamentos = $saida['equipamentos'];
         
         if(session()->has('rel_tipo_equipamento_id')){
