@@ -8359,7 +8359,7 @@ button.close {
 
 .table > thead > tr > th {
   color: #fff;
-  text-shadow: 1px 1px 2px #000;
+  text-shadow: 1px 1px 2px #313774;
   background-color: #313774;
   background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.3)));
   background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
@@ -8371,9 +8371,17 @@ button.close {
   background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
 }
 
+.panel-default .panel-heading {
+  color: #fff;
+  text-shadow: 1px 1px 2px #525891;
+  background-color: #313774;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.4)));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
 .list-group-item.active {
   color: #fff;
-  text-shadow: 1px 1px 2px #000;
+  text-shadow: 1px 1px 2px #7C81AF;
   background-color: #313774;
   background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.4)));
   background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));

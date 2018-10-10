@@ -3,8 +3,8 @@
 
 .table{
   > thead > tr > th {
-    color:$white;
-    text-shadow: 1px 1px 2px #000;
+    color: $white;
+    text-shadow: 1px 1px 2px $color-primary-0;
     background-color:  $color-primary-0;
     background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.3));
     }
@@ -15,9 +15,18 @@
     background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.5));
 }
 
+.panel-default .panel-heading{
+    color: $white;
+    text-shadow: 1px 1px 2px $color-primary-2;
+    background-color:  $color-primary-0; 
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.4));
+}
+
+
+
  .list-group-item.active{
-    color:$white;
-    text-shadow: 1px 1px 2px #000;
+    color: $white;
+    text-shadow: 1px 1px 2px $color-primary-1;
     background-color:  $color-primary-0; 
     background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.4));
 }
