@@ -45,14 +45,14 @@ class RelatoriosController extends Controller
     
     public function equipamentosQuantitativo(Request $request, EquipamentoRepository $repository)
     {
-//@todo após js descritivo setores        
         $tipo_equipamento_id = 0;
         $local_id = 0;
         $situacao = '';
         $tiposEquipamento = TipoEquipamento::all(['id', 'nome']);
         $locais = Local::all(['id','nome']);
         
-        $saida = $repository->relatorioDescritivo($request);
+        $saida = $repository->relatorioQuantitativo($request);
+dd($saida);        
         $equipamentos = $saida['equipamentos'];
         
         if(session()->has('rel_tipo_equipamento_id')){
@@ -67,9 +67,7 @@ class RelatoriosController extends Controller
             $situacao = session('rel_situacao');
         }
         
-        //dd($local_id);
-        //dd(str_plural('palavra'));
-        return view('relatorios.equipamentos_descritivo', compact('equipamentos', 'tiposEquipamento','locais', 'tipo_equipamento_id','local_id', 'situacao'));
+        return view('relatorios.equipamentos_quantitativo', compact('equipamentos', 'tiposEquipamento','locais', 'tipo_equipamento_id','local_id', 'situacao'));
     }
     
 }

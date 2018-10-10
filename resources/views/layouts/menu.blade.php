@@ -115,6 +115,10 @@
                         <li>
                             <a href="{{route('relatorios.equipamentos_descritivo')}}">Equipamentos descritivo</a>
                         </li>
+                        <li>
+                            <a href="{{route('relatorios.equipamentos_quantitativo')}}">Equipamentos quantitativo</a>
+                        </li>
+                        
                     </ul>
                 </li>
 {{--

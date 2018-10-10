@@ -44,6 +44,9 @@ Route::group(['prefix' => 'servicos', 'middleware'=>'auth', 'as' => 'servicos.']
 Route::group(['prefix' => 'relatorios', 'middleware'=>'auth', 'as' => 'relatorios.'], function () {
     Route::get('/', ['as' => 'equipamentos_descritivo', 'uses' => 'RelatoriosController@equipamentosDescritivo']);
     Route::post('/', ['as' => 'equipamentos_descritivo', 'uses' => 'RelatoriosController@equipamentosDescritivo']);
+    Route::get('equipamentos_quantitativo', ['as' => 'equipamentos_quantitativo', 'uses' => 'RelatoriosController@equipamentosQuantitativo']);
+    
+    
 });
         
 

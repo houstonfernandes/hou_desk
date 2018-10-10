@@ -6,6 +6,7 @@ use App\Equipamento;
 use App\Support\Repositories\BaseRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\Exceptions\NotFoundException;
@@ -16,7 +17,7 @@ class EquipamentoRepository extends BaseRepository
 {
     protected $modelClass = Equipamento::class;
     protected $model;
-    protected $orderBy = 'nome';
+    protected $orderBy = 'equipamentos.nome';
     protected $orderByDirection = 'asc';
     protected $perPage = 15;
     private $_nome = 'Equipamento';
@@ -159,13 +160,10 @@ class EquipamentoRepository extends BaseRepository
         $saida = [];
         try{
             $objQuery = EquipamentoSearch::apply($request)
-                ->orderBy($this->orderBy, $this->orderByDirection);
-            
-            //$query = DocumentSearch::apply($request);
-            
+                ->orderBy($this->orderBy, $this->orderByDirection);                        
 //            $whereString = $this->getWhereString($request);
             
-            $equipamentos = $objQuery
+            $objQuery
                 ->select('equipamentos.nome', 'equipamentos.descricao', 'equipamentos.num_etiqueta', 'equipamentos.num_patrimonio', 'equipamentos.situacao', 'equipamentos.setor_id', 'st.nome AS setor_nome', 'lc.nome AS local_nome', 'te.nome AS tipo_equipamento_nome')
                     ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
                     ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
@@ -197,19 +195,78 @@ class EquipamentoRepository extends BaseRepository
                     }else{
                         session(['rel_situacao' => null]);
                     }
-                    
-               //     dd($request->situacao);
-                    
-            //dd($documentos);
-/*
- * 
- //@todo pesquisar primeiro depois verificar a query string            
-                        
-            session(['documentos' => $documentos]);//armazenar na sessão
-            session(['document_origem_id'=> $request->origem_id]);//armazenar na sessão
-            session(['document_where_string'=> $whereString]);//armazenar na sessão
+                                
+            $result = $objQuery->get();
+            if($result->count()==0){
+                throw new NotFoundException('equipamento' . ' não encontrado.');
+            }
             
-*/
+            $saida = [
+                'msg' =>$this->_nome . ' encontrado.',
+                'equipamentos' => $result,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'equipamentos'=>[],
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
+    }
+
+    /**
+     * procura equipamentos por diversos campos
+     * @param request [situacao, local, tipo, setor]
+     * @return array json
+     */
+    public function relatorioQuantitativo(Request $request)
+    {
+        $saida = [];
+        try{
+            $objQuery = EquipamentoSearch::apply($request);
+            //->orderBy($this->orderBy, $this->orderByDirection);
+            //            $whereString = $this->getWhereString($request);
+            
+            $objQuery
+            ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
+            ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
+            ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
+            ->join('locais AS lc', 'st.local_id', '=', 'lc.id')
+            ->groupBy('lc.id')
+            //                ->orderBy('sub_tipo', 'asc')//@todo ordenar por mais de um campo
+            ->orderBy('lc.nome', 'asc');
+            //->get();
+            
+//@todo verificar se !local_id agrupar por setor_id            
+            /*
+            if($request->local_id) {
+                $objQuery->where('lc.id', '=', $request->local_id);
+                session(['rel_local_id' => $request->local_id]);
+            }else{
+                session()->pull('rel_local_id');
+            }
+            */
+            if($request->tipo_equipamento_id) {
+                session(['rel_tipo_equipamento_id' => $request->tipo_equipamento_id]);
+            }else{
+                session()->pull('rel_tipo_equipamento_id');
+            }
+            if($request->situacao != null) {
+                session(['rel_situacao' => $request->situacao]);
+            }else{
+                session(['rel_situacao' => null]);
+            }
             
             $result = $objQuery->get();
             if($result->count()==0){
@@ -239,8 +296,7 @@ class EquipamentoRepository extends BaseRepository
         }
         return $saida;
     }
-    
-    
+        
     /**
      * lista equipamentos por local
      * @param int local_id
@@ -298,12 +354,9 @@ class EquipamentoRepository extends BaseRepository
         try{
             $query = $this->newQuery();
            
-//            dd(self::STATUS_ATIVO);            
             $query->select('equipamentos.*');
             $query->where('setor_id', $id);
-//            if($ativo==true){            
-                $query->where('situacao', '>=', self::STATUS_ATIVO);           //somente ativos
-  //          }
+            $query->where('situacao', '>=', self::STATUS_ATIVO);           //somente ativos
             $query->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
             $result = $query->get();
             $qtd = $result->count();

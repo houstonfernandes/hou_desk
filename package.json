@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "bootbox": "^4.4.0",
+    "chart.js": "^2.7.2",
     "kuende-livestamp": "^1.1.2",
     "moment": "^2.22.2"
   }
