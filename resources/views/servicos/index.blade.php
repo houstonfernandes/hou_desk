@@ -9,10 +9,6 @@
     			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
     			Nova solicitação
     		</a>    		
-    		<a href = "{{route('admin.locais.index') }}" class="btn btn-primary" title='voltar para locais'>
-    			<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-    			Locais
-    		</a>
     	</div>
     	@if($local)
 		<div>

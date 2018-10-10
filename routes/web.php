@@ -16,6 +16,8 @@ Route::pattern('id','[0-9]+');
 Route::prefix('api')
     ->name('api.')
     ->group(function(){
+    Route::get('locais/listar_setores/{id}', ['as' => 'locais.listar_setores', 'uses' => 'LocaisController@listarSetores']);//json
+        
     Route::get('equipamentos/listar_local/{id}', ['as' => 'equipamento.listar_local', 'uses' => 'EquipamentosController@listarLocal']);//json
     Route::get('equipamentos/listar_setor/{id}', ['as' => 'equipamento.listar_setor', 'uses' => 'EquipamentosController@listarSetor']);//json
         

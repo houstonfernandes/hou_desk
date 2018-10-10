@@ -63,4 +63,15 @@ class LocaisController extends Controller
         return response()->json($saida, $saida['statusCode']);
     }
     
+    /**
+     * lista por setores local
+     * @param integer $id
+     * @return array json
+     */
+    public function listarSetores($id)
+    {
+        $saida = $this->repository->listarSetores($id);
+        return response()->json($saida, $saida['statusCode']);
+    }
+    
 }

@@ -60,6 +60,5 @@ class SetoresController extends Controller
     public function search(Request $request){
         $saida = $this->repository->search($request);
         return response()->json($saida, $saida['statusCode']);
-    }
-    
+    }        
 }

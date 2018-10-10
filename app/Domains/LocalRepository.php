@@ -124,4 +124,38 @@ class LocalRepository extends BaseRepository
         }
         return $saida;            
     }
+    
+    public function listarSetores($id)
+    {
+        $saida = [];
+        try{
+            $local = $this->findByID($id);
+            $setores = $local->setores;
+            if($setores->count()==0){
+                throw new NotFoundException('Nenhum setor foi encontrado.');
+            }
+            
+            $saida = [
+                'msg' =>'setor encontrado.',
+                'setores' => $setores,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
+    }
+    
 }

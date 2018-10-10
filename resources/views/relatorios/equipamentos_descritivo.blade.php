@@ -17,13 +17,28 @@
         		{{csrf_field()}}
         	    <label for="local_id">Local</label>
                 <select id='local_id' name='local_id' class="form-control" >
-                	<option value=''>todos</option>
+                	<option value='' selected>todos</option>
                 	@foreach($locais as $local)            	
                 		<option value="{{$local->id}}" {{($local->id == $local_id)?'selected':''}}>{{$local->nome}}</option>
-                		{{$local_id}}
                 	@endforeach
                 </select>
                 
+                <label for="setor_id">Setor</label>
+                <input type='hidden' id='setor_id_value' value='{{$setor_id}}' >
+                <select id='setor_id' name='setor_id' class="form-control" >
+                		<option value=''>todos</option>
+                		
+                    	@foreach($local->setores as $setor)
+                    		<option value="{{$setor->id}}" {{($setor->id == $setor_id)?'selected':''}}>{{$setor->nome}}</option>                    		
+                    	@endforeach
+                
+                </select>
+                @foreach($local->setores as $setor)
+                {{$setor->nome}}                    		
+                @endforeach
+            </div>
+            
+            <div class="form-inline">
         	    <label for="tipo_equipamento_id">Tipo de equipamento</label>
                 <select id='tipo_equipamento_id' name='tipo_equipamento_id' class="form-control"  autofocus>
                 	<option value=''>todos</option>
@@ -40,7 +55,9 @@
                 	@endforeach
                 </select>
                 
-                <button type="submit" class="btn btn-default">Buscar</button>
+                <button type="submit" class="btn btn-default">
+                	Buscar
+                </button>
                 
                 </form>
             </div>
@@ -91,6 +108,11 @@
     {!! $equipamentos->render() !!}
 	</div>
 --}}
-
-    
 @endsection
+
+
+@push('js')
+    <script src="{{asset('js/rel_equipamentos_descritivo.js')}}"></script>
+@endpush
+
+
