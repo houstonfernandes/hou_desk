@@ -25,6 +25,7 @@ mix.extract([
     'jquery', 'bootstrap-sass'
 ]);
 
+mix.js('resources/assets/js/rel_servicos_quantitativo.js', 'public/js');
 mix.js('resources/assets/js/rel_equipamentos_quantitativo.js', 'public/js');
 mix.js('resources/assets/js/rel_equipamentos_descritivo.js', 'public/js');
 mix.js('resources/assets/js/servicos_atender.js', 'public/js');

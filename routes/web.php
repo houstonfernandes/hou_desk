@@ -45,9 +45,9 @@ Route::group(['prefix' => 'relatorios', 'middleware'=>'auth', 'as' => 'relatorio
     Route::get('/', ['as' => 'equipamentos_descritivo', 'uses' => 'RelatoriosController@equipamentosDescritivo']);
     Route::post('/', ['as' => 'equipamentos_descritivo', 'uses' => 'RelatoriosController@equipamentosDescritivo']);
     Route::get('equipamentos_quantitativo', ['as' => 'equipamentos_quantitativo', 'uses' => 'RelatoriosController@equipamentosQuantitativo']);
-    Route::post('equipamentos_quantitativo', ['as' => 'equipamentos_quantitativo', 'uses' => 'RelatoriosController@equipamentosQuantitativo']);
-    
-    
+    Route::post('equipamentos_quantitativo', ['as' => 'equipamentos_quantitativo', 'uses' => 'RelatoriosController@equipamentosQuantitativo']);    
+    Route::get('servicos_quantitativo', ['as' => 'servicos_quantitativo', 'uses' => 'RelatoriosController@servicosQuantitativo']);
+    Route::post('servicos_quantitativo', ['as' => 'servicos_quantitativo', 'uses' => 'RelatoriosController@servicosQuantitativo']);    
 });
         
 

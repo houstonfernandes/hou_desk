@@ -162,8 +162,7 @@ class ServicoRepository extends BaseRepository
             //->orderBy($this->orderBy, $this->orderByDirection);
             //            $whereString = $this->getWhereString($request);
             
-            $objQuery
-            ->select(DB::raw('count(servicos.id) AS quantidade'), 'st.nome AS local_nome', 'lc.id AS local_id')
+            $objQuery            
             ->join('tipos_servico AS ts', 'servicos.tipo_servico_id', '=', 'ts.id')
             ->join('equipamentos AS eq', 'servicos.equipamento_id', '=', 'eq.id')            
             ->join('tipos_equipamento AS te', 'eq.tipo_equipamento_id', '=', 'te.id')
@@ -175,20 +174,32 @@ class ServicoRepository extends BaseRepository
             
             
             if($request->local_id) { //se passar local_id, agrupar por setor
-                $objQuery                
+                $objQuery
+                    ->select(DB::raw('count(servicos.id) AS quantidade'), 'st.nome AS local_nome', 'lc.id AS local_id')
                     ->groupBy('st.id')
                     ->where('lc.id', '=', $request->local_id);
                 session(['rel_local_id' => $request->local_id]);
             }else{//se não, agrupar por local
-                $objQuery                
+                $objQuery
+                    ->select(DB::raw('count(servicos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
                     ->groupBy('lc.id');
                 session()->pull('rel_local_id');
             }
             
-            if($request->tipo_equipamento_id) {
+            if($request->tipo_equipamento_id != null) {
+                $objQuery                
+                ->where('te.id', '=', $request->tipo_equipamento_id);                
                 session(['rel_tipo_equipamento_id' => $request->tipo_equipamento_id]);
             }else{
                 session()->pull('rel_tipo_equipamento_id');
+            }
+     //dd($request->tipo_servico_id);            
+            if($request->tipo_servico_id != null) {
+                    $objQuery
+                    ->where('ts.id', '=', $request->tipo_servico_id);
+                    session(['rel_tipo_servico_id' => $request->tipo_servico_id]);
+                }else{
+                    session()->pull('rel_tipo_equipamento_id');                    
             }
             if($request->situacao != null) {
                 session(['rel_situacao' => $request->situacao]);
@@ -198,19 +209,19 @@ class ServicoRepository extends BaseRepository
             
             $result = $objQuery->get();
             if($result->count()==0){
-                throw new NotFoundException('equipamento' . ' não encontrado.');
+                throw new NotFoundException('serviço' . ' não encontrado.');
             }
             
             $saida = [
-                'msg' =>$this->_nome . ' encontrado.',
-                'equipamentos' => $result,
+                'msg' =>'serviço encontrado.',
+                'servicos' => $result,
                 'statusCode' => 200
             ];
         }
         catch (NotFoundException $e){
             $saida = [
                 'msg' => $e->getMessage(),
-                'equipamentos'=>[],
+                'servicos'=>[],
                 'statusCode' => $e->getCode()
             ];
             
@@ -224,7 +235,5 @@ class ServicoRepository extends BaseRepository
         }
         return $saida;
     }
-    
-    
     
 }

@@ -1,19 +1,20 @@
-webpackJsonp([12],{
+webpackJsonp([5],{
 
-/***/ 145:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(146);
+__webpack_require__(142);
+__webpack_require__(143);
+module.exports = __webpack_require__(144);
 
 
 /***/ }),
 
-/***/ 146:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
-
-	$.each(equipamentos, function (i, e) {
+	$.each(servicos, function (i, e) {
 		locais.push(e.local_nome);
 		quantidades.push(parseInt(e.quantidade));
 		cores.push(getRandomColor());
@@ -29,7 +30,7 @@ module.exports = __webpack_require__(146);
 	console.log(dados);
 
 	try {
-		if (equipamentos.length == 0) {
+		if (servicos.length == 0) {
 			throw "sem registros";
 		}
 
@@ -46,7 +47,7 @@ module.exports = __webpack_require__(146);
 			options: {
 				title: {
 					display: true,
-					text: 'Quantidade de equipamentos'
+					text: 'Quantidade de servicos'
 				},
 				legend: {
 					display: false,
@@ -75,7 +76,7 @@ module.exports = __webpack_require__(146);
 			options: {
 				title: {
 					display: true,
-					text: 'Quantidade de equipamentos'
+					text: 'Quantidade de serviços'
 				},
 				tooltips: {
 					enabled: true
@@ -117,6 +118,20 @@ var canvas = document.getElementById("chart");
 var canvas2 = document.getElementById("chart2");
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
+/***/ }),
+
+/***/ 143:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 144:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
 /***/ })
 
-},[145]);
+},[141]);

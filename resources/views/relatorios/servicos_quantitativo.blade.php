@@ -49,7 +49,7 @@
         	    <label for="situacao">Técnico</label>
                 <select id='tecnico_id' name='tecnico_id' class="form-control">
                 	<option value=''>todos</option>
-                	@foreach(tecnicos as $tecnico)
+                	@foreach($tecnicos as $tecnico)
                 		<option value="{{$tecnico->id}}" {{($tecnico->id == $tecnico_id )?'selected':''}}>{{$tecnico->name}}</option>
                 	@endforeach
                 </select>
