@@ -3,7 +3,7 @@
 @section('content')
 	
     <div class="row">
-    	<h2 class='title'>Relatório Equipamentos Quantitativo</h2>
+    	<h2 class='title'>Relatório Serviços Quantitativo</h2>
     	
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -13,8 +13,13 @@
 
     
         	<div class="form-inline">
-        		<form method='post' action="{{route('relatorios.equipamentos_quantitativo')}}">
+        		<form method='post' action="{{route('relatorios.servicos_quantitativo')}}">
         		{{csrf_field()}}
+        		
+                <label for="dataMin">Datas</label>
+                <input type="text" name="dataMin" id="dataMin" class="form-control"> até
+                <input type="text" name="dataMax" id="dataMax" class="form-control">
+        		
         	    <label for="local_id">Local</label>
                 <select id='local_id' name='local_id' class="form-control" >
                 	<option value='' selected>todos</option>
@@ -22,21 +27,6 @@
                 		<option value="{{$local->id}}" {{($local->id == $local_id)?'selected':''}}>{{$local->nome}}</option>
                 	@endforeach
                 </select>
-                
-{{--
-                <input type='hidden' id='setor_id_value' value='{{$setor_id}}' >
-                <label for="setor_id">Setor</label>
-                <select id='setor_id' name='setor_id' class="form-control" >
-                		<option value=''>todos</option>
-                		
-                    	@foreach($local->setores as $setor)
-                    		<option value="{{$setor->id}}" {{($setor->id == $setor_id)?'selected':''}}>{{$setor->nome}}</option>                    		
-                    	@endforeach
---}}
-                </select>
-                @foreach($local->setores as $setor)
-                {{$setor->nome}}                    		
-                @endforeach
             </div>
             
             <div class="form-inline">
@@ -47,12 +37,20 @@
                 	<option value="{{$tipoEquipamento->id}}"  {{($tipoEquipamento->id == $tipo_equipamento_id)?'selected':''}}>{{$tipoEquipamento->nome}}</option>
                 	@endforeach
                 </select>
+
+        	    <label for="tipo_servico_id">Tipo de serviço</label>
+                <select id='tipo_servico_id' name='tipo_servico_id' class="form-control">
+                	<option value=''>todos</option>
+                	@foreach($tiposServico as $tipoServico)
+                	<option value="{{$tipoServico->id}}"  {{($tipoServico->id == $tipo_servico_id)?'selected':''}}>{{$tipoServico->nome}}</option>
+                	@endforeach
+                </select>
                 
-        	    <label for="situacao">Situação</label>
-                <select id='situacao' name='situacao' class="form-control">
-                	<option value=''>todas</option>
-                	@foreach(config('equipamento.situacoes') as $k => $value)
-                		<option value="{{$k}}" {{($situacao == $k && $situacao != null )?'selected':''}}>{{$value}}</option>
+        	    <label for="situacao">Técnico</label>
+                <select id='tecnico_id' name='tecnico_id' class="form-control">
+                	<option value=''>todos</option>
+                	@foreach(tecnicos as $tecnico)
+                		<option value="{{$tecnico->id}}" {{($tecnico->id == $tecnico_id )?'selected':''}}>{{$tecnico->name}}</option>
                 	@endforeach
                 </select>
                 
@@ -66,9 +64,7 @@
           </div>
         </div>    	
     	
-    	@if($equipamentos)
-{{--   		<div class="alert alert-success" role="alert">{{($equipamentos->total > 1)?'foram encontrados:':'foi encontrado:'}} {{$equipamentos->total}} {{str_plural('equipamento', $equipamentos->count())}}.</div>
---}}
+    	@if($servicos)
     	<table class='table table-striped'>
         	<thead>
             	<tr>        	
@@ -77,46 +73,39 @@
             	</tr>
             </thead>
             <tbody>
-            @foreach($equipamentos as $equipamento)
+            @foreach($servicos as $servico)
                 <tr>
-                    <td>{{$equipamento->local_nome}}</td>
-                    <td>{{$equipamento->quantidade}}</td>
+                    <td>{{$servico->local_nome}}</td>
+                    <td>{{$servico->quantidade}}</td>
                 </tr>           
             @endforeach
         	</tbody>        	
     	</table> 
     	
    		@else   		
-    		<div class="alert alert-warning" role="alert">Nenhum equipamento encontrado.</div>
+    		<div class="alert alert-warning" role="alert">Nenhum serviço encontrado.</div>
     	@endif
    		
-        <div class="container" style="position: relative; height:40vh; width:80vw">
+        <div class="container" style="position: relative; height:30vh; width:80vw">
             <canvas id="chart"></canvas>
         </div>
 
-        <div class="container" style="position: relative; height:40vh; width:80vw; margin-top:350px;">
+        <div class="container" style="position: relative; height:30vh; width:80vw; margin-top:350px;">
             <canvas id="chart2"></canvas>
         </div>
 
-
     </div>
-{{--        
-    <div id="pages">
-    {!! $equipamentos->render() !!}
-	</div>
---}}
+    
 @endsection
 
 
 @push('js')
 	<script type="text/javascript">
-		let equipamentos = {!!json_encode($equipamentos)!!};
-		console.log(equipamentos);
+		let servicos = {!!json_encode($servicos)!!};
+		console.log(servicos);
 	</script>
 	
 	<script src="{{asset('js/Chart.js')}}"></script>
 	
-    <script src="{{asset('js/rel_equipamentos_quantitativo.js')}}"></script>
+    <script src="{{asset('js/rel_servicos_quantitativo.js')}}"></script>
 @endpush
-
-

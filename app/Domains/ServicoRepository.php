@@ -6,11 +6,13 @@ use App\Support\Repositories\BaseRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\Servico;
 use App\Exceptions\NotFoundException;
 use App\Search\EquipamentoSearch;
+use App\Search\ServicoSearch;
 
 class ServicoRepository extends BaseRepository
 {
@@ -145,6 +147,82 @@ class ServicoRepository extends BaseRepository
             Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
             return  ['msg' => 'falha ao gravar '  .$this->_nome, 'style' =>'danger'];
         }
+    }
+    
+    /**
+     * rel. serviços quantitativos
+     * @param request [situacao, local, tipo, setor]
+     * @return array json
+     */
+    public function relatorioQuantitativo(Request $request)
+    {
+        $saida = [];
+        try{
+            $objQuery = ServicoSearch::apply($request);
+            //->orderBy($this->orderBy, $this->orderByDirection);
+            //            $whereString = $this->getWhereString($request);
+            
+            $objQuery
+            ->select(DB::raw('count(servicos.id) AS quantidade'), 'st.nome AS local_nome', 'lc.id AS local_id')
+            ->join('tipos_servico AS ts', 'servicos.tipo_servico_id', '=', 'ts.id')
+            ->join('equipamentos AS eq', 'servicos.equipamento_id', '=', 'eq.id')            
+            ->join('tipos_equipamento AS te', 'eq.tipo_equipamento_id', '=', 'te.id')
+            ->join('setores AS st', 'eq.setor_id', '=', 'st.id')
+            ->join('locais AS lc', 'st.local_id', '=', 'lc.id')
+//@todo ordenar por mais de um campo
+            ->orderBy('lc.nome', 'asc');
+            
+            
+            
+            if($request->local_id) { //se passar local_id, agrupar por setor
+                $objQuery                
+                    ->groupBy('st.id')
+                    ->where('lc.id', '=', $request->local_id);
+                session(['rel_local_id' => $request->local_id]);
+            }else{//se não, agrupar por local
+                $objQuery                
+                    ->groupBy('lc.id');
+                session()->pull('rel_local_id');
+            }
+            
+            if($request->tipo_equipamento_id) {
+                session(['rel_tipo_equipamento_id' => $request->tipo_equipamento_id]);
+            }else{
+                session()->pull('rel_tipo_equipamento_id');
+            }
+            if($request->situacao != null) {
+                session(['rel_situacao' => $request->situacao]);
+            }else{
+                session(['rel_situacao' => null]);
+            }
+            
+            $result = $objQuery->get();
+            if($result->count()==0){
+                throw new NotFoundException('equipamento' . ' não encontrado.');
+            }
+            
+            $saida = [
+                'msg' =>$this->_nome . ' encontrado.',
+                'equipamentos' => $result,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'equipamentos'=>[],
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
     }
     
     

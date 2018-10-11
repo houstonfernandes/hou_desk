@@ -112,6 +112,94 @@ class EquipamentoRepository extends BaseRepository
     }
     
     /**
+     * lista equipamentos por local
+     * @param int local_id
+     * @return array json
+     */
+    public function listarLocal($localId)
+    {
+        $saida = [];
+        try{
+            $query = $this->newQuery();
+            $query->select('equipamentos.*','locais.nome AS local_nome', 'locais.id AS local_id', 'setores.id AS setor_id');
+            $query->join('setores', 'equipamentos.setor_id', '=', 'setores.id');
+            $query->join('locais', 'setores.local_id', '=', 'locais.id');
+            $query->where('local_id', $localId)
+            ->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
+            $result = $query->get();
+            $qtd = $result->count();
+            if($qtd == 0){
+                throw new NotFoundException('Nenhum equipamento encontrado.');
+            }
+            
+            $saida = [
+                'msg' => $qtd . ' equipamentos.',
+                'equipamentos' => $result,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
+    }
+    
+    /**
+     * lista equipamentos por setor
+     * @param int setor id
+     * @param boolean ativo
+     * @return array json
+     */
+    public function listarSetor($id, $ativo=true)
+    {
+        $saida = [];
+        try{
+            $query = $this->newQuery();
+            
+            $query->select('equipamentos.*');
+            $query->where('setor_id', $id);
+            $query->where('situacao', '>=', self::STATUS_ATIVO);           //somente ativos
+            $query->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
+            $result = $query->get();
+            $qtd = $result->count();
+            if($qtd == 0){
+                throw new NotFoundException('Nenhum equipamento encontrado.');
+            }
+            $saida = [
+                'msg' => $qtd . ' equipamentos.',
+                'equipamentos' => $result,
+                'statusCode' => 200
+            ];
+        }
+        catch (NotFoundException $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            
+        }
+        catch (\Exception $e){
+            $saida = [
+                'msg' => $e->getMessage(),
+                'statusCode' => $e->getCode()
+            ];
+            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
+        }
+        return $saida;
+    }
+    
+    /**
      * procura equipamentos por diversos campos
      * @param request [situacao, local, tipo, setor]
      * @return array json
@@ -168,10 +256,7 @@ class EquipamentoRepository extends BaseRepository
                     ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
                     ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
                     ->join('locais AS lc', 'st.local_id', '=', 'lc.id');
-//                ->groupBy('locais.id', 'sub_tipo_documento_id')
-//                ->orderBy('sub_tipo', 'asc')//@todo ordenar por mais de um campo
-//                ->orderBy('origem', 'asc')
-                        //->get();
+                //@todo ordenar por mais de um campo
 
                     if($request->local_id) {
                         $objQuery->where('lc.id', '=', $request->local_id);                        
@@ -239,6 +324,7 @@ class EquipamentoRepository extends BaseRepository
             //            $whereString = $this->getWhereString($request);
             
             $objQuery
+            ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
             ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
             ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
             ->join('locais AS lc', 'st.local_id', '=', 'lc.id')
@@ -247,17 +333,13 @@ class EquipamentoRepository extends BaseRepository
             ->orderBy('lc.nome', 'asc');
             //->get();
             
-//@todo verificar se !local_id agrupar por setor_id            
-            
-            if($request->local_id) {                
+            if($request->local_id) {//se passar local_id, agrupar por setor
                 $objQuery                
-                    ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'st.nome AS local_nome', 'lc.id AS local_id')
                     ->groupBy('st.id')
                     ->where('lc.id', '=', $request->local_id);
                 session(['rel_local_id' => $request->local_id]);
-            }else{
-                $objQuery
-                    ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
+            }else{//se não, agrupar por local
+                $objQuery                    
                     ->groupBy('lc.id');                
                 session()->pull('rel_local_id');
             }
@@ -301,94 +383,5 @@ class EquipamentoRepository extends BaseRepository
         }
         return $saida;
     }
-        
-    /**
-     * lista equipamentos por local
-     * @param int local_id
-     * @return array json
-     */
-    public function listarLocal($localId)
-    {
-        $saida = [];
-        try{
-            $query = $this->newQuery();
-            $query->select('equipamentos.*','locais.nome AS local_nome', 'locais.id AS local_id', 'setores.id AS setor_id');
-            $query->join('setores', 'equipamentos.setor_id', '=', 'setores.id');
-            $query->join('locais', 'setores.local_id', '=', 'locais.id');
-            $query->where('local_id', $localId)
-            ->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
-            $result = $query->get();
-            $qtd = $result->count();
-            if($qtd == 0){
-                throw new NotFoundException('Nenhum equipamento encontrado.');
-            }
-            
-            $saida = [
-                'msg' => $qtd . ' equipamentos.',
-                'equipamentos' => $result,
-                'statusCode' => 200
-            ];
-        }
-        catch (NotFoundException $e){
-            $saida = [
-                'msg' => $e->getMessage(),
-                'statusCode' => $e->getCode()
-            ];
-            
-        }
-        catch (\Exception $e){
-            $saida = [
-                'msg' => $e->getMessage(),
-                'statusCode' => $e->getCode()
-            ];
-            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
-        }
-        return $saida;
-    }
-    
-    
-    /**
-     * lista equipamentos por setor
-     * @param int setor id
-     * @param boolean ativo
-     * @return array json
-     */
-    public function listarSetor($id, $ativo=true)
-    {
-        $saida = [];
-        try{
-            $query = $this->newQuery();
-           
-            $query->select('equipamentos.*');
-            $query->where('setor_id', $id);
-            $query->where('situacao', '>=', self::STATUS_ATIVO);           //somente ativos
-            $query->orderBy('equipamentos.' . $this->orderBy, $this->orderByDirection);
-            $result = $query->get();
-            $qtd = $result->count();
-            if($qtd == 0){
-                throw new NotFoundException('Nenhum equipamento encontrado.');
-            }            
-            $saida = [
-                'msg' => $qtd . ' equipamentos.',
-                'equipamentos' => $result,
-                'statusCode' => 200
-            ];
-        }
-        catch (NotFoundException $e){
-            $saida = [
-                'msg' => $e->getMessage(),
-                'statusCode' => $e->getCode()
-            ];
-            
-        }
-        catch (\Exception $e){
-            $saida = [
-                'msg' => $e->getMessage(),
-                'statusCode' => $e->getCode()
-            ];
-            Log::error(__METHOD__ . ' Exception: ' . $e->getMessage());
-        }
-        return $saida;
-    }
-    
+
 }
