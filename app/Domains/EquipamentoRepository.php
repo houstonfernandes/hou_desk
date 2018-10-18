@@ -323,8 +323,7 @@ class EquipamentoRepository extends BaseRepository
             //->orderBy($this->orderBy, $this->orderByDirection);
             //            $whereString = $this->getWhereString($request);
             
-            $objQuery
-            ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
+            $objQuery            
             ->join('tipos_equipamento AS te', 'equipamentos.tipo_equipamento_id', '=', 'te.id')
             ->join('setores AS st', 'equipamentos.setor_id', '=', 'st.id')
             ->join('locais AS lc', 'st.local_id', '=', 'lc.id')
@@ -334,12 +333,14 @@ class EquipamentoRepository extends BaseRepository
             //->get();
             
             if($request->local_id) {//se passar local_id, agrupar por setor
-                $objQuery                
+                $objQuery
+                    ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'st.nome AS local_nome', 'lc.id AS local_id')
                     ->groupBy('st.id')
                     ->where('lc.id', '=', $request->local_id);
                 session(['rel_local_id' => $request->local_id]);
             }else{//se não, agrupar por local
-                $objQuery                    
+                $objQuery
+                    ->select(DB::raw('count(equipamentos.id) AS quantidade'), 'lc.nome AS local_nome', 'lc.id AS local_id')
                     ->groupBy('lc.id');                
                 session()->pull('rel_local_id');
             }

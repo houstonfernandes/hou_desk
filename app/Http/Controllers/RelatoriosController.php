@@ -19,7 +19,7 @@ class RelatoriosController extends Controller
         $setor_id = 0;
         $situacao = '';
         $tiposEquipamento = TipoEquipamento::all(['id', 'nome']);
-        $locais = Local::all(['id','nome']);
+        $locais = Local::orderBy('nome')->get(['id', 'nome']);//$locais = Local::all(['id','nome']);
                         
         $saida = $repository->relatorioDescritivo($request);
         $equipamentos = $saida['equipamentos'];
@@ -51,8 +51,8 @@ class RelatoriosController extends Controller
         $tipo_equipamento_id = 0;
         $local_id = 0;
         $situacao = '';
-        $tiposEquipamento = TipoEquipamento::all(['id', 'nome']);
-        $locais = Local::all(['id','nome']);
+        $tiposEquipamento = TipoEquipamento::orderBy('nome')->get(['id', 'nome']);//$tiposEquipamento = TipoEquipamento::all(['id', 'nome']);        
+        $locais = Local::orderBy('nome')->get(['id', 'nome']);
         
         $saida = $repository->relatorioQuantitativo($request);
 //dd($saida);
@@ -79,9 +79,9 @@ class RelatoriosController extends Controller
         $tipo_servico_id = '';
         $local_id = 0;
         $situacao = '';
-        $tiposEquipamento = TipoEquipamento::all(['id', 'nome']);
-        $tiposServico = TipoServico::all(['id', 'nome']);
-        $locais = Local::all(['id','nome']);
+        $tiposEquipamento = TipoEquipamento::orderBy('nome')->get(['id', 'nome']);
+        $tiposServico = TipoServico::orderBy('nome')->get(['id', 'nome']);
+        $locais = Local::orderBy('nome')->get(['id', 'nome']);//$locais = Local::all(['id','nome']);
         $tecnicos = User::tecnicos();
         $tecnico_id = 0;
 //dd($tecnicos);        

@@ -19,7 +19,7 @@ class Local extends Model
      */
     public function setores()
     {
-        return $this->hasMany(Setor::class);
+        return $this->hasMany(Setor::class)->orderBy('nome');;
     }
     
     /**
